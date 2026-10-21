@@ -30,9 +30,12 @@ def main() -> int:
     assert tif_path.is_file(), f"Missing GeoTIFF: {tif_path}"
     assert zip_path.is_file(), f"Missing ZIP: {zip_path}"
 
+    fp = None
+    cat = None
     if (ROOT / ".cache" / "data" / "sample_submission.tif").is_file():
         grid = load_grid(ROOT / ".cache" / "data")
-        rep = validate(tif_path, grid.footprint, grid.catalogue)
+        fp, cat = grid.footprint, grid.catalogue
+        rep = validate(tif_path, fp, cat)
     elif (ROOT / ".cache" / "inputs" / "sample_submission.tif").is_file():
         with rasterio.open(ROOT / ".cache" / "inputs" / "sample_submission.tif") as src:
             fp = np.isfinite(src.read(1))
@@ -56,8 +59,10 @@ def main() -> int:
         assert str(ds.crs) == "EPSG:32611"
         assert np.isfinite(arr).all(), "Found NaN or Inf in GeoTIFF!"
         assert float(arr.min()) >= 0.0 and float(arr.max()) <= 1.0, "Values outside [0, 1]!"
-        assert int((arr[~grid.footprint] != 0.0).sum()) == 0, "Non-zero predictions outside footprint!"
-        assert int((arr[grid.catalogue] != 0.0).sum()) == 0, "Predictions overlap mapped catalogue!"
+        if fp is not None:
+            assert int((arr[~fp] != 0.0).sum()) == 0, "Non-zero predictions outside footprint!"
+        if cat is not None:
+            assert int((arr[cat] != 0.0).sum()) == 0, "Predictions overlap mapped catalogue!"
         assert int((arr == 1.0).sum()) == art["n_dots"]
 
     with zipfile.ZipFile(zip_path) as zf:
