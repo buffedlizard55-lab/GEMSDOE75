@@ -1,42 +1,49 @@
 {
-  "hypothesis": "Deferred: magnetic contact lateral-offset consistency under cover",
-  "mechanism": "Test repeated along-strike displacement of independent magnetic contact profiles, not edge amplitude alone.",
-  "non_fault_mimic": "Meandering intrusive contact and survey levelling stripes",
-  "holdout_dti": {
-    "evidence_class": "HOLDOUT-DTI",
-    "status": "NOT RUN: preflight stopped before experiments",
-    "evaluator_version": "gems57-pooled-hide-v2 (pinned, not executed)",
-    "withheld_positives": null,
-    "dti": null,
-    "ci95": null
-  },
-  "registry": {
-    "candidate_surface_rank_correlation": null,
-    "candidate_dot_overlap": null,
-    "reason": "No candidate exists",
-    "saturation_coverage_fraction": 1.0,
-    "support_definition": "finite prediction > 0 (inherited literal support rule)",
-    "scope": "One saturation witness and historical H33; not a full registry scan"
-  },
-  "raster_sha256": null,
-  "validator": {
-    "status": "NOT RUN: no generated raster",
-    "no_nan_inside_footprint": null,
-    "values_in_0_1": null,
-    "crs_match": null,
-    "shape_match": null,
-    "transform_match": null
+  "run_card_version": 1,
+  "generated_utc": "2026-10-21T04:02:20Z",
+  "hypothesis": "Blind upflow (no surface scarp): a radial Gaussian decay from an inferred subsurface geothermal upflow center targets fault geometry the competition states may be missing from the USGS/INGENIOUS catalogue — structures with subsurface thermal expression but no surface fault scarp.",
+  "mechanism": "Distance-decay probability from an inferred blind upflow point (peak 0.65 at center, sigma 150 px = 15 km, radius 300 px = 30 km); values in [0,1] inside the influence zone, 0.0 elsewhere. No feature stack, no catalogue-derived predictors, no holdout fitting. Format demonstration and scientific probe only.",
+  "named_non_fault_process_that_could_mimic_it": "A buried volcanic intrusion or sedimentary basin edge can produce a subsurface thermal anomaly with no associated slip-prone fault, producing a false positive for the blind-upflow hypothesis.",
+  "holdout_dti": null,
+  "holdout_dti_ci95": null,
+  "holdout_dti_label": "NOT MEASURED. No real USGS/INGENIOUS fault catalogue or GeoDAWN feature stack is available in this environment (see LIMITATIONS.md). This number must not be inferred, projected, or written as a score.",
+  "correlation_overlap_vs_registry": null,
+  "correlation_overlap_label": "NOT MEASURED. Requires the real existing_faults.tif / labels.tif raster and a full registry scan (rank correlation < 0.90, < 70% of dots within 3 px of any prior), neither available here.",
+  "raster_sha256": "812f921a4752534d7ec765ecbf19610727cd0d73a58f5d8d876e20dcd574df34",
+  "raster_sha256_note": "SHA-256 of docs/downloads/gems75-blind-upflow-radial-20261021T040220Z-43cdadda2c43.tif, the unique TIF generated this session. Format-valid but NOT holdout-validated and NOT organizer-confirmed.",
+  "validator_output": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": "Matches pinned vendor grid (UNVERIFIED against real organizer training_features.tif): EPSG:32611, 3730x3292, transform (100, 0, 243350, 0, -100, 4508550), 100 m resolution, single band float32, nodata=None.",
+    "validator_ok": true,
+    "validator_errors": [],
+    "min_finite": 0.0,
+    "max_finite": 0.6499976515769958,
+    "n_positive_px": 282736,
+    "n_nan": 0,
+    "n_below_zero": 0,
+    "n_above_one": 0
   },
   "submission_name": null,
-  "note": "Negative preflight: lane missing; positive-support registry gate saturated. No TIFF approved or generated.",
+  "submission_note_140_char": null,
+  "submission_name_note": "Not submitted. Naming pattern: gems75-[lane]-[UTC]-[hash].tif; note <= 140 chars.",
   "verdict": "negative",
-  "experiments_used": 0,
+  "verdict_reason": "No holdout-DTI measurement possible without real competition data (blocked by DrivenData login wall). No organizer confirmation. Grid geometry unverified against the real organizer raster. This TIF is a format demonstration and scientific probe; it must NOT be submitted to the competition. Negative result delivered per protocol: no wasted submission slot, no invented score.",
+  "experiments_used": 1,
   "submission_slots_used": 0,
   "approved_for_submission": false,
   "blockers": [
-    "No single-method lane supplied",
-    "Shared positive-support overlap rule is universally blocked on this footprint",
-    "No organizer receipt or authenticated current weekly cap",
-    "No comparable current-best holdout in this repository"
+    "No real competition data: training_features.tif, labels.tif, sample_submission.tif behind DrivenData login wall",
+    "Sandbox network cannot reach DrivenData, Dropbox, USGS, GDR, or other external data hosts",
+    "No holdout-DTI can be computed without the real catalogue",
+    "Grid geometry unverified against the real organizer training_features.tif"
+  ],
+  "next_session_steps": [
+    "Run scripts/download_competition_data.sh on an unrestricted machine with a DrivenData login; place training_features.tif, labels.tif, sample_submission.tif in data/raw/",
+    "Run python scripts/prepare_data.py to build the processed feature/label bundle",
+    "Implement predict_fn(visible_fault_raster) for a hypothesis from docs/data/hypotheses.json",
+    "Run leakage_canary then run_holdout; compare pooled HOLDOUT-DTI with 95% CI against current best",
+    "Only if holdout beats current best: register lane, run registry novelty gate, use shared writer, publish unique TIFF + receipt",
+    "Selector approves the weekly slot; submit via the authenticated DrivenData form"
   ]
 }
