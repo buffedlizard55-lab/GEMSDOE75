@@ -1,3 +1,5 @@
+> **Earlier concurrent-session snapshot (PRs #1–2).** Preserved for provenance. Repository-readiness statements here predate the restored audit tools and inputs. See [the current review](review.md) and [current submission status](../index.html). External-page verification reported below belongs to the earlier session, not an independent recheck by the raster-audit run.
+
 # Experiment and submission protocol
 
 This is the execution contract for the next data-enabled session. It is a specification, **not evidence that the experiment has run**. Reuse the shared template's cached stack, `evaluate_holdout.py`, and `submission_writer.py` when present; do not maintain a private fork. None is present in this checkout.

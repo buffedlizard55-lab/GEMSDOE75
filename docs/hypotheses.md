@@ -1,3 +1,5 @@
+> **Earlier concurrent-session snapshot (PRs #1–2).** Preserved for provenance. Repository-readiness statements here predate the restored audit tools and inputs. See [the current review](review.md) and [current submission status](../index.html). External-page verification reported below belongs to the earlier session, not an independent recheck by the raster-audit run.
+
 # Candidate hypotheses — preregistration register
 
 **Status:** proposals only; zero experiments run in this checkout. The repo has no competition features, labels, cached stack, evaluator, or writer. The ranking is qualitative expected value versus effort, not measured DTI. This repo currently contains no methods/code. A previous project charter already proposed magnetic-edge persistence, radiometric/magnetic edge concordance, DEM channel/scarp morphology, and geophysical lineament intersections; those are not re-presented as the lead idea. The large set of historical sibling sites has not been exhaustively audited, so no claim of global uniqueness is made.

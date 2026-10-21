@@ -1,3 +1,5 @@
+> **Earlier concurrent-session snapshot (PRs #1–2).** Preserved for provenance. Repository-readiness statements here predate the restored audit tools and inputs. See [the current review](review.md) and [current submission status](../index.html). External-page verification reported below belongs to the earlier session, not an independent recheck by the raster-audit run.
+
 # Irregularities, evidence limits, and current blockers
 
 ## IR-01 — Repository is an empty scaffold

@@ -1,52 +1,115 @@
-# GEMSDOE75 — DOE GEMS Prize research workbench
+# GEMSDOE75 · evidence before emission
 
-> **Submission status: NOT READY — do not download or submit a TIFF from this checkout.** There is no competition data, cached feature stack, validator, holdout evaluator, submission writer, or GeoTIFF in this repository. A fabricated/placeholder raster would not be a valid competition prediction. The official competition data page redirects to login in this environment. This is an explicit blocker, not a claim that a submission was generated.
+## Submission status: **BLOCKED — no new TIFF generated or approved**
 
-## Executive summary
+[Project website](https://buffedlizard55-lab.github.io/GEMSDOE75/) ·
+[Executive summary / submission instructions](https://buffedlizard55-lab.github.io/GEMSDOE75/executive-summary.html) ·
+[Run card](evidence/run-card.json) · [Reproducible raster audit](evidence/audit.json)
 
-This project is intended to support an auditable, scientifically grounded search for unmapped geological faults in the GeoDAWN region for DrivenData competition #306. The official task requires a single-band float32 GeoTIFF on the training grid, EPSG:32611, 100 m resolution, with prediction values in [0, 1] and null/NaN outside the stated bounds. The official metric is distance-weighted Tversky, using alpha=0.2, beta=0.8, and a 300 m triangular distance kernel. See the [official problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
+**Read this README and [the retained operating brief](PROJECT_BRIEF.md) at the start of every session.**
+The starting checkout contained only `# GEMSDOE75`, not the pipeline claimed in the supplied prompt.
+This review does not claim that the requested submission has been delivered.
 
-**Current verified public-board observation (2026-10-21):** the official leaderboard page displayed xiaofanhu at 0.4413. Evidence class: `PUBLIC-LEADERBOARD` (live public board, not a submission-page receipt, not a private-test or final-award score). The user's cited 0.3195 is therefore not the current public leader at the time checked. The provided H33 TIFF name / 0.2778 attribution was not independently established: a score match does not prove that a specific TIFF earned it. See [the evidence and caveats](docs/irregularities.md).
+### Why no download button?
 
-### One-click submission file
+The prompt requires both a unique TIFF and an immediate stop on excessive registry overlap.
+The pinned shared template defines dots as finite positive pixels. A registered continuous
+probability raster is positive throughout the footprint. We verified its bytes: every eligible
+cell is covered, so every nonempty candidate would fail the forward-overlap rule. Also, the
+promised single-method lane was absent. We did not invent one, jitter a previous submission,
+or spend a competition slot. A negative preflight is the honest deliverable.
 
-**Not available yet.** There is deliberately no download link until a unique candidate raster has been generated from the licensed competition inputs, passed the independent format validator, passed the prescribed holdout and duplicate-lane gates, and had its checksum/metadata recorded. The [submission guide](docs/executive-summary.html) explains the exact contest upload steps and what must be checked first.
+This is a **conditional policy conflict**, not proof that all geological hypotheses are duplicates.
+A future owner-approved protocol can distinguish continuous surfaces from discrete dots, but
+this run does not introduce that exemption. See [research and irregularities](docs/review.md).
 
-## Session-start brief — read before every project session
+### Reproduce
 
-1. **Mission.** Build a useful, auditable workflow to discover faults that are missing from the public USGS/INGENIOUS catalogue and may be relevant to geothermal systems. Aim to improve the chance of winning through sound experiments, not leaderboard speculation. Own results end-to-end; publish failures and blockers as well as wins.
-2. **Do not fabricate evidence.** Every score claim must be one of: `HOLDOUT-DTI` (evaluator version, number of withheld positives, 95% CI), `ORGANIZER-CONFIRMED` (copied from a submission-page receipt), `PUBLIC-LEADERBOARD` (dated capture), or explicitly `USER-REPORTED`. A projection is never a score. Never infer which TIFF earned a leaderboard score from a similar name or score alone.
-3. **Reuse the shared template.** If the shared template and cached features are present, use its feature stack, `evaluate_holdout.py`, and `submission_writer.py`; fix shared-tool defects in the template, not in a private fork. This checkout currently has none of those assets. Do not silently recreate or claim to have run them.
-4. **Holdout before slot.** Hide whole fault segments with a spatial buffer. Derive every catalogue-based feature only from visible faults; mask visible fault pixels exactly. Evaluate pooled DTI at alpha=0.2, beta=0.8, with a 300 m triangular kernel. Report evaluator version, withheld positive count, and a segment-clustered 95% CI. Test each feature alone first; an AUC above 0.90 is a leakage alarm until explained. Do not promote an idea to a real submission slot unless it beats the frozen holdout best under the preregistered rule.
-5. **Novelty / lane gate.** Before placement and again on final dots, compare candidate score surface/raster and placements against every available registry raster. Stop and mark duplicate if rank correlation exceeds 0.90 or more than 70% of candidate dots lie within 3 pixels of a registry dot set. If registry artifacts are unavailable, record the comparison as not run; do not claim uniqueness. Never copy an earlier TIFF except for explicitly labeled educational diagnostics.
-6. **Slots and budget.** Maximum 3 experiments or 2 hours per session. Promotion to a weekly competition slot is a separate selector decision; do not spend a slot while the holdout gate is unmet.
-7. **Submission validator.** Re-open the written bytes independently; check one band, float32, exact CRS/shape/transform/bounds, finite values inside the footprint in [0,1], and allowed null/NaN outside. Include a SHA-256. The download page must unmistakably say whether the artifact is ready to submit.
-8. **Research discipline.** Use free official or otherwise challenge-permitted sources. Track DOI, license, spatial coverage, version, retrieval status, and a manual-review URL. Distinguish a source being publicly downloadable from proof that its coverage overlaps the competition footprint.
-9. **End each experiment with one JSON run card** containing hypothesis, mechanism, a named non-fault mimic, `HOLDOUT-DTI` plus CI (or explicit not-run reason), correlation/overlap vs registry, raster SHA-256, validator output, submission name/note (or none), and verdict `promote` or `negative`.
-10. **This prompt is the operating brief.** Review it and the [research register](docs/hypotheses.md) at the start of each session and update claims when evidence changes. Core values: **Maximize P(Win)** through disciplined evidence and **Own the Outcome** by surfacing defects and blockers.
+Python 3.11 and authenticated `gh` are needed for the public-mirror fetches. No DrivenData
+credentials are requested or stored. CPU suffices for this audit.
 
-## Current repo review
+```sh
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/fetch_inputs.py
+.venv/bin/python scripts/audit.py
+.venv/bin/python -m pytest -q
+.venv/bin/python scripts/inventory.py       # optional fresh repository metadata inventory
+.venv/bin/python scripts/build_site.py
+```
 
-The starting checkout was inspected on 2026-10-21. It contained only a title-only README (plus Git metadata); the research/site files added in this review do not add input data or a model pipeline. There is still no `data/`, `scripts/`, test suite, cached feature stack, registry artifact, shared evaluator/writer, or TIFF. Consequently, no holdout, leakage canary, correlation/overlap screen, raster validation, or submission generation could be run. No weekly slot should be spent from this state.
+Mirrored rasters stay in ignored `.cache/inputs/`, not Git or public downloads. Fetches are
+commit-pinned and SHA-256-checked. `vendor/gems57/` is copied byte-for-byte from the pinned
+shared template; it contains the evaluator and submission writer. No private replacement
+metric or writer was introduced. Tests exercise shared code but do not constitute a holdout.
 
-The exact next prerequisite is to obtain the competition-provided files through the authorized DrivenData account (the data page currently redirects to login), place them in the expected `data/` directory, and provide this session with the actual shared-template repository/artifacts including the evaluator and writer. See [limitations and irregularities](docs/irregularities.md). Do not place credentials in the repository or chat.
+The larger cached feature stack is discoverable in `evidence/template-data-manifest.json`;
+it has not been restored or modeled after the stop. Its owner mirror is not organizer-authenticated.
+The original prompt's `scripts/download_competition_data.sh` and `scripts/prepare_data.py`
+did not exist here, and no ready train→inference pipeline or GPU requirement was verified.
 
-## Research and site pages
+## Retained project instructions (deduplicated operating form)
 
-- [Executive summary and contest submission walkthrough](docs/executive-summary.html)
-- [Ranked candidate hypotheses and feasibility](docs/hypotheses.md)
-- [Official sources and what was actually verified](docs/sources.md)
-- [Holdout, leakage, novelty, and submission gates](docs/experiment-protocol.md)
-- [Irregularities, data blockers, and evidence classes](docs/irregularities.md)
+- **Urgency:** generate a genuinely unique single-band submission GeoTIFF, never recycle a prior
+  except for education. Put a prominent one-click download and truthful submit-readiness status
+  at the top of the site when an artifact passes the gates; never offer a placeholder as a submission.
+- **Parallel run:** use only the assigned single-method lane. Stop and log a duplicate if surface
+  rank-correlation exceeds 0.90 or more than 70% of candidate dots lie within 3 px of any one prior.
+  Check before placement and on final dots. No lane was supplied in this prompt.
+- **Reuse:** use the template cached features, `evaluate_holdout.py`, and `submission_writer.py`.
+  Whole-segment buffered hide-and-recover; derive catalogue features from visible faults only;
+  mask visible faults exactly; pooled DTI with alpha 0.2, beta 0.8, triangular 300 m kernel.
+  Fix shared defects upstream, never in a private fork.
+- **Evidence:** HOLDOUT-DTI must include evaluator version, withheld-positive count, and 95% CI.
+  ORGANIZER-CONFIRMED requires a submission-page receipt. User score reports are unverified,
+  not promoted into either class. Projections are not scores. Feature-alone AUC >0.90 is a
+  leakage alarm pending explanation, not automatic evidence of predictive power.
+- **Run card:** hypothesis; mechanism; named non-fault mimic; holdout and CI; surface/dot novelty;
+  raster hash; finite/range/CRS/shape/transform validation; unique name and ≤140-character note;
+  verdict promote/negative. Null means not measured, not zero performance.
+- **Budget:** stop after three experiments or two hours. Promotion to a real slot is a separate
+  selector decision within the authenticated weekly cap. Never spend a slot without beating the
+  current comparable spatial holdout best.
+- **Research:** review prior GEMSDOE results; explain H33 without invented causality; propose and
+  rank three–five untried geological hypotheses with layers, transforms, missing-fault rationale,
+  contrast to prior implementations, expected benefit and cost. Verify official sources and external
+  data obtainability; preserve an auditable knowledge base. No promised leaderboard win.
+- **Product:** clean GitHub Pages UI, executive-summary subpage, exact submission instructions,
+  transparent limitations, automation where safe, official links for manual verification. Address
+  the portal error “Predicted values must be in range [0, 1]”. Retain the project prompt in the
+  README and re-read each session; prefer facts over unsupported completion claims.
+- **Delivery:** implement, review/fix, and re-check in three passes; create a PR and merge to main;
+  leave a concrete next-session handoff. Do not ask for manual intervention merely to avoid work.
+- **Values supplied by the owner:** Maximize P(Win)—weigh tradeoffs and risk rationally; Own the
+  Outcome—own end-to-end results and treat success and failure as evidence. Here that means
+  preventing an invalid or falsely cleared competition entry, not inventing a score.
 
-## Core official references
+This is a **deduplicated brief, not a verbatim transcript** of the long user message. The source
+message remains the authority for its complete wording. Source links, reported-score conflicts,
+and the list of all named repositories are retained in the linked brief/inventory. Repeated
+requests to “verify no hallucinations” are implemented as explicit evidence scopes, not a claim
+that every external page or every historical file was verified.
 
-- [DrivenData problem description, metric, and output contract](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-- [DrivenData data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) — login required in this environment
-- [Official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
-- [Official reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
-- [USGS GeoDAWN data release](https://doi.org/10.5066/P93LGLVQ)
-- [DOE Geothermal Data Repository: INGENIOUS compilation](https://gdr.openei.org/submissions/1391)
-- [USGS 3DEP products and services](https://www.usgs.gov/3d-elevation-program/about-3dep-products-services)
+## Next session, in order
 
-See [sources.md](docs/sources.md) for evidence notes and additional links.
+1. Resolve missing lane and dot semantics in a shared protocol decision; no silent exemption.
+2. Authenticate the official template, rules/eligibility, score receipts and weekly cap. Network
+   here is limited to GitHub and package registries; external links are not proof of retrieval.
+3. Restore the existing feature cache; inspect band descriptions, provenance, nodata and licenses.
+4. Confirm whole-segment independence: shared holdout segments are capped at 12 px; that is
+   not automatically equivalent to withholding a complete geological fault. Resolve upstream.
+5. Run feature-alone leakage canaries and a fixed-budget, buffered spatial holdout against the
+   current best on identical splits. Report pooled DTI and paired spatial-bootstrap CI.
+6. Only if authorized and gates pass: scan all accessible registry rasters on the surface and
+   final dots, use the shared writer, validate roundtrip, publish the unique TIFF/ZIP and receipt.
+   The selector—not this runner—decides the slot. Current metadata inventory is not clearance.
+
+## Concurrent-session work preserved
+
+During this run, PRs #1–2 merged documentation into main. Their source register, hypotheses,
+protocol and earlier site remain under `docs/`, with explicit snapshot banners; their README
+is preserved at [docs/history/concurrent-readme.md](docs/history/concurrent-readme.md).
+Their [source notes](docs/sources.md) report a dated public leaderboard observation and external
+page checks. Those are inherited session reports, not independently re-fetched here and not
+submission-page receipts. Earlier claims that the repository has no scripts, tests or evaluator
+are superseded by this audit. Both sessions' contributions are retained rather than overwritten.

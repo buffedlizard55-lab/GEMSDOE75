@@ -1,3 +1,5 @@
+> **Earlier concurrent-session snapshot (PRs #1–2).** Preserved for provenance. Repository-readiness statements here predate the restored audit tools and inputs. See [the current review](review.md) and [current submission status](../index.html). External-page verification reported below belongs to the earlier session, not an independent recheck by the raster-audit run.
+
 # Source register and verification notes
 
 Checked during this repository review on 2026-10-21 (UTC). “Page reachable” means the linked public page was fetched; it does not mean every underlying file was downloaded, spatially checked, or suitable for the competition.
