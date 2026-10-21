@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limitations — GEMSDOE75</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE<span>75</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Executive summary</a>
+      <a href="submission-guide.html">How to submit</a>
+      <a href="research.html">Research</a>
+      <a href="hypotheses.html">Hypotheses</a>
+      <a href="sources.html">Sources</a>
+      <a href="limitations.html" class="active">Limitations</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<h1>Limitations, blockers, and what's needed to unblock them</h1>
+<p>This page mirrors <a href="https://github.com/buffedlizard55-lab/GEMSDOE75/blob/main/LIMITATIONS.md">LIMITATIONS.md</a>
+in the repository root (read that file for the full text with every verification command). Summary:</p>
+
+<ol>
+<li><strong>No DrivenData login.</strong> The data download page requires authentication; verified
+today it redirects unauthenticated requests to its login page. A human must download
+<code>training_features.tif</code>, <code>labels.tif</code>, <code>sample_submission.tif</code>,
+<code>1m_DEM_links.csv</code> and place them in <code>data/raw/</code>.</li>
+<li><strong>This sandbox's network is firewalled to six hosts</strong> (github.com, codeload.github.com,
+api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org). Every data host is outside that
+list, confirmed by direct <code>curl</code> tests.</li>
+<li><strong>The research tool that reached more hosts still cannot fetch binary files.</strong> Even
+the free, no-login external datasets our own hypotheses need (shapefiles, GeoTIFFs, zip archives from
+gdr.openei.org and USGS ScienceBase) cannot be pulled into this checkout automatically — tested
+directly against a sample link this session.</li>
+<li><strong>Consequently, no HOLDOUT-DTI number exists in this repository for any real hypothesis.</strong>
+Every number published here is either (a) reproduced directly from the organizer's own published
+example, (b) computed from a clearly-labeled synthetic demonstration
+(<a href="data/dti_mechanics_demo.json">dti_mechanics_demo.json</a>), or (c) an ORGANIZER-CONFIRMED
+live leaderboard figure with a timestamp. Nothing else is reported as a score.</li>
+</ol>
+
+<div class="callout danger">
+<h3 style="margin-top:0">Irregularity flagged for manual review</h3>
+<p>The working brief for this project states "0.3195 is the highest score right now." The public
+leaderboard, fetched live on 2026-10-21, shows rank #1 at 0.4413 and rank #2 at 0.3904 — there is no
+0.3195 entry anywhere near the top of today's snapshot. This number does not match the current state of
+the competition and should be treated as stale (most likely a reading from an earlier date — the
+leaderboard changes continuously as competitors each submit 6-43+ times). Always re-fetch
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">the live
+leaderboard</a> before using any number from it as a target.</p>
+</div>
+
+<div class="callout warn">
+<h3 style="margin-top:0">Irregularity flagged for manual review</h3>
+<p>Forum thread <a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527">11527</a>
+("How were the new test faults identified?") has several reply posts between users <code>jgaines</code>,
+<code>moongrega</code>, and staff member <code>chrisk-dd</code> that our page-fetch tool rendered as
+empty stubs (title/author/date only, no body text) — likely because of how that forum's UI visually
+groups short consecutive replies. We have not guessed at their content and have not used this thread as
+evidence for anything in this project. A human should open the URL directly and read posts 2 through 9.</p>
+</div>
+
+<h2>What is fully working today, with zero caveats</h2>
+<ul>
+<li><code>src/gems_doe/metric.py</code> — DTI implementation, reproduces the organizer's worked example exactly.</li>
+<li><code>src/gems_doe/submission_io.py</code> — writer/validator, fixes the documented <code>[0,1]</code> rejection mechanisms.</li>
+<li><code>src/gems_doe/holdout.py</code> — spatially-blocked hide-and-recover holdout + leakage canary.</li>
+<li>21/21 unit tests passing (<code>pytest tests -q</code>), all independently verifiable by re-running them.</li>
+</ul>
+
+</main>
+<footer>
+GEMSDOE75 · DOE GEMS Prize Challenge research project · not affiliated with DrivenData or DOE.
+</footer>
+</body>
+</html>

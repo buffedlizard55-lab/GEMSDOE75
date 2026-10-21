@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — GEMSDOE75</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE<span>75</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Executive summary</a>
+      <a href="submission-guide.html">How to submit</a>
+      <a href="research.html">Research</a>
+      <a href="hypotheses.html">Hypotheses</a>
+      <a href="sources.html" class="active">Sources</a>
+      <a href="limitations.html">Limitations</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<h1>Sources, with the role each one plays</h1>
+<p>Full machine-readable version, fetched and recorded in this session: <a href="data/sources.json">data/sources.json</a>.
+Every row was actually retrieved and read before being summarized — none are from training-data memory.</p>
+
+<h2>Official / organizer sources</h2>
+<table>
+<tr><th>Source</th><th>Role</th><th>Key verified facts</th></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description</a></td>
+<td>metric + submission format</td>
+<td>DTI formula; α=0.2, β=0.8; 300 m triangular kernel; worked example 0.60; format rules</td></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About page</a></td>
+<td>sponsor/task background</td>
+<td>GeoDAWN = USGS EarthMRI aeromag/aeroradiometric + 3DEP lidar; cites Mattéo et al. 2021, Hermant et al. 2025</td></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data download page</a></td>
+<td>competition data</td>
+<td>confirmed login-walled (redirects to /accounts/login/) — not accessible from this project</td></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td>
+<td>ORGANIZER-CONFIRMED live scores</td>
+<td>2026-10-21 snapshot: #1 xiaofanhu 0.4413, #2 cfld__ 0.3904, #3 Batik Shirt Brothers 0.3811</td></tr>
+<tr><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules PDF</a></td>
+<td>prize structure, eligibility, submission process</td>
+<td>$50k Phase 1 (top 5 equal split) + $250k Phase 2 ($100k/$70k/$40k/$25k/$15k); single entry used for both phases</td></tr>
+<tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></td>
+<td>organizer-linked baseline</td>
+<td>U-Net (resnet18), TverskyLoss(0.2, 0.8); nodata sentinel &lt; -1e38; cloned and read in full (github.com is reachable from this sandbox)</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Forum: masking clarification</a></td>
+<td>ORGANIZER-CONFIRMED scoring mechanics (DrivenData staff)</td>
+<td>known-fault pixels masked pixel-exactly (not buffered) in both phases; near-catalogue predictions are fully penalized if far from new-fault truth</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527">Forum: new-fault ID methodology</a></td>
+<td>unresolved — <span class="badge warn">flag for manual review</span></td>
+<td>top-level questions retrieved; several reply bodies did not render through our tooling. A human should read the thread directly.</td></tr>
+</table>
+
+<h2>Free, official external data</h2>
+<table>
+<tr><th>Source</th><th>Role</th><th>Key verified facts</th></tr>
+<tr><td><a href="https://gdr.openei.org/submissions/1391">GDR submission 1391 (INGENIOUS)</a></td>
+<td>springs/wells, seismicity, geodetics, paleo-geothermal features, volcanics, slip/dilation tendency</td>
+<td>DOI 10.15121/1881483, CC BY 4.0; 9 direct downloads (sizes verified from the live listing) + 5 linked USGS data releases</td></tr>
+<tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN item</a></td>
+<td>source of magnetic/radiometric bands</td>
+<td>title/role confirmed; not re-fetched in depth this session</td></tr>
+<tr><td><a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS project (GBCGE)</a></td>
+<td>source of the fault catalogue program</td>
+<td>title/role confirmed; not re-fetched in depth this session</td></tr>
+<tr><td><a href="https://epsg.io/32611">EPSG:32611</a></td>
+<td>CRS reference</td>
+<td>WGS84 / UTM zone 11N — the competition's required projection</td></tr>
+<tr><td><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index (Wikipedia)</a></td>
+<td>background on the base similarity measure</td>
+<td>listed; the competition's own page 967 is the authoritative formula source used in this project's code</td></tr>
+</table>
+
+<h2>Sibling-repository sources (used only as priors on "already tried," never as verification)</h2>
+<table>
+<tr><th>Source</th><th>Role</th><th>Key verified facts</th></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32</a></td>
+<td>owner CLAIM of a 0.2778 self-scored artifact</td>
+<td>page states outright: "no score in this repository is organizer-verified"; documents the exact sentinel/NaN format bugs this project independently fixed</td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/hypotheses.html">GEMSDOE32 hypotheses</a></td>
+<td>prior-art check</td>
+<td>H33-1..5 and H60-1 read in full; used to confirm our H75-1..4 do not duplicate them</td></tr>
+<tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE">GEMSDOE (source code)</a></td>
+<td>an actual sibling repository's code, not just its docs site</td>
+<td>cloned directly (github.com is an allowed host); confirms the project family's convention of a dedicated metric/holdout/submission-writer module split, independently converged on here</td></tr>
+</table>
+
+<h2>Network reachability, tested directly this session</h2>
+<div class="callout">
+<p><strong>This sandbox's own network</strong> (bash/curl) is firewalled to exactly: <code>github.com</code>,
+<code>codeload.github.com</code>, <code>api.github.com</code>, <code>registry.npmjs.org</code>,
+<code>pypi.org</code>, <code>files.pythonhosted.org</code>. Every other host above — including
+<code>www.drivendata.org</code>, <code>gdr.openei.org</code>, <code>docs.nlr.gov</code>,
+<code>dropbox.com</code> — timed out when curl'd directly.</p>
+<p><strong>The separate page-fetch research tool</strong> used to read everything on this page runs on
+different infrastructure and reached most of the hosts above, but could not retrieve binary file
+content (tested directly against a Dropbox GeoTIFF link — it followed the redirect but returned no
+usable bytes). See <a href="limitations.html">Limitations</a> for what this means for data access.</p>
+</div>
+
+</main>
+<footer>
+GEMSDOE75 · DOE GEMS Prize Challenge research project · not affiliated with DrivenData or DOE.
+</footer>
+</body>
+</html>

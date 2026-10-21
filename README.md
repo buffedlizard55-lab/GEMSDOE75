@@ -113,3 +113,39 @@ Their [source notes](docs/sources.md) report a dated public leaderboard observat
 page checks. Those are inherited session reports, not independently re-fetched here and not
 submission-page receipts. Earlier claims that the repository has no scripts, tests or evaluator
 are superseded by this audit. Both sessions' contributions are retained rather than overwritten.
+
+## Parallel session (arena/f5af665d), merged alongside this audit
+
+A second concurrent run worked the same brief independently, before discovering this branch's
+`vendor/gems57/` pinned template. It did **not** fork or replace that template. It built, as an
+additive, separately-tested cross-check and a second set of pages, none of which overwrite the
+files above:
+
+- `src/gems_doe/metric.py`, `submission_io.py`, `holdout.py` — a from-scratch DTI/holdout/writer
+  implementation, reproducing the organizer's published worked example (0.60) exactly and cross-
+  checked against `vendor/gems57/metric.py`'s independently-derived, more complete treatment (its
+  `T`/`M`/`S` algebra and the `IR-57-BAR-01` greedy-emission bug it documents are **not**
+  reproduced here — read `vendor/gems57/metric.py`'s own docstring, it is the more carefully
+  verified of the two for anything beyond the base DTI formula). 21 tests in `tests/`.
+- `scripts/download_competition_data.sh`, `prepare_data.py`, `make_submission.py`,
+  `verify_submission.py`, `demo_dti_mechanics.py` — a second, independent data/submission
+  pipeline, reaching the same "login-walled, cannot fetch" conclusion as `scripts/fetch_inputs.py`
+  above, by direct `curl` tests against each host rather than inference.
+- `docs/research.html`, `hypotheses.html`, `sources.html`, `limitations.html`,
+  `submission-guide.html`, and `docs/data/*.json` — a second hypotheses/sources/limitations
+  write-up (hypotheses **H75-1..4**: Quaternary volcanic vent alignment, seismicity hypocenter
+  anisotropy, heat-flow × magnetic-depth conjunction, slip-tendency azimuth mismatch), cross-checked
+  against `docs/hypotheses.md` above to confirm no duplication, and a numeric DTI-mechanics
+  demonstration (`docs/data/dti_mechanics_demo.json`) showing, on a synthetic case, that
+  concentrating a fixed amount of predicted mass onto the true line scores DTI 1.000 versus 0.217
+  for the same mass spread over a 5-px corridor — independent confirmation of the same
+  "thinning helps" mechanism this repository's other research pages describe.
+- `LIMITATIONS.md` / `docs/limitations.html` — flags that the brief's "0.3195 current highest" does
+  not match the live public leaderboard fetched in that session (0.4413 / 0.3904), and that one
+  DrivenData forum thread (11527) had reply bodies its fetch tool could not render — both left for
+  manual review rather than guessed at.
+
+**Recommendation for the next session:** treat `vendor/gems57/` as the one shared template per the
+brief's own "never keep a private fork" rule; use `src/gems_doe/` only as an independent
+cross-check or delete it once `vendor/gems57/` is confirmed to cover the same ground, rather than
+maintaining two parallel implementations long-term.
