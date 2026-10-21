@@ -1,10 +1,15 @@
 Metadata-Version: 2.4
 Name: gems-doe-fault-discovery
-Version: 0.1.0
-Summary: Auditable research + submission pipeline for the DOE GEMS Prize Challenge (DrivenData #306)
+Version: 0.2.0
+Summary: Auditable research, zero-leakage holdout validation, and portal-safe GeoTIFF submission pipeline for the DOE GEMS Prize Challenge (DrivenData #306)
 Requires-Python: >=3.10
 Requires-Dist: numpy>=1.26
 Requires-Dist: scipy>=1.11
+Requires-Dist: scikit-learn>=1.4
+Requires-Dist: lightgbm>=4.3
 Requires-Dist: rasterio>=1.3
+Requires-Dist: pyproj>=3.6
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: Markdown>=3.5
 Provides-Extra: dev
 Requires-Dist: pytest>=7.0; extra == "dev"

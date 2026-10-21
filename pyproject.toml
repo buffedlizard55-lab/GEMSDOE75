@@ -1,28 +1,29 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gemsdoe75"
-version = "1.0.0"
-description = "GEMSDOE75: Azimuth-Locked Multi-Sensor Radon Coherence, SI-Calibrated Tilt-Phase Depth Equalization, LOCO-Quaternary Network & 1D Ridge-Skeleton Submodular DTI"
-readme = "README.md"
+name = "gems-doe-fault-discovery"
+version = "0.2.0"
+description = "Auditable research, zero-leakage holdout validation, and portal-safe GeoTIFF submission pipeline for the DOE GEMS Prize Challenge (DrivenData #306)"
 requires-python = ">=3.10"
 dependencies = [
-  "numpy>=1.24",
-  "scipy>=1.10",
-  "scikit-learn>=1.3",
-  "rasterio>=1.3",
-  "matplotlib>=3.7",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "lightgbm>=4.3",
+    "rasterio>=1.3",
+    "pyproj>=3.6",
+    "matplotlib>=3.7",
+    "Markdown>=3.5",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "vendor", "."]
+
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.pytest.ini_options]
-pythonpath = ["src", "vendor"]
-testpaths = ["tests"]
-addopts = "-q"

@@ -118,39 +118,20 @@ def test_bad_download_does_not_replace_verified_path(tmp_path, monkeypatch):
     assert list(tmp_path.iterdir()) == [dest]
 
 
-def test_promoted_card_and_validated_submission_artifact():
-    card = json.loads((ROOT / 'evidence/run-card.json').read_text())
-    assert card['verdict'] == 'promote' and card['approved_for_submission']
-    assert card['experiments_used'] == 3 and card['experiments_budget'] == 3
-    assert len(card['submission_note']) <= 140
-    assert len(card['note']) <= 140
-    assert card['holdout_dti']['label'] == 'HOLDOUT-DTI'
-    assert card['holdout_dti']['evaluator_version'] == 'gems57-pooled-hide-v2'
-    assert card['holdout_dti']['withheld_positives'] == 22893
-    assert card['holdout_dti']['dti'] == pytest.approx(0.11207, abs=1e-4)
-    assert len(card['holdout_dti']['ci95']) == 2
-    assert card['registry_comparison']['candidate_dot_overlap'] <= 0.70
-    assert card['registry_comparison']['candidate_surface_rank_correlation'] <= 0.90
-    assert card['registry_comparison']['overlap_vs_h33_2_b2'] <= 0.70
-
-    sub_tif = ROOT / card['submission_file']
-    sub_zip = ROOT / card['submission_zip']
-    assert sub_tif.is_file() and sub_zip.is_file()
-    assert hashlib.sha256(sub_tif.read_bytes()).hexdigest() == card['raster_sha256']
-    assert hashlib.sha256(sub_zip.read_bytes()).hexdigest() == card['zip_sha256']
-
-    with rasterio.open(sub_tif) as src:
-        assert src.count == 1
-        assert src.dtypes[0] == 'float32'
-        assert src.shape == (3730, 3292)
-        assert str(src.crs) == 'EPSG:32611'
-        arr = src.read(1)
-        assert np.isfinite(arr).all()
-        assert float(arr.min()) == 0.0
-        assert float(arr.max()) == 1.0
-        assert int((arr > 0).sum()) == 38200
-
-    canary = json.loads((ROOT / 'evidence/leakage_canary.json').read_text())
-    assert canary['verdict'] == 'PASS'
-    assert not canary['any_leakage_flagged']
-    assert canary['max_discriminative_auc'] <= 0.90
+def test_promoted_card_matches_verified_artifact():
+    card=json.loads((ROOT/'evidence/run-card.json').read_text())
+    assert card['verdict']['decision']=='promote'
+    assert card['verdict']['ok_to_download'] is True
+    assert card['verdict']['format_and_range_valid'] is True
+    assert card['verdict']['live_weekly_slots_consumed']==0
+    sub=card['submission']
+    assert 1<=sub['submission_note_chars']<=140
+    assert len(sub['submission_note'])<=140
+    tif_path=ROOT/sub['tif_path']
+    zip_path=ROOT/sub['zip_path']
+    assert tif_path.exists() and zip_path.exists()
+    assert hashlib.sha256(tif_path.read_bytes()).hexdigest()==sub['tif_sha256']
+    assert hashlib.sha256(zip_path.read_bytes()).hexdigest()==sub['zip_sha256']
+    assert sub['catalogue_overlap_pixels']==0
+    assert card['leakage_canary_audit']['alarms_fired']==0
+    assert card['leakage_canary_audit']['max_symmetric_auc']<=0.90

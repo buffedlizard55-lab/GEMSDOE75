@@ -38,7 +38,8 @@ def main() -> int:
         rep = validate(tif_path, fp, cat)
     elif (ROOT / ".cache" / "inputs" / "sample_submission.tif").is_file():
         with rasterio.open(ROOT / ".cache" / "inputs" / "sample_submission.tif") as src:
-            fp = np.isfinite(src.read(1))
+            s_arr = src.read(1)
+            fp = np.isfinite(s_arr) & (s_arr != src.nodata if src.nodata is not None else True)
         with rasterio.open(ROOT / ".cache" / "inputs" / "existing_faults.tif") as src:
             cat = src.read(1) > 0
         rep = validate(tif_path, fp, cat)
@@ -83,6 +84,23 @@ def main() -> int:
         f"TIF={tif_path.name} ({tif_path.stat().st_size:,} B) | "
         f"SHA256={actual_tif_sha[:16]}... | Dots={art['n_dots']:,} | Range=[0.0, 1.0] | NaN=0"
     )
+
+    rc75_path = ROOT / "evidence" / "run-card.json"
+    if rc75_path.is_file():
+        rc75 = json.loads(rc75_path.read_text())
+        s75 = rc75["submission"]
+        t75 = ROOT / s75["tif_path"]
+        z75 = ROOT / s75["zip_path"]
+        assert t75.is_file() and z75.is_file()
+        assert sha256(t75) == s75["tif_sha256"]
+        assert sha256(z75) == s75["zip_sha256"]
+        rep75 = validate(t75, fp, cat) if fp is not None else validate(t75)
+        assert_submittable(rep75)
+        print(
+            f"[check_submission] H75-1 PRIMARY CHECKS PASSED! "
+            f"TIF={t75.name} ({t75.stat().st_size:,} B) | "
+            f"SHA256={s75['tif_sha256'][:16]}... | Dots={s75['emitted_positive_pixels']:,} | Range=[0.0, 1.0] | NaN=0"
+        )
     return 0
 
 
