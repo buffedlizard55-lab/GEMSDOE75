@@ -1,0 +1,142 @@
+{
+  "evidence_class": "PINNED-BYTE-AUDIT",
+  "date_utc": "2026-10-21",
+  "template_pin": "evidence/template-pin.json",
+  "saturation": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": ".cache/inputs/registry-witness.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+  },
+  "promoted_candidate": {
+    "submission_name": "gems75-trlt-radon-loco-ridge-20261021-zeros",
+    "path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+    "sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
+    "validator": {
+      "path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+      "bytes": 144737,
+      "sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.00299694761633873,
+      "n_nonzero": 36800,
+      "mass": 36800.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "positive_pixels": 36800,
+    "catalogue_intersections": 0,
+    "median_catalogue_distance_m": 1421.27,
+    "fraction_within_300m": 0.012147,
+    "vs_h33_spearman": {
+      "spearman_on_dot_union": -0.9532802957946926,
+      "n_dot_union": 72715,
+      "jaccard_dot_sets": 0.02391528570446263,
+      "spearman_full_footprint": 0.03979943804654292
+    },
+    "vs_h33_forward_overlap_3px": 0.456114,
+    "vs_h33_reverse_overlap_3px": 0.472911,
+    "vs_h33_mutual_overlap_3px": 0.456114
+  },
+  "h33_educational_only": {
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "validator": {
+      "path": ".cache/inputs/h33.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "n_nonzero": 37654,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "positive_pixels": 37654,
+    "catalogue_intersections": 0,
+    "median_catalogue_distance_m": 1964.69,
+    "fraction_within_300m": 0.057657
+  },
+  "decision": "PROMOTE: gems75-trlt-radon-loco-ridge-20261021-zeros cleared all holdout, canary, uniqueness, and GeoTIFF contract gates."
+}

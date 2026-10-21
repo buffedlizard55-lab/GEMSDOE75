@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit — GEMSDOE75</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE<span>75</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Executive summary</a>
+      <a href="submission-guide.html" class="active">How to submit</a>
+      <a href="research.html">Research</a>
+      <a href="hypotheses.html">Hypotheses</a>
+      <a href="sources.html">Sources</a>
+      <a href="limitations.html">Limitations</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<h1>Executive summary: exactly how to make a submission</h1>
+
+<div class="callout">
+This page exists to answer one question precisely: <strong>what do I click, and what do I type,</strong>
+to submit a prediction file to the DOE GEMS Prize on DrivenData. It also explains, mechanically,
+why the error <code>"Predicted values must be in range [0, 1]"</code> happens and how this project's
+code prevents it.
+</div>
+
+<h2>Step 0 — one-time account setup</h2>
+<ol>
+<li>Create or log into a DrivenData account: <a href="https://www.drivendata.org/accounts/login/">drivendata.org/accounts/login</a>.</li>
+<li>Register for the competition at
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">drivendata.org/competitions/306/competition-doe-gems</a>.
+Eligibility is restricted — see the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official
+Rules PDF</a>, section 1.3, for who may compete and win a cash prize.</li>
+</ol>
+
+<h2>Step 1 — get the data (requires your login; this project cannot do this for you)</h2>
+<p>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data
+download page</a> and download:</p>
+<ul>
+<li><code>training_features.tif</code> — the 17-category GeoDAWN feature stack</li>
+<li><code>labels.tif</code> — the USGS/INGENIOUS fault catalogue raster</li>
+<li><code>sample_submission.tif</code> — a correctly-formatted all-absent template; <strong>this is
+the single most important file to copy the geometry from</strong></li>
+<li><code>1m_DEM_links.csv</code> — links to the 1 m lidar DEM tiles, if your approach needs them</li>
+</ul>
+<p>Place them in this repository's <code>data/raw/</code> folder with exactly those names.</p>
+
+<h2>Step 2 — build your prediction raster</h2>
+<p>Whatever model or rule you use, it must produce a single 2-D array matching
+<code>sample_submission.tif</code> in shape, CRS (EPSG:32611), resolution (100 m) and affine
+transform, with values meant to represent fault probability.</p>
+
+<h2>Step 3 — write and validate the file (this is what fixes the [0, 1] error)</h2>
+<pre><code>from gems_doe.submission_io import SubmissionTemplate, write_submission
+
+template = SubmissionTemplate.from_raster("data/raw/sample_submission.tif")
+report = write_submission(your_array, "my_submission.tif", template)
+print(report.to_json())
+assert report.ok</code></pre>
+<p><code>write_submission</code> always: (1) strips the known float32 nodata sentinel
+(<code>-3.4028234663852886e38</code>, used inside <code>training_features.tif</code> itself and
+copied forward by careless code), (2) clips every remaining value into <code>[0, 1]</code>, (3)
+writes <strong>no nodata tag</strong> by default so there is no ambiguity for the validator to
+mis-read, and (4) re-opens the file it just wrote and re-checks it — never trusting the in-memory
+array. Or validate any file you already have:</p>
+<pre><code>python scripts/verify_submission.py my_submission.tif --template data/raw/sample_submission.tif</code></pre>
+
+<h2>Step 4 — the submission form itself</h2>
+<p>On the competition's "New submission" page:</p>
+<ol>
+<li><strong>File to submit</strong> — click "Choose file" and select your validated <code>.tif</code>
+(or a <code>.zip</code> containing exactly one GeoTIFF).</li>
+<li><strong>Note (optional)</strong> — a short, specific comment so you can tell submissions apart
+later. Convention used throughout this project family:
+<code>&lt;short-id&gt;-&lt;mechanism&gt;-&lt;date&gt;: &lt;one-line result&gt;</code>, for example
+<code>h75-2-seismic-anisotropy-20261101: holdout DTI 0.xx [95% CI ...], n=... withheld faults</code>.
+Always label every number HOLDOUT-DTI or ORGANIZER-CONFIRMED — never write a projection as a score.</li>
+<li>Click submit. You have a limited number of scored submissions per week — see the
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a> and the competition page for the
+current cap. Only spend one on a hypothesis that has already beaten your own best
+<a href="research.html#holdout">spatially-blocked holdout</a> score.</li>
+<li>Remember: you select <strong>one single submission</strong> before the deadline — it is used for
+both Phase 1 (private pre-registered new-fault set) and Phase 2 (expert-expanded label set) scoring.</li>
+</ol>
+
+<h2>Common rejection: "Predicted values must be in range [0, 1]"</h2>
+<table>
+<tr><th>Mechanism</th><th>Cause</th><th>Fix in this project</th></tr>
+<tr><td>Sentinel leak</td><td><code>training_features.tif</code> uses <code>-3.4028234663852886e38</code>
+as a nodata flag (see the reference solution's own loader:
+<code>X_orig[X_orig &lt; -1e38] = np.nan</code>); if that value is copied into your output band
+unchanged, it is far outside <code>[0, 1]</code>.</td>
+<td><code>sanitize_prediction()</code> strips it before writing.</td></tr>
+<tr><td>Untagged NaN</td><td>Writing <code>NaN</code> outside the footprint is legal per the
+organizer's spec ("null or nan"), but a stray NaN with no declared nodata tag can be read by a
+strict validator as out-of-range.</td>
+<td><code>write_submission()</code> defaults to writing 0.0 (not NaN) outside any footprint mask, and
+only writes a nodata tag when you explicitly request the NaN-outside form.</td></tr>
+</table>
+
+<h2>What this project cannot do for you right now</h2>
+<p>It cannot download <code>training_features.tif</code>/<code>labels.tif</code> itself (login-walled;
+see <a href="limitations.html">Limitations</a>). Steps 0-1 above are the only manual, human steps
+left in the entire pipeline — everything from Step 2 onward is code, already written and tested in
+this repository.</p>
+
+</main>
+<footer>
+GEMSDOE75 · DOE GEMS Prize Challenge research project · not affiliated with DrivenData or DOE.
+</footer>
+</body>
+</html>

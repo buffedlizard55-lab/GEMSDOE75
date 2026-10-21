@@ -15,8 +15,7 @@ import numpy as np
 import rasterio
 
 from gems57.grid import EPSG, HEIGHT, TRANSFORM, WIDTH
-from gems57.metric import build_fast_oracle, dti_exact, dti_with_oracle
-from gems57.uniqueness import dot_overlap
+from gems57.metric import dti_exact
 from gems57.validate import sha256, validate
 
 from gems75.constants import (
@@ -36,7 +35,7 @@ from gems75.physics import (
     dequantize_lidar_u8,
     oriented_radon_ridge,
 )
-from gems75.protocol import _fast_exact_dot_overlap
+from gems75.protocol import _fast_exact_dot_overlap, build_fast_oracle, dot_overlap, dti_with_oracle
 
 ROOT = Path(__file__).resolve().parents[1]
 

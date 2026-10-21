@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hypotheses — GEMSDOE75</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE<span>75</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Executive summary</a>
+      <a href="submission-guide.html">How to submit</a>
+      <a href="research.html">Research</a>
+      <a href="hypotheses.html" class="active">Hypotheses</a>
+      <a href="sources.html">Sources</a>
+      <a href="limitations.html">Limitations</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<h1>Four new, ranked, not-yet-tried hypotheses</h1>
+<p>Full machine-readable version: <a href="data/hypotheses.json">data/hypotheses.json</a>. Each one was
+checked against the fullest sibling-repo hypothesis registry we could read
+(<a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/hypotheses.html">GEMSDOE32</a>: H33-1
+geothermometry, H33-2 catalogue buffer, H33-3 temperature-probe mask, H33-4 paleo-geothermal features,
+H33-5 tip/step-over extension, H60-1 Monte Cristo Range rupture) to confirm none of the four below
+duplicate an idea already tried there.</p>
+
+<div class="callout">
+<strong>Status for all four: UNVALIDATED.</strong> None has been scored against real data because this
+project has no access to the real fault catalogue (see <a href="limitations.html">Limitations</a>).
+Per this project's own budget rule, none is eligible for a weekly submission slot until it beats the
+current holdout best on <code>src/gems_doe/holdout.py</code> — which does not yet exist as a number,
+because the holdout has never been run on real data.
+</div>
+
+<h2>H75-1 — Quaternary volcanic vent/fissure alignment (rank 1)</h2>
+<table>
+<tr><th>Layers</th><td>GDR 1391 Quaternary Volcanics.zip (vents + flows); official RTP magnetics + vertical TMI slope; official magnetic source depth</td></tr>
+<tr><th>Signature</th><td>Directional clustering of vent points (Hough/azimuth-statistics) corroborated by a local magnetic-source-depth minimum along the same corridor</td></tr>
+<tr><th>Why off-catalogue</th><td>Cataloguers map scarps, not vent/fissure alignments; a dike-induced fracture's surface expression is a cone, not a scarp</td></tr>
+<tr><th>Non-fault mimic</th><td>Magma ascent along non-seismogenic lithospheric heterogeneities (no shear history) — check concordance with the regional strain-rate tensor before trusting</td></tr>
+<tr><th>Data</th><td><a href="https://gdr.openei.org/files/1391/great_basin_q_volcanics.zip">great_basin_q_volcanics.zip</a>, 9.44 MB, free, CC BY 4.0, DOI 10.15121/1881483 — binary, needs an unrestricted machine to fetch</td></tr>
+<tr><th>Cost / value</th><td>Medium cost (point-pattern analysis); potentially high value for the Final Round specifically, since this is a genuinely novel structural control</td></tr>
+</table>
+
+<h2>H75-2 — Hypocenter-scatter anisotropy ("seismic streak" detection) (rank 2)</h2>
+<table>
+<tr><th>Layers</th><td>USGS ANSS ComCat FDSN event API (free JSON, no login); official "density of earthquakes" band used only as a negative control</td></tr>
+<tr><th>Signature</th><td>PCA eigenvalue ratio + major-axis azimuth of local hypocenter scatter — captures planar alignment that a scalar density band discards</td></tr>
+<tr><th>Why off-catalogue</th><td>A blind/buried fault with no surface scarp can still be seismically anisotropic at depth even while its raw event density looks unremarkable</td></tr>
+<tr><th>Non-fault mimic</th><td>Induced seismicity from geothermal injection/production (e.g. near Steamboat Springs) or legacy mining — check against known well/field locations</td></tr>
+<tr><th>Data</th><td><code>earthquake.usgs.gov/fdsnws/event/1/query</code>, free, public JSON API — reachability from our tools not yet tested; <strong>first action for next session</strong></td></tr>
+<tr><th>Cost / value</th><td>Potentially the cheapest to validate of all four (small JSON, not a large binary) if the API is reachable by any available tool</td></tr>
+</table>
+
+<h2>H75-3 — Heat-flow × magnetic-source-depth conjunction (rank 3)</h2>
+<table>
+<tr><th>Layers</th><td>USGS Heat Flow Maps (DOI 10.5066/P9BZPVUC); official magnetic source depth + surface conductivity bands</td></tr>
+<tr><th>Signature</th><td>Pixels with simultaneously high background conductive heat flow AND shallow magnetic source depth, off-catalogue, linked by a steepest-gradient least-cost path through the strain-rate field</td></tr>
+<tr><th>Why off-catalogue</th><td>Targets blind listric/detachment faults with no surface scarp — a cross-dataset statistical conjunction a scarp-based cataloguer would not use</td></tr>
+<tr><th>Non-fault mimic</th><td>Buried intrusions (no slip-prone fault) or cultural/infrastructure magnetic noise — cross-check against H75-1's vent layer and infrastructure data</td></tr>
+<tr><th>Data</th><td><a href="https://doi.org/10.5066/P9BZPVUC">doi.org/10.5066/P9BZPVUC</a> (USGS ScienceBase), free — binary, needs an unrestricted machine</td></tr>
+<tr><th>Cost / value</th><td>Highest implementation cost of the four (two new rasters + a least-cost-path routine); potentially the highest payoff, also the highest confound risk</td></tr>
+</table>
+
+<h2>H75-4 — Slip/dilation-tendency azimuth mismatch vs. catalogue strike (rank 4)</h2>
+<table>
+<tr><th>Layers</th><td>USGS Quaternary Faulting Slip and Dilation Tendency (DOI 10.5066/P9YL58W6); official strain-rate tensor bands; catalogue fault strike</td></tr>
+<tr><th>Signature</th><td>Cells where the official geomechanical tendency azimuth significantly disagrees (&gt;30°) with the nearest catalogued fault's strike — evidence of unaccommodated strain</td></tr>
+<tr><th>Why off-catalogue</th><td>A disagreement feature by construction excludes anything the catalogue already explains well</td></tr>
+<tr><th>Non-fault mimic</th><td>Gravitational/landslide-related extensional fracturing on steep range fronts — exclude via a slope threshold from the official detrended-elevation-slope band</td></tr>
+<tr><th>Data</th><td><a href="https://doi.org/10.5066/P9YL58W6">doi.org/10.5066/P9YL58W6</a> (USGS ScienceBase), free — binary, needs an unrestricted machine</td></tr>
+<tr><th>Cost / value</th><td>Medium cost; lowest expected payoff of the four — the trigger condition may be rare in a transtensional setting where many faults already track the regional extension direction</td></tr>
+</table>
+
+<h2>Validation plan</h2>
+<ol>
+<li>Test H75-2's ComCat API reachability first (cheapest, no external machine required if reachable).</li>
+<li>Run <code>scripts/download_competition_data.sh</code> on an unrestricted machine; place files in <code>data/raw/</code> and <code>data/raw/external/</code>.</li>
+<li><code>python scripts/prepare_data.py</code>.</li>
+<li>For each hypothesis: implement <code>predict_fn(visible_fault_raster) -&gt; p</code>, run
+<code>gems_doe.holdout.leakage_canary</code> first (AUC/DTI &gt; 0.90 ⇒ treat as leakage until proven
+otherwise), then <code>gems_doe.holdout.run_holdout</code>.</li>
+<li>Only promote to a real submission slot if pooled HOLDOUT-DTI (with 95% CI) beats the current best.</li>
+</ol>
+
+</main>
+<footer>
+GEMSDOE75 · DOE GEMS Prize Challenge research project · not affiliated with DrivenData or DOE.
+</footer>
+</body>
+</html>

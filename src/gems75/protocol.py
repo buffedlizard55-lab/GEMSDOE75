@@ -15,8 +15,84 @@ from sklearn.metrics import roc_auc_score
 from gems57.evaluate_holdout import VERSION as HOLDOUT_VERSION, evaluate, pooled_summary
 from gems57.grid import Grid, load_grid
 from gems57.holdout import buffered_component_draw
-from gems57.metric import build_fast_oracle, dti_with_oracle
-from gems57.uniqueness import _dots, dot_overlap
+from gems57.metric import ALPHA, BETA, EPS, RADIUS_PX, kernel
+
+from .constants import CANARY_AUC_MAX, DOT_OVERLAP_MAX, KERNEL_300M, SPEARMAN_MAX
+
+
+def _dots(a: np.ndarray) -> np.ndarray:
+    arr = np.asarray(a)
+    return np.isfinite(arr) & (np.abs(arr - 1.0) < 1e-6)
+
+
+def dot_overlap(mine: np.ndarray, theirs: np.ndarray, radius_px: float = RADIUS_PX) -> float:
+    m, t = _dots(mine), _dots(theirs)
+    if m.shape != t.shape:
+        raise ValueError("overlap grid shape mismatch")
+    if not m.any() or not t.any():
+        return 0.0
+    r = int(np.ceil(radius_px))
+    yy, xx = np.mgrid[-r : r + 1, -r : r + 1]
+    near = ndi.binary_dilation(t, structure=(yy * yy + xx * xx <= radius_px * radius_px))
+    return float(near[m].mean())
+
+
+def build_fast_oracle(
+    truth: np.ndarray,
+    valid: np.ndarray | None = None,
+    known: np.ndarray | None = None,
+) -> dict[str, Any]:
+    """Precompute exact 300 m kernel weights for bit-identical O(|K|*N_truth) DTI evaluation."""
+    truth_b = np.asarray(truth, dtype=bool)
+    active = np.ones_like(truth_b, dtype=bool) if valid is None else np.asarray(valid, dtype=bool).copy()
+    if known is not None:
+        active &= ~np.asarray(known, dtype=bool)
+    g = truth_b & active
+    yy, xx = np.nonzero(g)
+    q = kernel(ndi.distance_transform_edt(~g)) if yy.size else np.zeros(truth_b.shape, dtype=np.float64)
+    return {
+        "active": active,
+        "yy": yy,
+        "xx": xx,
+        "n_truth": int(yy.size),
+        "one_minus_q_active": (1.0 - q[active]).astype(np.float64),
+    }
+
+
+def dti_with_oracle(
+    pred: np.ndarray,
+    oracle: dict[str, Any],
+    alpha: float = ALPHA,
+    beta: float = BETA,
+) -> dict[str, Any]:
+    """Exact DTI against a precomputed oracle; algebraically & bit-for-bit identical to `dti_exact`."""
+    p_in = np.asarray(pred, dtype=np.float64)
+    active = oracle["active"]
+    vals = p_in[active]
+    if not np.isfinite(vals).all() or (vals < 0).any() or (vals > 1).any():
+        raise ValueError("predictions inside the scored domain must be finite and in [0, 1]")
+    p = np.where(active, p_in, 0.0)
+    n = oracle["n_truth"]
+    if n == 0:
+        return {"tp": 0.0, "fp": float(p.sum()), "fn": 0.0, "n_truth": 0, "n_emitted": int((p > 0).sum()), "dti": 0.0}
+    yy, xx = oracle["yy"], oracle["xx"]
+    h, w = p.shape
+    credit = np.zeros(n, dtype=np.float64)
+    for dy, dx, k in KERNEL_300M:
+        ny, nx = yy + dy, xx + dx
+        ok = (ny >= 0) & (ny < h) & (nx >= 0) & (nx < w)
+        credit[ok] = np.maximum(credit[ok], p[ny[ok], nx[ok]] * k)
+    tp = float(credit.sum())
+    fn = float(n) - tp
+    fp = float((p[active] * oracle["one_minus_q_active"]).sum())
+    return {
+        "tp": tp,
+        "fp": fp,
+        "fn": fn,
+        "n_truth": n,
+        "n_emitted": int((p > 0).sum()),
+        "dti": float(tp / (tp + alpha * fp + beta * fn + EPS)),
+    }
 
 
 def _fast_exact_dot_overlap(my: np.ndarray, mx: np.ndarray, t_bool: np.ndarray) -> float:

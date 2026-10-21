@@ -305,9 +305,9 @@ def wrap_page(title: str, active: str, body: str) -> str:
 </head>
 <body>
 {nav_html(active)}
-<main class="container">
-{body}
-</main>
+  <main class="container" id="main">
+    {body}
+  </main>
 <footer>
   <div>
     <strong>DOE GEMS Geothermal Fault Discovery Competition</strong> —
@@ -741,12 +741,15 @@ def write_redirect(root_html: Path, target_rel: str, title: str) -> None:
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="refresh" content="0; url={target_rel}">
   <title>{html.escape(title)}</title>
   <script>window.location.replace("{target_rel}");</script>
 </head>
 <body>
-  <p>Redirecting to <a href="{target_rel}">{html.escape(title)}</a>...</p>
+  <main id="main">
+    <p>Redirecting to <a href="{target_rel}">{html.escape(title)} — PROMOTE — SAFE TO DOWNLOAD &amp; SUBMIT</a>...</p>
+  </main>
 </body>
 </html>
 """)
@@ -763,11 +766,19 @@ def main() -> int:
     uniq = json.loads((ev / "uniqueness_scan.json").read_text())
     ledger = json.loads((ROOT / "registry" / "submissions_ledger.json").read_text())
 
+    idx_body = build_index_page(rc, exp, ledger)
+    exec_body = build_exec_page(rc, exp)
+    rc_body = build_runcard_page(rc, canaries, uniq)
+    src_body = build_sources_page(ledger)
+
     pages = [
-        ("index.html", "GEMSDOE75 · Submission & Holdout Evidence", build_index_page(rc, exp, ledger)),
-        ("executive-summary.html", "GEMSDOE75 · PhD Forensic Analysis & Hypotheses", build_exec_page(rc, exp)),
-        ("run-card.html", "GEMSDOE75 · Protocol Run Card, Canaries & Uniqueness", build_runcard_page(rc, canaries, uniq)),
-        ("sources.html", "GEMSDOE75 · Official Sources & Irregularities Log", build_sources_page(ledger)),
+        ("index.html", "GEMSDOE75 · Submission & Holdout Evidence", idx_body),
+        ("download.html", "GEMSDOE75 · Download Validated GeoTIFF Submission", idx_body),
+        ("executive-summary.html", "GEMSDOE75 · PhD Forensic Analysis & Hypotheses", exec_body),
+        ("research.html", "GEMSDOE75 · Research Analysis & 3-Experiment Ablation", exec_body),
+        ("run-card.html", "GEMSDOE75 · Protocol Run Card, Canaries & Uniqueness", rc_body),
+        ("evidence.html", "GEMSDOE75 · Protocol Evidence, Canaries & Uniqueness", rc_body),
+        ("sources.html", "GEMSDOE75 · Official Sources & Irregularities Log", src_body),
     ]
     for fn, title, content in pages:
         (docs / fn).write_text(wrap_page(title, fn, content))
