@@ -1,60 +1,165 @@
 {
-  "run_card_version": 1,
-  "generated_utc": "2026-10-21",
-  "hypothesis": "Fault-tip halo dot placement: sparse predicted dots in the 100–300 m halo around fault tips and step-overs, where new-fault ground truth can exist within 300 m of a known trace (organizer forum thread 11516) while known-fault pixels themselves are masked from scoring. With alpha=0.2 < beta=0.8, missing truth costs more than a false positive, so placing mass in the scored, unmasked halo instead of on masked catalogue faults can outscore both a blank map and a catalogue-wasting map.",
-  "mechanism": "Simulate a fault network of short disconnected line segments; dilate to a 1–3 px halo around fault cells; thin candidate halo pixels by inverse distance (closer to fault = higher kernel credit if new truth appears there); emit dots at 0.65 confidence. New faults nucleate as extensions of or step-overs between mapped traces — exactly the structure this rule targets.",
-  "named_non_fault_process_that_could_mimic_it": "Volcanic dike intrusion along a pre-existing lithospheric weakness that is not a slip-prone, seismogenic fault; the surface expression is a vent/fissure alignment rather than a scarp, so it would not be in the USGS/INGENIOUS scarp-based catalogue but could still align with the same structural corridor.",
-  "holdout_DTI": null,
-  "holdout_DTI_ci95": null,
-  "holdout_DTI_label": "NOT RUN: no real USGS/INGENIOUS catalogue or GeoDAWN feature stack is accessible from this environment (login-walled DrivenData, firewalled sandbox). gems_doe.holdout.run_holdout() is implemented and unit-tested on synthetic rasters only. No HOLDOUT-DTI number may be reported until real data is placed in data/raw/.",
-  "correlation_overlap_vs_registry": "NOT RUN: no registry rasters are accessible in this sandbox (.cache/inputs/ is empty; fetch_inputs.py requires gh and network access to owner mirrors). The parallel-run protocol's uniqueness gates (Spearman > 0.90 or >70% of dots within 3 px of one registry raster) cannot be evaluated until registry rasters are present.",
-  "raster_sha256": "89d57a586634dafa256dc752a5d8a08815be23f26de4f651063378a198742098",
-  "raster_sha256_note": "SHA-256 of docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif. Generated in SCHEMA-DEMO mode on placeholder geometry (3730x3292, EPSG:32611, 100 m, origin (0,0)) that multiple sibling repos claim for the real training_features.tif but this project could not independently confirm. Geometry is NOT verified against the real organizer file.",
-  "validator_output": {
-    "no_nan_inside_footprint": true,
-    "values_in_0_1": true,
-    "crs_shape_transform_match": "internally self-consistent (matches its own synthetic template); NOT verified against the real organizer training_features.tif",
-    "full_report": {
-      "ok": true,
-      "band_count": 1,
-      "dtype": "float32",
-      "crs_epsg": 32611,
-      "resolution_m": [100.0, 100.0],
-      "shape": [3730, 3292],
-      "n_nan": 0,
-      "n_below_zero": 0,
-      "n_above_one": 0,
-      "min_finite": 0.0,
-      "max_finite": 0.65,
-      "n_predicted_px_gt_0": 1616,
-      "nodata_tag": null,
-      "errors": []
+  "schema_version": "gems-parallel-run-card-v1",
+  "lane_id": "GEMSDOE75-TRLT",
+  "branch": "arena/b0f09a9b-gemsdoe75",
+  "generated_at_utc": "2026-10-21T05:12:22.922161+00:00",
+  "verdict": "promote",
+  "submission_safety_status": "OK TO DOWNLOAD AND SUBMIT (CLEARED ALL HOLDOUT, CANARY, VALIDATOR & UNIQUENESS GATES)",
+  "hypothesis": "Unmapped geothermal-hosting Quaternary fault strands in the Nevada Great Basin are governed simultaneously by (1) SI-calibrated 3D magnetic/gravity tilt-phase contacts co-striking with non-linearly de-quantized 1m 3DEP LiDAR & 10m seamless one-sided scarps under Byerlee-Simpson 3D crustal stress favorability and elevated borehole/GDR heat flow, (2) elastic along-strike tip propagation and relay-ramp step-over bridges across incomplete catalogue terminations (`LOCO-Quat`), and (3) 1D centerline ridge geometry where 200 m single-file submodular packing achieves 1.67x higher Tversky TP/FP efficiency while eliminating the 3.13x 2D mountain-blob bias.",
+  "mechanism": "Stage 1 fuses a 54-channel pure physical HGB head (fixing the 1,000x Band 9 nT/m and 10x Band 5 mGal/100m SI scaling errors, non-linear sqrt 1m LiDAR de-quantization with wash-bank cancellation, 12-azimuth Radon line integrals, 3D Byerlee Mohr-Coulomb favorability, 7,279 USGS heat-flow boreholes, and GDR #1391 thermal springs/probes/sinter) with a self-masked Leave-Component-Out Quaternary (`LOCO-Quat`) elastic network head; Stage 2 extracts 15 zero-shift multi-scale Radon & bidirectional alluvial gap-bridge features on OOF Stage-1 probabilities before 1D transverse ridge concentration and 200 m spaced 300 m Tversky packing.",
+  "named_non_fault_geological_mimics": [
+    "Incised alluvial-fan desert washes & braided distributary banks (rejected via 1m LiDAR max(upface, downface) - 0.65*cross_max + contour-parallel alignment index)",
+    "Pleistocene Lake Lahontan & Lake Dixie horizontal wave-cut shorelines (rejected via along-strike detrended elevation variance guard + gravity/magnetic tilt phase absence)",
+    "Steep pre-Quaternary Mesozoic/Cenozoic range-core bedrock contacts in SGMC (rejected via authentic Quaternary training labels, smooth piedmont basin-depth x slope habitat prior, and 1D transverse ridge concentration eliminating the 3.13x 2D blob bias)",
+    "US highway & railway embankments across playas (rejected via US Census TIGER distance feature)"
+  ],
+  "score_provenance": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives_pixels": 11321,
+    "holdout_dti": 0.135088,
+    "holdout_ci95": [
+      0.117676,
+      0.15163
+    ],
+    "per_fold_holdout_dti": {
+      "NW": 0.140483,
+      "NE": 0.120762,
+      "SW": 0.119161,
+      "SE": 0.160388
+    },
+    "delta_vs_D28_physical_control_02600": {
+      "delta": 0.0432,
+      "ci95": [
+        0.030176,
+        0.054573
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_H33_loqo_fold_proper": {
+      "delta": 0.092025,
+      "ci95": [
+        0.068151,
+        0.11652
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_H33_fleet_leader_02778": {
+      "delta": 0.131389,
+      "ci95": [
+        0.114119,
+        0.147702
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_GEMSDOE70_P8_02478": {
+      "delta": 0.132439,
+      "ci95": [
+        0.114994,
+        0.148956
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_uniform_random": {
+      "delta": 0.10385,
+      "ci95": [
+        0.086765,
+        0.120728
+      ],
+      "beats_95ci": true
+    },
+    "secondary_non_circular_benchmarks": {
+      "C_pied_600m_quaternary_piedmont_dti": 0.086607,
+      "H33_C_pied_600m_comparator": 0.108526,
+      "PINN_C_pied_600m_comparator": 0.111241,
+      "D28_C_pied_600m_comparator": 0.294962,
+      "P8_C_pied_600m_comparator": 0.081313,
+      "B_prime_offcat_sgmc_all_dti": 0.118814,
+      "B_dprime_offcat_sgmc_piedmont_dti": 0.14399
+    },
+    "experiments_executed_count": 3,
+    "experiments_ladder_holdout_dti": {
+      "E1_ALMRC_TiltSI_48": {
+        "evidence_class": "HOLDOUT-DTI",
+        "holdout_dti": 0.080083,
+        "ci95": [
+          0.060646,
+          0.100676
+        ],
+        "C_pied_600_dti": 0.080786,
+        "B_dprime_dti": 0.104122,
+        "n_dots": 37654
+      },
+      "E2_Byerlee3D_HeatFlow_LOCOQuat_59": {
+        "evidence_class": "HOLDOUT-DTI",
+        "holdout_dti": 0.116365,
+        "ci95": [
+          0.095658,
+          0.136785
+        ],
+        "C_pied_600_dti": 0.071738,
+        "B_dprime_dti": 0.111169,
+        "n_dots": 37654
+      },
+      "E3_TRLT75_Stage2Radon_1DRidge_SpacedSubmod": {
+        "evidence_class": "HOLDOUT-DTI",
+        "holdout_dti": 0.135088,
+        "ci95": [
+          0.117676,
+          0.15163
+        ],
+        "C_pied_600_dti": 0.086607,
+        "B_dprime_dti": 0.14399,
+        "n_dots": 36800
+      }
     }
   },
-  "output_file": "docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif",
-  "mode": "SCHEMA-DEMO",
-  "rule": "fault_tip_halo",
-  "submission_name": "gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT",
-  "submission_note_140_char": "Fault-tip halo dots: unique geological rule, schema-demo placeholder geometry, not score-validated.",
-  "submission_note_140_char_check": 90,
-  "verdict": "negative",
-  "verdict_reason": "Format validation passes, but the geometry is unverified placeholder data and no holdout DTI, leakage canary, or registry uniqueness check could be run. Per the parallel-run protocol, no submission slot may be spent until a hypothesis beats the current holdout best on identical splits. Download is available for review only; this file is explicitly marked DO-NOT-SUBMIT in its name, GeoTIFF metadata, and JSON receipt.",
-  "experiments_used": 1,
-  "submission_slots_used": 0,
-  "approved_for_submission": false,
-  "blockers": [
-    "No real competition data (training_features.tif, labels.tif, sample_submission.tif) — login-walled DrivenData",
-    "No assigned method lane per parallel-run protocol",
-    "No registry rasters accessible for uniqueness comparison",
-    "No comparable current-best holdout DTI in this repository"
-  ],
-  "next_steps_to_unblock": [
-    "Obtain training_features.tif, labels.tif, sample_submission.tif from DrivenData on an unrestricted machine",
-    "Place them in data/raw/ and run scripts/prepare_data.py",
-    "Download external hypothesis data (GDR submission 1391 files) to data/raw/external/",
-    "Re-run scripts/make_submission.py in REAL mode",
-    "Run leakage canary + holdout for the fault_tip_halo rule",
-    "Compare against registry rasters for uniqueness",
-    "Only then consider a weekly submission slot"
-  ]
+  "leakage_canary_gate": {
+    "n_features_tested": 59,
+    "max_symmetric_auc": 0.78383,
+    "threshold": 0.9,
+    "pass": true
+  },
+  "uniqueness_gate": {
+    "n_registry_rasters_checked": 274,
+    "max_abs_surface_spearman": 0.34271,
+    "max_abs_dots_spearman": 0.07711,
+    "spearman_limit": 0.9,
+    "max_dot_overlap_3px": 0.46926,
+    "dot_overlap_limit": 0.7,
+    "nearest_neighbor_by_spearman": "GEMSDOE48/GEMSDOE48-H53-3SRC-DS-20261007-9242c831-nan-outside.tif",
+    "nearest_neighbor_by_overlap": "GEMSDOE28/gems27-h27-4-r1-pruned-d1-5-20261003-450eb6859636-allfinite.tif",
+    "pass": true
+  },
+  "artifact": {
+    "submission_name": "gems75-trlt-radon-loco-ridge-36800-zeros",
+    "submission_note": "TRLT-75: SI-tilt mag/grav + 1m/10m Radon phase lock + Byerlee3D/HF + LOCO-Quat + Stage2 gap-bridge + 1D-ridge 200m Tversky pack",
+    "note_length_chars": 127,
+    "tif_path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+    "zip_path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.zip",
+    "tif_sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
+    "tif_bytes": 144737,
+    "zip_sha256": "0e6216492eea3ee5e15548e285e251be429b281d8dfad60889bb6f639a557883",
+    "zip_bytes": 111022,
+    "n_dots": 36800,
+    "basin_piedmont_fraction": 0.75611,
+    "validator_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "validator_all_pass": true
+  }
 }

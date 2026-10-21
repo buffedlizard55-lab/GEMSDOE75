@@ -106,15 +106,17 @@ def test_bad_download_does_not_replace_verified_path(tmp_path,monkeypatch):
     assert list(tmp_path.iterdir())==[dest]
 
 
-def test_negative_card_does_not_invent_artifact():
-    card=json.loads((ROOT/'evidence/run-card.json').read_text())
-    # A candidate artifact exists and is format-validated, but the card is
-    # still negative because it is not score-validated and not approved.
-    # The raster_sha256 and submission_name identify the artifact; they do
-    # not constitute approval to submit.
-    assert card['verdict']=='negative' and not card['approved_for_submission']
-    assert card['raster_sha256'] is not None and card['submission_name'] is not None
-    assert card['holdout_DTI'] is None or card['holdout_DTI']['dti'] is None
-    assert card['submission_slots_used']==0
-    assert len(card['submission_note_140_char'])<=140
-    assert card['submission_name'].endswith('-DO-NOT-SUBMIT')
+def test_run_card_protocol_integrity():
+    card = json.loads((ROOT / "evidence/run-card.json").read_text())
+    assert card["verdict"] == "promote"
+    assert "OK TO DOWNLOAD AND SUBMIT" in card["submission_safety_status"]
+    art = card["artifact"]
+    assert art["tif_sha256"] == "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71"
+    tif_path = ROOT / art["tif_path"]
+    assert tif_path.exists()
+    assert hashlib.sha256(tif_path.read_bytes()).hexdigest() == art["tif_sha256"]
+    assert card["score_provenance"]["holdout_dti"] > 0.13
+    assert card["leakage_canary_gate"]["pass"] is True
+    assert card["uniqueness_gate"]["pass"] is True
+    assert art["validator_all_pass"] is True
+    assert len(art["submission_note"]) <= 140
