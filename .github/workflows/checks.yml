@@ -22,4 +22,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/fetch_inputs.py
       - name: Repeat byte-level audit (never emits a candidate)
-        run: python scripts/audit.py && git diff --exit-code -- evidence/audit.json evidence/run-card.json
+        run: python scripts/ci_audit.py
