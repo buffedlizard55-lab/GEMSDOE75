@@ -1,0 +1,42 @@
+{
+  "hypothesis": "Deferred: magnetic contact lateral-offset consistency under cover",
+  "mechanism": "Test repeated along-strike displacement of independent magnetic contact profiles, not edge amplitude alone.",
+  "non_fault_mimic": "Meandering intrusive contact and survey levelling stripes",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT RUN: preflight stopped before experiments",
+    "evaluator_version": "gems57-pooled-hide-v2 (pinned, not executed)",
+    "withheld_positives": null,
+    "dti": null,
+    "ci95": null
+  },
+  "registry": {
+    "candidate_surface_rank_correlation": null,
+    "candidate_dot_overlap": null,
+    "reason": "No candidate exists",
+    "saturation_coverage_fraction": 1.0,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "scope": "One saturation witness and historical H33; not a full registry scan"
+  },
+  "raster_sha256": null,
+  "validator": {
+    "status": "NOT RUN: no generated raster",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null
+  },
+  "submission_name": null,
+  "note": "Negative preflight: lane missing; positive-support registry gate saturated. No TIFF approved or generated.",
+  "verdict": "negative",
+  "experiments_used": 0,
+  "submission_slots_used": 0,
+  "approved_for_submission": false,
+  "blockers": [
+    "No single-method lane supplied",
+    "Shared positive-support overlap rule is universally blocked on this footprint",
+    "No organizer receipt or authenticated current weekly cap",
+    "No comparable current-best holdout in this repository"
+  ]
+}

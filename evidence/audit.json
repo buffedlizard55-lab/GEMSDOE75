@@ -1,0 +1,84 @@
+{
+  "evidence_class": "RASTER-AUDIT-NOT-A-SCORE",
+  "date_utc": "2026-10-21",
+  "inventory_scope": "One saturation witness and historical H33; not a full registry scan",
+  "template_pin": "evidence/template-pin.json",
+  "saturation": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": ".cache/inputs/registry-witness.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+  },
+  "h33_educational_only": {
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "validator": {
+      "path": ".cache/inputs/h33.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "n_nonzero": 37654,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "positive_pixels": 37654,
+    "catalogue_intersections": 0,
+    "median_catalogue_distance_m": 1964.68827043885,
+    "fraction_within_300m": 0.057656557072289796,
+    "forward_overlap_vs_witness": 1.0,
+    "rank_comparison": {
+      "spearman_on_dot_union": null,
+      "n_dot_union": 5167373,
+      "jaccard_dot_sets": 0.007286874781441169,
+      "spearman_full_footprint": 0.05820726105200384
+    }
+  },
+  "policy_interpretation": "Shared template defines dots as finite values > 0. Continuous probabilities are not necessarily discrete detections; no exemption was authorized.",
+  "decision": "STOP: no lane specified; literal support gate saturated. No candidate built, no copied submission offered."
+}

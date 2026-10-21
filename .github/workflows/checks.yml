@@ -1,0 +1,25 @@
+name: Reproducible audit checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: python scripts/build_site.py && git diff --exit-code -- '*.html'
+      - name: Restore pinned audit-only inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/fetch_inputs.py
+      - name: Repeat byte-level audit (never emits a candidate)
+        run: python scripts/ci_audit.py

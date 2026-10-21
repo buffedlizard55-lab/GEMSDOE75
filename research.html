@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="GEMSDOE75: reproducible fault-mapping research and transparent submission readiness.">
+<title>Research · GEMSDOE75</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="index.html"><span class="mark">G/75</span> GEMSDOE<span class="muted">75</span></a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="research.html" aria-current="page">Research</a><a href="evidence.html">Evidence</a><a href="executive-summary.html">How to submit</a></nav></header>
+<main id="main"><p class="eyebrow">SCIENTIFIC REVIEW / NOT A SCORE PROJECTION</p><article class="prose"><h1>Scientific review and negative preflight · 2026-10-21</h1>
+<h2>Scope and answer</h2>
+<p><strong>No new TIFF was generated. No competition slot was used.</strong> The requirement to produce a unique
+file is unmet; the stop rule prevents claiming successful completion. The run card is negative.
+The starting repo was a README only. No earlier local experiment or runnable training pipeline existed.</p>
+<p>The official reference describes <strong>fault detection</strong>, not a direct geothermal-vent prediction task.
+Geothermal interpretation motivates fault mapping, but a high raster score would not verify a
+reservoir, heat source, permeability, well productivity, or a discovered vent.</p>
+<h2>What the H33 audit actually establishes</h2>
+<p>The pinned H33 bytes contain 37,654 positive pixels, all off the mirrored catalogue, finite values
+in [0,1], and a matching CRS/shape/transform. Median catalogue distance is approximately 1,965 m;
+about 5.77% of dots are within 300 m. These are <strong>raster measurements</strong>, not scores. See
+<a href="evidence/audit.json">evidence/audit.json</a>, input pins, and the upstream H33 builder snapshot.</p>
+<p>The prior project's analysis describes H33 as a subset of earlier sparse candidates after
+near-catalogue removals. We reviewed that explanation but did not independently reconstruct the
+entire D28→H27→H33 lineage. Do not mislabel that narrative as a new causal experiment.</p>
+<p>The shared local metric uses <code>DTI=T/(T+0.2*FP+0.8*FN)</code> with a distance-decaying 300 m triangular
+kernel. Spreading dots can improve coverage per emitted pixel; removing a dot with little truth
+credit can reduce false-positive mass. Removing a useful dot can instead lose recall. Thus the
+H33 geometry is a plausible metric-efficiency explanation, not proof of why the hidden evaluator
+returned the owner-reported value. It is particularly unsafe to interpret higher coverage of
+known fault habitats as evidence of independent geological discovery.</p>
+<p><strong>Can a new method beat the reported H33 value?</strong> Possibly; no result in this run establishes it.
+A scientifically useful route is to test additional physical information conditional on terrain,
+coverage and catalogue distance, rather than simply optimizing dot count on a repeatedly used
+proxy. Catalogue-hide recovery and newly mapped fault discovery have different selection biases.
+Even a valid holdout win is not a leaderboard projection.</p>
+<h2>Ranked hypotheses — proposals, not an assigned lane</h2>
+<p>All are new to this originally empty repository. <strong>Global novelty across all 78 projects is not
+established.</strong> The inventory is metadata only. In particular, prior names already mention scarp,
+radiometric fusion, Euler depth, relay ramps, contact termination and multi-physics concurrence.
+The distinctions below are hypotheses to verify against source code before adopting any lane.
+No expected numeric DTI gains are invented. Priority ranks reflect scientific testability and
+incremental implementation effort, not measured performance. None was implemented or trained.</p>
+<table>
+<thead>
+<tr>
+<th>Priority / cost</th>
+<th>Specific layers and physical transform</th>
+<th>Why a missing fault might appear</th>
+<th>Non-fault mimic / distinction from reviewed approaches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 / medium</td>
+<td>Cached <code>rtp</code>, <code>tmi</code> / magnetic-anomaly fields: fit paired cross-contact profiles, measure signed lateral displacement and persistence along strike; require consistency across scales</td>
+<td>A buried lateral offset can interrupt a coherent contact despite weak topographic expression; hypothesis, not proof of mapping bias</td>
+<td>Meandering intrusive contacts or levelling stripes. Tests displacement consistency rather than simply magnetic edge amplitude, contact termination or sparse catalogue halos</td>
+</tr>
+<tr>
+<td>2 / medium</td>
+<td>Cached <code>det_elev</code> and LiDAR <code>step_max</code>, <code>downface_max</code>: pair opposite-signed curvature lobes and test same-sense vertical offset across adjacent drainage divides</td>
+<td>A subdued discontinuous scarp might be detectable by repeated cross-profile geometry where a single ridge score fails</td>
+<td>Terrace risers, road cuts and resistant bedding. Tests cross-divide displacement sign rather than a single scarp-strength threshold</td>
+</tr>
+<tr>
+<td>3 / medium–high</td>
+<td>Cached GeoDAWN K/Th/TC and magnetic fields: test lateral displacement of a radiometric contact with matching magnetic offset, using within-lithology ranks</td>
+<td>Offset across two different physical contrasts could reveal a covered or subtle cross-cutting structure</td>
+<td>Soil moisture, alluvial sorting and lithologic juxtaposition without displacement. Tests offset direction agreement, not alteration brightness or generic feature fusion</td>
+</tr>
+<tr>
+<td>4 / high</td>
+<td>Cached <code>iso_grav_anom</code>, <code>depth_to_base_surf</code>, <code>det_elev</code>: compare localized opposing basin-curvature lobes to smooth flexure controls at matched basin depth</td>
+<td>Differential basement throw may create asymmetric basin geometry without an exposed surface scarp</td>
+<td>Sedimentary compaction, volcanic loading and interpolation artifacts. Tests rejection of smooth-flexure alternatives rather than absolute depth or Euler clustering</td>
+</tr>
+</tbody>
+</table>
+<p>Band names above come from the prior project documentation, not freshly authenticated official
+band descriptions. The shared manifest identifies existing cached products and a feature-stack
+mirror; metadata availability does not validate scientific semantics or licensing. For all four,
+first restore the cache, inspect bands/masks, and confirm provenance; do not fetch replacements
+or rebuild features unnecessarily. Proposals 1 and 4 may involve nonindependent derived bands;
+corroboration between two transforms of one measurement is not independent evidence.</p>
+<p>No proposal relies on a newly claimed available external dataset. Official fallbacks are the
+USGS GeoDAWN release and USGS 3DEP elevation products, plus the organizer feature download.
+Their hosts are inaccessible under the current allowlist, so new external retrieval and licensing
+are <strong>not verified</strong> and such additions are not designated viable here. The owner mirror's
+LiDAR manifest reports incomplete tile coverage; missing tiles must be masked, never treated as
+zero-valued geological evidence.</p>
+<h2>Preregistered validation plan after blockers resolve</h2>
+<ol>
+<li>Assign one lane; stop if it already matches a registry method. Freeze at most three experiments.</li>
+<li>Hide whole connected fault segments with a buffer. Audit the shared segment splitter: its
+   documented maximum length is 12 pixels, not necessarily a complete fault. Ensure train/test
+   tails do not share a connected segment; fix upstream before trusting results.</li>
+<li>Recompute catalogue distances, orientation, density, fitting labels and normalization exclusively
+   from visible/training information. Physical rasters must also be checked for catalogue-derived
+   preprocessing. Exactly mask visible fault pixels at evaluation, not a broad convenience halo.</li>
+<li>Run each feature alone as a leakage canary on the fixed spatial holdout. Record AUC and its
+   sampling definition; AUC above 0.90 means investigate leakage before continuing. Low AUC
+   does not prove absence of leakage. No canary has run in this session.</li>
+<li>Compare candidate and current-best baseline on identical folds, valid masks and dot budgets.
+   Pool TP/FP/FN before taking DTI. Use shared evaluator version/hashes, withheld counts and
+   paired spatial-cluster 95% intervals. Keep development tuning separate from final validation.</li>
+<li>Compare the pre-placement surface against every accessible registry prior; then compare final
+   dots. A hash change is not novelty. A metadata-only scan or low average overlap is not enough.</li>
+<li>Shared writer, all-finite export, read-back checks, hash and one-TIFF ZIP. Only then publish;
+   selector approval and the authenticated weekly cap remain independent requirements.</li>
+</ol>
+<h2>Irregularity register</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Finding</th>
+<th>Consequence / resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IR75-01</td>
+<td>No method paragraph assigns a lane</td>
+<td>No modeling authorized; do not infer one from project number</td>
+</tr>
+<tr>
+<td>IR75-02</td>
+<td>Every eligible pixel is within the literal positive-support registry witness</td>
+<td>Universal overlap stop under current shared definition. No density exemption was introduced</td>
+</tr>
+<tr>
+<td>IR75-03</td>
+<td>Continuous probabilities and binary dots are conflated by the inherited gate</td>
+<td>This is a protocol ambiguity, not evidence all physics are duplicates; resolve centrally, not in a private fork</td>
+</tr>
+<tr>
+<td>IR75-04</td>
+<td>Starting repository has no claimed pipeline or feature cache</td>
+<td>Restored audit inputs/tools only; do not claim train→inference readiness</td>
+</tr>
+<tr>
+<td>IR75-05</td>
+<td>Conflicting current-leader values and no authenticated score receipts</td>
+<td>Owner reports remain unverified; no ORGANIZER-CONFIRMED number published</td>
+</tr>
+<tr>
+<td>IR75-06</td>
+<td>Official rules/data/PDF hosts outside network allowlist</td>
+<td>Links provided for review, not described as retrieved or currently valid</td>
+</tr>
+<tr>
+<td>IR75-07</td>
+<td>Shared holdout uses capped-length segments</td>
+<td>Buffered whole-fault independence needs explicit audit before use</td>
+</tr>
+<tr>
+<td>IR75-08</td>
+<td>Mirror sample contains catalogue positives</td>
+<td>Never use the sample/labels as a new submission</td>
+</tr>
+<tr>
+<td>IR75-09</td>
+<td>Metadata inventory includes inputs and archived/quarantined files</td>
+<td>1,901 paths are not 1,901 unique submissions; no full byte-level uniqueness claim</td>
+</tr>
+<tr>
+<td>IR75-10</td>
+<td>Upstream narrative contains inconsistent causal claims about H33</td>
+<td>Local measurements take precedence; hidden-score causation is unproven</td>
+</tr>
+<tr>
+<td>IR75-11</td>
+<td>Supplied prompt is retained in deduplicated form, not verbatim</td>
+<td>Original conversation remains authoritative; do not claim exact archival completeness</td>
+</tr>
+</tbody>
+</table>
+<p>The saturation witness is pinned and independently re-measured. It has positive support over
+5,167,373 footprint pixels and covers all 5,106,385 off-catalogue eligible pixels. H33 forward overlap
+is 1.0 while its full-footprint rank correlation with the witness is approximately 0.0582. Those are
+<strong>REGISTRY/RASTER MEASUREMENTS</strong>, not HOLDOUT-DTI or competition scores. Low rank correlation
+does not override the forward-overlap stop. The proof needs one witness, not the entire inventory;
+passing novelty would require much broader checks. No candidate exists to label a duplicate.</p></article></main><footer><strong>Evidence before emission.</strong><span>Reviewed 21 October 2026 · Static audit, not a live leaderboard</span><a href="https://github.com/buffedlizard55-lab/GEMSDOE75">Source repository ↗</a></footer></body></html>
