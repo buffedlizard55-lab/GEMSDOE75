@@ -1,0 +1,11 @@
+[project]
+name = "gemsdoe75"
+version = "1.0.0"
+description = "GEMSDOE75: Azimuth-Locked Multi-Sensor Radon Coherence, SI-Calibrated Tilt-Phase Depth Equalization, LOCO-Quaternary Network & 1D Ridge-Skeleton Submodular DTI"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "vendor"]
+testpaths = ["tests"]
+addopts = "-q"

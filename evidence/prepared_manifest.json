@@ -1,0 +1,196 @@
+{
+  "evidence_class": "DATA-MEASUREMENT",
+  "crs": "EPSG:32611",
+  "shape": [
+    3730,
+    3292
+  ],
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "footprint_pixels": 5167373,
+  "outside_footprint_pixels": 7111787,
+  "known_catalogue_pixels": 60988,
+  "active_off_catalogue_pixels": 5106385,
+  "eroded_12px_valid_pixels": 4989581,
+  "training_feature_bands": [
+    {
+      "band": 1,
+      "description": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -288.56201171875,
+      "p50": -57.68793487548828,
+      "p99": 311.9136657714844
+    },
+    {
+      "band": 2,
+      "description": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -458.7529602050781,
+      "p50": -137.22166442871094,
+      "p99": 395.7310485839844
+    },
+    {
+      "band": 3,
+      "description": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 0.6607922315597534,
+      "p50": 13.155465126037598,
+      "p99": 189.2279510498047
+    },
+    {
+      "band": 4,
+      "description": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 1.7517664432525635,
+      "p50": 19.90778923034668,
+      "p99": 57.773651123046875
+    },
+    {
+      "band": 5,
+      "description": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 0.015869835391640663,
+      "p50": 0.10218460857868195,
+      "p99": 0.3678494393825531
+    },
+    {
+      "band": 6,
+      "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+      "valid_in_footprint": 5164300,
+      "missing_sentinel_in_footprint": 3073,
+      "p01": 7.722299575805664,
+      "p50": 18.481700897216797,
+      "p99": 29.100452423095703
+    },
+    {
+      "band": 7,
+      "description": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 0.0,
+      "p50": 9.699999809265137,
+      "p99": 38.5
+    },
+    {
+      "band": 8,
+      "description": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -9.5,
+      "p50": 5.5,
+      "p99": 27.0
+    },
+    {
+      "band": 9,
+      "description": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -0.6922200322151184,
+      "p50": -0.008997071534395218,
+      "p99": 0.7935372591018677
+    },
+    {
+      "band": 10,
+      "description": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 118.30000305175781,
+      "p50": 622.7999877929688,
+      "p99": 50237.19921875
+    },
+    {
+      "band": 11,
+      "description": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -4.330517292022705,
+      "p50": -0.07213491946458817,
+      "p99": 4.242436408996582
+    },
+    {
+      "band": 12,
+      "description": "det_elev - Detrended elevation - topography with regional trends removed",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -466.8299865722656,
+      "p50": -75.57621002197266,
+      "p99": 707.4249267578125
+    },
+    {
+      "band": 13,
+      "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -32.76560974121094,
+      "p50": -7.26103401184082,
+      "p99": 12.89549732208252
+    },
+    {
+      "band": 14,
+      "description": "tmi - Total magnetic intensity - total strength of magnetic field",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -429.7847900390625,
+      "p50": -124.8157730102539,
+      "p99": 354.6851501464844
+    },
+    {
+      "band": 15,
+      "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 1.2142881155014038,
+      "p50": 316.3645324707031,
+      "p99": 3416.077392578125
+    },
+    {
+      "band": 16,
+      "description": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 263.8999938964844,
+      "p50": 755.7000122070312,
+      "p99": 5082.49365234375
+    },
+    {
+      "band": 17,
+      "description": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 1.1678259372711182,
+      "p50": 2.885897636413574,
+      "p99": 4.488641262054443
+    },
+    {
+      "band": 18,
+      "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": -5.133356094360352,
+      "p50": 0.037620771676301956,
+      "p99": 5.404924392700195
+    },
+    {
+      "band": 19,
+      "description": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+      "valid_in_footprint": 5164312,
+      "missing_sentinel_in_footprint": 3061,
+      "p01": 0.07005272060632706,
+      "p50": 3.749262809753418,
+      "p99": 32.722740173339844
+    }
+  ],
+  "external_dir_present": true,
+  "dem10_dir_present": true
+}

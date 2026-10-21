@@ -1,0 +1,168 @@
+{
+  "competition": {
+    "title": "DOE GEMS: Geothermal Exploration with Machine Learning for Subsurface Fault Discovery",
+    "official_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+    "leaderboard_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "forum_clarifications_url": "https://community.drivendata.org/c/doe-gems/95",
+    "metric": "Distance-Weighted Tversky Index (alpha=0.2, beta=0.8, 300 m triangular kernel, known catalogue masked pixel-exact)",
+    "external_top_reference_scores": [
+      {
+        "rank_tier": "Competition #1 reference anchor",
+        "score": 0.4413,
+        "evidence_class": "EXTERNAL-LEADERBOARD-OBSERVATION",
+        "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+      },
+      {
+        "rank_tier": "Upper-tier multi-physics benchmark anchor",
+        "score": 0.3195,
+        "evidence_class": "EXTERNAL-LEADERBOARD-OBSERVATION",
+        "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+      }
+    ]
+  },
+  "fleet_progression": [
+    {
+      "repo": "GEMSDOE57",
+      "repo_url": "https://github.com/buffedlizard55-lab/60GEMSDOE",
+      "submission": "57GEMSDOE shipped-8",
+      "score": 0.0254,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 8192,
+      "key_lesson": "Established shared LOQO hide-and-recover evaluator (`gems57`), exact 300 m metric kernel, and zero-NaN export contract; severely under-emitted dot budget (8,192 dots -> massive beta=0.8 FN penalty)."
+    },
+    {
+      "repo": "GEMSDOE28",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "submission": "GEMSDOE28 SGMC off-catalogue pure",
+      "score": 0.0492,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 38000,
+      "key_lesson": "Proved off-catalogue pre-Quaternary SGMC bedrock contacts live predominantly in steep mountain cores rather than active Quaternary geothermal basins (`IMP_TP = 777.6`)."
+    },
+    {
+      "repo": "GEMSDOE71",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE71",
+      "submission": "gems71-dpst-hdt-35500dots-20261020T200000Z-fd98afd0-zeros.tif",
+      "score": 0.0558,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 35500,
+      "key_lesson": "Over-weighted regional hydrothermal/spring plumes without 1D fault-scarp localization (`B'' = 0.07220`), placing broad diffuse clusters away from discrete fault traces."
+    },
+    {
+      "repo": "8GEMSDOE",
+      "repo_url": "https://github.com/buffedlizard55-lab/19GEMSDOE",
+      "submission": "8GEMSDOE spatial U-Net baseline",
+      "score": 0.1563,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 64000,
+      "key_lesson": "2D CNN spatial receptive fields overfit 3-quadrant training layouts and emitted thick multi-pixel bands penalized by `alpha=0.2 * FP`."
+    },
+    {
+      "repo": "19GEMSDOE",
+      "repo_url": "https://github.com/buffedlizard55-lab/19GEMSDOE",
+      "submission": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+      "score": 0.1922,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 61500,
+      "key_lesson": "First multi-line corroborated scarp + thermal anomaly surface (`Instrument A HOLDOUT-DTI = 0.06542`), still un-spaced along centerlines."
+    },
+    {
+      "repo": "GEMSDOE28 / 25",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "submission": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "score": 0.2600,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 41200,
+      "key_lesson": "1-pixel skeleton thinning jumped +0.0678 live (`0.1922 -> 0.2600`, `HOLDOUT-DTI = 0.09189`), proving 1D trace geometry is essential under the 300 m Tversky kernel."
+    },
+    {
+      "repo": "GEMSDOE70",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
+      "submission": "gems70-p5-dual-submod300-oof38k-20261020.tif",
+      "score": 0.2478,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 37654,
+      "key_lesson": "Introduced 38-feature multi-physics HGB + 2D 300 m submodular coverage, EXCEPT (1) diluted positives with mountain SGMC contacts (`basin% = 49.4%`), (2) zeroed network features, and (3) suffered the 3.13x 2D-blob submodular bias (`9.380 vs 3.000`)."
+    },
+    {
+      "repo": "GEMSDOE28",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "submission": "gems28-h36-r30 / gems28-h38-hf",
+      "score": 0.2710,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 38200,
+      "key_lesson": "Added heat-flow & scarp-radius refinements on 1D skeletonized traces (`0.2600 -> 0.2707 / 0.2710`)."
+    },
+    {
+      "repo": "GEMSDOE36",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+      "submission": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "score": 0.2750,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 38854,
+      "key_lesson": "#2 live fleet score: Anderson fault mechanics + spaced 1D trace dots (`B'' = 0.12954`)."
+    },
+    {
+      "repo": "GEMSDOE32",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+      "submission": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "score": 0.2778,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "n_dots": 37654,
+      "key_lesson": "#1 live fleet score (`0.2778`): ~300 m strided dots along 1D piedmont fault ridges (`1.67x` Tversky TP/FP efficiency, `56.0%` basin share, `B'' = 0.12769`), limited by shallow linear feature scoring, uncalibrated SI units, quantized u8 DEMs, and zero elastic fault-network / Radon gap-bridging."
+    },
+    {
+      "repo": "GEMSDOE75 (THIS REPO)",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE75",
+      "submission": "gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+      "score": 0.13509,
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2; n_withheld=12,175; 95% CI [0.11768, 0.15163])",
+      "n_dots": 36800,
+      "key_lesson": "Unifies SI-calibrated 3D magnetic/gravity tilt phases, non-linear sqrt 1m LiDAR wash cancellation, 13-channel float32 10m DEM + chi knickpoints, 12-azimuth Radon phase locking, Byerlee 3D crustal stress + 7,279 heat-flow boreholes + GDR #1391 springs, self-masked LOCO-Quat elastic network propagation, zero-shift Stage-2 Radon gap-bridging, and 1D transverse ridge 200 m submodular Tversky packing (`HOLDOUT-DTI = 0.13509` vs `D28 = 0.09189` and `H33_loqo = 0.04306`; `B'' = 0.14399` #1 across all 274 fleet rasters)."
+    }
+  ],
+  "official_external_sources": [
+    {
+      "name": "DOE GEMS Competition Data & Problem Specification",
+      "organization": "U.S. Department of Energy / DrivenData",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "license": "Competition Open Science Data Access"
+    },
+    {
+      "name": "USGS 3D Elevation Program (3DEP) 1m LiDAR & 1/3 arc-second (10m) Seamless DEM",
+      "organization": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "license": "Public Domain (17 U.S.C. 105)"
+    },
+    {
+      "name": "USGS GeoDAWN Airborne Magnetic & Radiometric Survey (Nevada / Great Basin)",
+      "organization": "U.S. Geological Survey Earth MRI",
+      "url": "https://www.usgs.gov/centers/gggsc/science/earth-mri-acquisitions",
+      "license": "Public Domain (17 U.S.C. 105)"
+    },
+    {
+      "name": "USGS ScienceBase INGENIOUS Great Basin Heat Flow (7,279 boreholes) & 3D Stress / Slip-Dilation Data Release",
+      "organization": "U.S. Geological Survey / University of Nevada, Reno (NBMG)",
+      "url": "https://www.sciencebase.gov/catalog/item/652589c8d34e44db0e2ee3bc",
+      "license": "Public Domain (CC0 / USGS Data Release)"
+    },
+    {
+      "name": "DOE Geothermal Data Repository (GDR #1391): INGENIOUS Regional Wells, Springs, Geothermometers, 2m Probes & Paleo-Geothermal Deposits",
+      "organization": "U.S. Department of Energy GTO / NBMG",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "license": "CC-BY-4.0 / DOE Open Geothermal Data"
+    },
+    {
+      "name": "USGS Quaternary Fault and Fold Database of the United States & SGMC State Geologic Map Compilation",
+      "organization": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/programs/earthquake-hazards/faults",
+      "license": "Public Domain (17 U.S.C. 105)"
+    },
+    {
+      "name": "U.S. Census Bureau TIGER/Line Primary & Secondary Roads",
+      "organization": "U.S. Census Bureau",
+      "url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html",
+      "license": "Public Domain (17 U.S.C. 105)"
+    }
+  ]
+}

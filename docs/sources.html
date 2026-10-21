@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEMSDOE75 · Official Sources &amp; Irregularities Log</title>
+  <style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #cbd5e1;
+  --brand: #0f766e;
+  --brand-dark: #115e59;
+  --ok-bg: #ecfdf5;
+  --ok-border: #10b981;
+  --ok-ink: #065f46;
+  --blue-bg: #eff6ff;
+  --blue-ink: #1e40af;
+  --amber-bg: #fffbeb;
+  --amber-ink: #92400e;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+.topbar {
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid #10b981;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.topbar-inner {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+}
+.nav-links a:hover, .nav-links a.active {
+  background: #1e293b;
+  color: #34d399;
+}
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+.hero-verdict {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 100%);
+  border: 2px solid var(--ok-border);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 10px 25px -10px rgba(16, 185, 129, 0.28);
+  margin-bottom: 1.75rem;
+}
+.verdict-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #059669;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+.hero-verdict h1 {
+  margin: 0.65rem 0 0.5rem;
+  font-size: 1.85rem;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.15rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.94rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: #059669;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+.btn-primary:hover { background: #047857; }
+.btn-secondary {
+  background: #0f172a;
+  color: #ffffff;
+}
+.btn-secondary:hover { background: #1e293b; }
+.btn-outline {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+.btn-outline:hover { background: #f1f5f9; }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+}
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+}
+.kpi-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.kpi-val {
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin: 0.25rem 0;
+  font-family: var(--mono);
+  color: #0f172a;
+}
+.kpi-sub {
+  font-size: 0.83rem;
+  color: var(--muted);
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.5rem;
+}
+.card h2 {
+  margin-top: 0;
+  font-size: 1.32rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.55rem;
+}
+.card h3 {
+  font-size: 1.08rem;
+  margin-top: 1.25rem;
+}
+.meta-box {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  overflow-x: auto;
+  margin: 0.65rem 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0.75rem 0;
+}
+th, td {
+  text-align: left;
+  padding: 0.62rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+}
+tr.highlight-row {
+  background: #ecfdf5;
+  font-weight: 600;
+}
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+.tag-holdout { background: var(--blue-bg); color: var(--blue-ink); }
+.tag-live { background: var(--amber-bg); color: var(--amber-ink); }
+.tag-pass { background: var(--ok-bg); color: var(--ok-ink); border: 1px solid #6ee7b7; }
+.fig-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-top: 0.5rem;
+}
+.fig-cap {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.45rem;
+}
+input[type="search"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 380px;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+footer {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-title" href="index.html">DOE GEMS · GEMSDOE75 (TRLT-75)</a>
+    <nav class="nav-links"><a href="index.html" class="">Submission & Evidence</a><a href="executive-summary.html" class="">PhD Forensic & Hypotheses</a><a href="run-card.html" class="">Protocol Run Card & Canaries</a><a href="sources.html" class="active">Official Links & Irregularities</a></nav>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="card">
+  <h2>1. Official Competition, USGS &amp; DOE Geothermal Data Sources</h2>
+  <div style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>Dataset / Resource</th><th>Agency</th><th>Verified Official Link</th><th>License</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>DOE GEMS Competition Data &amp; Problem Specification</strong></td>
+          <td>U.S. Department of Energy / DrivenData</td>
+          <td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">https://www.drivendata.org/competitions/306/competition-doe-gems/</a></td>
+          <td>Competition Open Science Data Access</td>
+        </tr>
+        <tr>
+          <td><strong>USGS 3D Elevation Program (3DEP) 1m LiDAR &amp; 1/3 arc-second (10m) Seamless DEM</strong></td>
+          <td>U.S. Geological Survey</td>
+          <td><a href="https://www.usgs.gov/3d-elevation-program" target="_blank" rel="noopener">https://www.usgs.gov/3d-elevation-program</a></td>
+          <td>Public Domain (17 U.S.C. 105)</td>
+        </tr>
+        <tr>
+          <td><strong>USGS GeoDAWN Airborne Magnetic &amp; Radiometric Survey (Nevada / Great Basin)</strong></td>
+          <td>U.S. Geological Survey Earth MRI</td>
+          <td><a href="https://www.usgs.gov/centers/gggsc/science/earth-mri-acquisitions" target="_blank" rel="noopener">https://www.usgs.gov/centers/gggsc/science/earth-mri-acquisitions</a></td>
+          <td>Public Domain (17 U.S.C. 105)</td>
+        </tr>
+        <tr>
+          <td><strong>USGS ScienceBase INGENIOUS Great Basin Heat Flow (7,279 boreholes) &amp; 3D Stress / Slip-Dilation Data Release</strong></td>
+          <td>U.S. Geological Survey / University of Nevada, Reno (NBMG)</td>
+          <td><a href="https://www.sciencebase.gov/catalog/item/652589c8d34e44db0e2ee3bc" target="_blank" rel="noopener">https://www.sciencebase.gov/catalog/item/652589c8d34e44db0e2ee3bc</a></td>
+          <td>Public Domain (CC0 / USGS Data Release)</td>
+        </tr>
+        <tr>
+          <td><strong>DOE Geothermal Data Repository (GDR #1391): INGENIOUS Regional Wells, Springs, Geothermometers, 2m Probes &amp; Paleo-Geothermal Deposits</strong></td>
+          <td>U.S. Department of Energy GTO / NBMG</td>
+          <td><a href="https://gdr.openei.org/submissions/1391" target="_blank" rel="noopener">https://gdr.openei.org/submissions/1391</a></td>
+          <td>CC-BY-4.0 / DOE Open Geothermal Data</td>
+        </tr>
+        <tr>
+          <td><strong>USGS Quaternary Fault and Fold Database of the United States &amp; SGMC State Geologic Map Compilation</strong></td>
+          <td>U.S. Geological Survey</td>
+          <td><a href="https://www.usgs.gov/programs/earthquake-hazards/faults" target="_blank" rel="noopener">https://www.usgs.gov/programs/earthquake-hazards/faults</a></td>
+          <td>Public Domain (17 U.S.C. 105)</td>
+        </tr>
+        <tr>
+          <td><strong>U.S. Census Bureau TIGER/Line Primary &amp; Secondary Roads</strong></td>
+          <td>U.S. Census Bureau</td>
+          <td><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html" target="_blank" rel="noopener">https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html</a></td>
+          <td>Public Domain (17 U.S.C. 105)</td>
+        </tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card">
+  <h2>2. Explicit Audit of Irregularities Discovered &amp; Upstream Fixes Applied</h2>
+  <table>
+    <thead><tr><th>ID</th><th>Irregularity Discovered</th><th>Exact Upstream Fix in <code>GEMSDOE75</code></th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>IR-75-01</code></td>
+        <td><code>GEMSDOE70/scripts/fetch_data.py</code> contained a 60-hex-character truncated SHA-256 digest for <code>external/lidar_scarp_features.json</code> (missing 4 hex chars <code>9b1c</code>).</td>
+        <td>Restored full verified 64-hex SHA-256 <code>9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41</code> in <code>scripts/fetch_data.py</code> and verified all 34 staged artifacts.</td>
+      </tr>
+      <tr>
+        <td><code>IR-75-02</code></td>
+        <td>1,000&times; &amp; 10&times; SI unit mismatches in <code>training_features.tif</code>: Band 9 (<code>nT/m</code>) vs Band 3 (<code>nT/km</code>), Band 5 (<code>mGal/100m</code>) vs Band 11 (<code>mGal/km</code>), Band 6 mislabelled as terrain correction instead of radiometric Total Count (<code>r = +0.997</code> with GeoDAWN TC), and signed Band 18 treated as positive slope.</td>
+        <td>Explicit SI scaling constants in <code>src/gems75/constants.py</code> &amp; <code>src/gems75/physics.py</code> before computing 3D harmonic analytic signal and Miller&ndash;Singh tilt phases.</td>
+      </tr>
+      <tr>
+        <td><code>IR-75-03</code></td>
+        <td><code>3.13&times;</code> 2D-Blob Submodular Bias: 300 m triangular kernel integrates to <code>9.3803</code> over a 2D 5&times;5 mountain blob vs <code>3.0000</code> along a 1D 1-px fault trace.</td>
+        <td>Solved in <code>src/gems75/decoder.py</code> via Gumbel <code>Exp(1)</code> survival equalization + 8-normal 1D transverse ridge concentration + <code>200 m</code> centerline spacing.</td>
+      </tr>
+      <tr>
+        <td><code>IR-75-04</code></td>
+        <td>Four diagnostic rasters in historical repos (<code>calib_r13lattice_00904.tif</code>, <code>r14_union_tips10_lat6.tif</code>, <code>gems61-k400k</code>, <code>r11_greedy_mp.tif</code>) place 192k&ndash;312k space-filling lattice dots across all of Nevada, producing 99.5% one-way halo coverage on any point set with <code>Spearman = 0.00006</code>.</td>
+        <td>Matched upstream <code>vendor/gems57/uniqueness.py</code> 2026-10-20 mutual 3-px overlap rule while reporting both forward and reverse overlap transparently across all 274 SHA-256 rasters.</td>
+      </tr>
+      <tr>
+        <td><code>IR-75-05</code></td>
+        <td>Prior portal rejection error <code>"Predicted values must be in range [0, 1]"</code> caused by raw logits or sentinel/NaN nodata leakage.</td>
+        <td>Enforced strict finite float32 <code>{0.0, 1.0}</code> binary values across all <code>12,279,160</code> cells (<code>nodata=None</code>, <code>0</code> NaN, <code>0</code> Inf) via <code>gems57.submission_writer.write_submission</code> and verified in <code>scripts/check_submission.py</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+<footer>
+  <div>
+    <strong>DOE GEMS Geothermal Fault Discovery Competition</strong> —
+    Official Portal: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">drivendata.org/competitions/306/competition-doe-gems/</a> |
+    Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE75" target="_blank" rel="noopener">buffedlizard55-lab/GEMSDOE75</a>
+  </div>
+  <div style="margin-top:0.35rem;">
+    Strict Parallel-Run Protocol Rule 3 Compliance: Every score on this site carries an explicit provenance class
+    (<code>HOLDOUT-DTI</code> with evaluator version &amp; 95% paired spatial-block CI, <code>OFF-CATALOGUE-PIEDMONT-SGMC-DTI</code>, or
+    <code>ORGANIZER-CONFIRMED</code>). Zero projections are ever reported as scores.
+  </div>
+</footer>
+<script>
+function copyText(id, btn) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = "Copied!";
+    setTimeout(() => { btn.innerText = orig; }, 1600);
+  });
+}
+function filterTable(inputId, tableId) {
+  const q = document.getElementById(inputId).value.toLowerCase();
+  const rows = document.querySelectorAll("#" + tableId + " tbody tr");
+  rows.forEach(r => {
+    r.style.display = r.innerText.toLowerCase().includes(q) ? "" : "none";
+  });
+}
+</script>
+</body>
+</html>
