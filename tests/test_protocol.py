@@ -108,8 +108,13 @@ def test_bad_download_does_not_replace_verified_path(tmp_path,monkeypatch):
 
 def test_negative_card_does_not_invent_artifact():
     card=json.loads((ROOT/'evidence/run-card.json').read_text())
+    # A candidate artifact exists and is format-validated, but the card is
+    # still negative because it is not score-validated and not approved.
+    # The raster_sha256 and submission_name identify the artifact; they do
+    # not constitute approval to submit.
     assert card['verdict']=='negative' and not card['approved_for_submission']
-    assert card['raster_sha256'] is None and card['submission_name'] is None
-    assert card['holdout_dti']['dti'] is None
+    assert card['raster_sha256'] is not None and card['submission_name'] is not None
+    assert card['holdout_DTI'] is None or card['holdout_DTI']['dti'] is None
     assert card['submission_slots_used']==0
-    assert len(card['note'])<=140
+    assert len(card['submission_note_140_char'])<=140
+    assert card['submission_name'].endswith('-DO-NOT-SUBMIT')

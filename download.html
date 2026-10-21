@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="GEMSDOE75: reproducible fault-mapping research and transparent submission readiness.">
+<title>Download candidate · GEMSDOE75</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="index.html"><span class="mark">G/75</span> GEMSDOE<span class="muted">75</span></a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="download.html" aria-current="page">Download</a><a href="research.html">Research</a><a href="evidence.html">Evidence</a><a href="executive-summary.html">How to submit</a></nav></header>
+<main id="main"><p class="eyebrow">DOWNLOAD SUBMISSION CANDIDATE</p><h1>One file to submit.<br>Read the status first.</h1>
+<section class="notice" aria-labelledby="download-status"><div>
+<span class="tag">NOT_APPROVED_TO_SUBMIT</span>
+<h2 id="download-status">Submission slot not used — format-validated, not score-validated.</h2>
+<p>This file passed every local format check (single band, float32, EPSG:32611, 100 m, values in [0,1], no NaN, exact template geometry on the placeholder grid). It is <strong>not</strong> OK to submit to the contest yet: the geometry is placeholder data because this sandbox cannot reach the login-walled DrivenData data page, and no holdout DTI, leakage canary, or registry uniqueness check could be run. Download for review only.</p>
+</div><a class="button" href="docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif" download>Download gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif</a><a class="button" href="docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.json" download>Download validation receipt (JSON)</a></section>
+<section class="prose"><h2>File identity</h2>
+<ul>
+<li><strong>Name:</strong> gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif</li>
+<li><strong>SHA-256:</strong> 89d57a586634dafa256dc752a5d8a08815be23f26de4f651063378a198742098</li>
+<li><strong>Mode:</strong> SCHEMA-DEMO</li>
+<li><strong>Rule:</strong> fault_tip_halo</li>
+<li><strong>Ready to submit:</strong> <strong class="">False</strong></li>
+<li><strong>Verdict:</strong> negative</li>
+</ul>
+<h2>What must happen before this file can be submitted</h2>
+<ol>
+<li><strong>Get real data.</strong> A human with a DrivenData account downloads training_features.tif, labels.tif, and sample_submission.tif from the organizer's data page and places them in data/raw/. This sandbox cannot reach that login-walled page.</li>
+<li><strong>Re-generate in REAL mode.</strong> Run <code>python scripts/make_submission.py --rule fault_tip_halo</code> so the template is derived from the real training_features.tif, not a placeholder.</li>
+<li><strong>Validate geometry.</strong> Run <code>python scripts/verify_submission.py docs/downloads/&lt;name&gt;.tif --template data/raw/training_features.tif</code> to confirm exact CRS, shape, and transform match the organizer's grid.</li>
+<li><strong>Run the holdout and canaries.</strong> Score the rule with <code>gems_doe.holdout.run_holdout</code> and <code>leakage_canary</code> against the real catalogue. Only a holdout DTI that beats the current best is eligible for a weekly slot.</li>
+<li><strong>Check uniqueness.</strong> Compare against registry rasters (Spearman > 0.90 or &gt;70% of dots within 3 px = duplicate, stop).</li>
+<li><strong>Get selector approval.</strong> Promotion to a competition slot is a separate decision within the weekly cap shown on the submission page.</li>
+</ol>
+<h2>Why the “values in [0, 1]” error cannot happen with this file</h2>
+<p>The writer strips the documented float32 sentinel (−3.4028234663852886e38) and any NaN/inf, clips all values to [0,1], writes every pixel as finite (0.0 outside the footprint), and omits a nodata tag. The file is re-opened from disk and re-validated before the receipt is issued. Both documented mechanisms behind the portal error are closed by construction.</p>
+<p><a class="button dark" href="executive-summary.html">Full submission guide →</a></p></section></main><footer><strong>Evidence before emission.</strong><span>Reviewed 21 October 2026 · Static audit, not a live leaderboard</span><a href="https://github.com/buffedlizard55-lab/GEMSDOE75">Source repository ↗</a></footer></body></html>

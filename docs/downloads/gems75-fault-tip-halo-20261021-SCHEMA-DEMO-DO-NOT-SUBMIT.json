@@ -1,0 +1,41 @@
+{
+  "mode": "SCHEMA-DEMO",
+  "template_verified_from_real_organizer_file": false,
+  "rule": "fault_tip_halo",
+  "output_file": "docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif",
+  "validation": {
+    "ok": true,
+    "checks": {
+      "band_count": 1,
+      "dtype": "float32",
+      "crs_epsg": 32611,
+      "resolution_m": [
+        100.0,
+        100.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        -100.0,
+        0.0
+      ],
+      "nodata_tag": null,
+      "n_nan": 0,
+      "n_below_zero": 0,
+      "n_above_one": 0,
+      "min_finite": 0.0,
+      "max_finite": 0.6499999761581421,
+      "n_predicted_px_gt_0": 1616,
+      "sha256": "89d57a586634dafa256dc752a5d8a08815be23f26de4f651063378a198742098"
+    },
+    "errors": []
+  },
+  "ready_to_submit": false,
+  "note": "DO NOT SUBMIT: geometry is an unverified placeholder because this sandbox cannot reach the login-walled DrivenData data page. Run scripts/download_competition_data.sh on an unrestricted machine, place training_features.tif in data/raw/, then re-run this script."
+}
