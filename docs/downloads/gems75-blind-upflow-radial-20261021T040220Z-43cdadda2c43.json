@@ -1,0 +1,59 @@
+{
+  "generated_utc": "20261021T040220Z",
+  "file": "gems75-blind-upflow-radial-20261021T040220Z-43cdadda2c43.tif",
+  "path": "/home/user/GEMSDOE75/docs/downloads/gems75-blind-upflow-radial-20261021T040220Z-43cdadda2c43.tif",
+  "sha256": "812f921a4752534d7ec765ecbf19610727cd0d73a58f5d8d876e20dcd574df34",
+  "bytes": 1081959,
+  "hypothesis": "Blind upflow (no surface scarp): radial Gaussian decay from a subsurface geothermal upflow center; values in [0,1] inside a 30 km radius, 0.0 elsewhere. Targets the fault class the competition states may be missing from the USGS/INGENIOUS catalogue.",
+  "mechanism": "Distance-decay probability from an inferred blind upflow point; no feature stack, no catalogue-derived predictors, no holdout fitting.",
+  "named_non_fault_mimic": "A buried volcanic intrusion or sedimentary basin edge can produce a subsurface thermal anomaly with no associated slip-prone fault.",
+  "grid_geometry": {
+    "height": 3730,
+    "width": 3292,
+    "crs_epsg": 32611,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "pixel_size_m": 100.0
+  },
+  "grid_verified_against_real_organizer_file": false,
+  "validator": {
+    "ok": true,
+    "checks": {
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "height": 3730,
+      "width": 3292,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "min": 0.0,
+      "max": 0.6499976515769958,
+      "n_nan": 0,
+      "n_positive": 282736,
+      "sha256": "812f921a4752534d7ec765ecbf19610727cd0d73a58f5d8d876e20dcd574df34"
+    },
+    "errors": []
+  },
+  "holdout_dti": null,
+  "holdout_dti_ci95": null,
+  "holdout_dti_label": "NOT MEASURED: no real catalogue or feature stack available (see LIMITATIONS.md). This number must not be inferred or projected.",
+  "correlation_overlap_vs_registry": null,
+  "correlation_overlap_label": "NOT MEASURED: requires the real existing_faults.tif and a full registry scan, neither available in this environment.",
+  "submission_name": null,
+  "submission_note": null,
+  "approved_for_submission": false,
+  "submission_status": "DO NOT SUBMIT. This TIF is a format demonstration and scientific probe only. It has no holdout-DTI measurement, no organizer confirmation, and its grid geometry is unverified against the real organizer raster. Download is safe for review; uploading to DrivenData is not authorized until the blockers in LIMITATIONS.md are resolved and a holdout-DTI beats the current best."
+}

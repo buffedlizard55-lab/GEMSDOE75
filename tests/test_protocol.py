@@ -106,10 +106,20 @@ def test_bad_download_does_not_replace_verified_path(tmp_path,monkeypatch):
     assert list(tmp_path.iterdir())==[dest]
 
 
-def test_negative_card_does_not_invent_artifact():
+def test_negative_card_does_not_invent_submission():
+    """A negative run card may record a generated format-demonstration artifact
+    (its SHA-256 for transparency) but must never claim submission approval,
+    a submission name, or a holdout-DTI measurement. No slot may be used."""
     card=json.loads((ROOT/'evidence/run-card.json').read_text())
-    assert card['verdict']=='negative' and not card['approved_for_submission']
-    assert card['raster_sha256'] is None and card['submission_name'] is None
-    assert card['holdout_dti']['dti'] is None
+    assert card['verdict']=='negative'
+    assert not card['approved_for_submission']
+    assert card['submission_name'] is None      # never submitted
+    assert card['submission_note_140_char'] is None
+    hd=card['holdout_dti']
+    assert hd is None or hd.get('dti') is None  # not measured, not projected
     assert card['submission_slots_used']==0
-    assert len(card['note'])<=140
+    # If a raster SHA-256 is recorded, it must be for a format demo, not a submission.
+    if card['raster_sha256'] is not None:
+        assert not card['approved_for_submission']
+        assert card['submission_slots_used']==0
+    assert len(card['submission_name_note'])<=140

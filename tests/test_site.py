@@ -31,9 +31,17 @@ def test_site_local_links_and_status():
             path=(ROOT/unquote(parts.path)).resolve()
             assert path.is_relative_to(ROOT),url
             assert path.exists(),f'{page}: {url}'
-            assert path.suffix.lower() not in {'.tif','.tiff','.zip'},'No candidate is cleared'
-    assert 'No approved TIFF. Do not submit.' in (ROOT/'index.html').read_text()
-    assert 'There is no submission TIFF to download.' in (ROOT/'executive-summary.html').read_text()
+            # A format-demonstration TIF may be linked for review, but nothing may
+            # be presented as an approved submission candidate.
+            assert path.suffix.lower() not in {'.zip'},'No ZIP candidate is cleared'
+    index_text=(ROOT/'index.html').read_text()
+    exec_text=(ROOT/'executive-summary.html').read_text()
+    # Status must be truthful: artifact exists but is not approved for submission.
+    assert 'Generated, not approved' in index_text or 'DO NOT SUBMIT' in index_text
+    assert 'DO NOT SUBMIT' in exec_text
+    assert 'not holdout-validated' in exec_text or 'NOT MEASURED' in exec_text
+    # The download link must point at the actual generated file.
+    assert 'gems75-blind-upflow-radial-20261021T040220Z-43cdadda2c43.tif' in exec_text
 
 
 def test_site_build_reproducible():
