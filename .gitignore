@@ -1,6 +1,14 @@
-.venv/
+# Large raw/cached datasets & local virtual environments (kept out of git snapshots)
 .cache/
+.venv/
+venv/
+data/*.tif
+data/raw_parts/
+data/external/
 __pycache__/
+*.py[cod]
+*.egg-info/
 .pytest_cache/
-*.pyc
-data/
+.ruff_cache/
+.mypy_cache/
+.DS_Store

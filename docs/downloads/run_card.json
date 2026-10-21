@@ -1,0 +1,165 @@
+{
+  "schema_version": "gems-parallel-run-card-v1",
+  "lane_id": "GEMSDOE75-TRLT",
+  "branch": "arena/b0f09a9b-gemsdoe75",
+  "generated_at_utc": "2026-10-21T05:12:22.922161+00:00",
+  "verdict": "promote",
+  "submission_safety_status": "OK TO DOWNLOAD AND SUBMIT (CLEARED ALL HOLDOUT, CANARY, VALIDATOR & UNIQUENESS GATES)",
+  "hypothesis": "Unmapped geothermal-hosting Quaternary fault strands in the Nevada Great Basin are governed simultaneously by (1) SI-calibrated 3D magnetic/gravity tilt-phase contacts co-striking with non-linearly de-quantized 1m 3DEP LiDAR & 10m seamless one-sided scarps under Byerlee-Simpson 3D crustal stress favorability and elevated borehole/GDR heat flow, (2) elastic along-strike tip propagation and relay-ramp step-over bridges across incomplete catalogue terminations (`LOCO-Quat`), and (3) 1D centerline ridge geometry where 200 m single-file submodular packing achieves 1.67x higher Tversky TP/FP efficiency while eliminating the 3.13x 2D mountain-blob bias.",
+  "mechanism": "Stage 1 fuses a 54-channel pure physical HGB head (fixing the 1,000x Band 9 nT/m and 10x Band 5 mGal/100m SI scaling errors, non-linear sqrt 1m LiDAR de-quantization with wash-bank cancellation, 12-azimuth Radon line integrals, 3D Byerlee Mohr-Coulomb favorability, 7,279 USGS heat-flow boreholes, and GDR #1391 thermal springs/probes/sinter) with a self-masked Leave-Component-Out Quaternary (`LOCO-Quat`) elastic network head; Stage 2 extracts 15 zero-shift multi-scale Radon & bidirectional alluvial gap-bridge features on OOF Stage-1 probabilities before 1D transverse ridge concentration and 200 m spaced 300 m Tversky packing.",
+  "named_non_fault_geological_mimics": [
+    "Incised alluvial-fan desert washes & braided distributary banks (rejected via 1m LiDAR max(upface, downface) - 0.65*cross_max + contour-parallel alignment index)",
+    "Pleistocene Lake Lahontan & Lake Dixie horizontal wave-cut shorelines (rejected via along-strike detrended elevation variance guard + gravity/magnetic tilt phase absence)",
+    "Steep pre-Quaternary Mesozoic/Cenozoic range-core bedrock contacts in SGMC (rejected via authentic Quaternary training labels, smooth piedmont basin-depth x slope habitat prior, and 1D transverse ridge concentration eliminating the 3.13x 2D blob bias)",
+    "US highway & railway embankments across playas (rejected via US Census TIGER distance feature)"
+  ],
+  "score_provenance": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives_pixels": 11321,
+    "holdout_dti": 0.135088,
+    "holdout_ci95": [
+      0.117676,
+      0.15163
+    ],
+    "per_fold_holdout_dti": {
+      "NW": 0.140483,
+      "NE": 0.120762,
+      "SW": 0.119161,
+      "SE": 0.160388
+    },
+    "delta_vs_D28_physical_control_02600": {
+      "delta": 0.0432,
+      "ci95": [
+        0.030176,
+        0.054573
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_H33_loqo_fold_proper": {
+      "delta": 0.092025,
+      "ci95": [
+        0.068151,
+        0.11652
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_H33_fleet_leader_02778": {
+      "delta": 0.131389,
+      "ci95": [
+        0.114119,
+        0.147702
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_GEMSDOE70_P8_02478": {
+      "delta": 0.132439,
+      "ci95": [
+        0.114994,
+        0.148956
+      ],
+      "beats_95ci": true
+    },
+    "delta_vs_uniform_random": {
+      "delta": 0.10385,
+      "ci95": [
+        0.086765,
+        0.120728
+      ],
+      "beats_95ci": true
+    },
+    "secondary_non_circular_benchmarks": {
+      "C_pied_600m_quaternary_piedmont_dti": 0.086607,
+      "H33_C_pied_600m_comparator": 0.108526,
+      "PINN_C_pied_600m_comparator": 0.111241,
+      "D28_C_pied_600m_comparator": 0.294962,
+      "P8_C_pied_600m_comparator": 0.081313,
+      "B_prime_offcat_sgmc_all_dti": 0.118814,
+      "B_dprime_offcat_sgmc_piedmont_dti": 0.14399
+    },
+    "experiments_executed_count": 3,
+    "experiments_ladder_holdout_dti": {
+      "E1_ALMRC_TiltSI_48": {
+        "evidence_class": "HOLDOUT-DTI",
+        "holdout_dti": 0.080083,
+        "ci95": [
+          0.060646,
+          0.100676
+        ],
+        "C_pied_600_dti": 0.080786,
+        "B_dprime_dti": 0.104122,
+        "n_dots": 37654
+      },
+      "E2_Byerlee3D_HeatFlow_LOCOQuat_59": {
+        "evidence_class": "HOLDOUT-DTI",
+        "holdout_dti": 0.116365,
+        "ci95": [
+          0.095658,
+          0.136785
+        ],
+        "C_pied_600_dti": 0.071738,
+        "B_dprime_dti": 0.111169,
+        "n_dots": 37654
+      },
+      "E3_TRLT75_Stage2Radon_1DRidge_SpacedSubmod": {
+        "evidence_class": "HOLDOUT-DTI",
+        "holdout_dti": 0.135088,
+        "ci95": [
+          0.117676,
+          0.15163
+        ],
+        "C_pied_600_dti": 0.086607,
+        "B_dprime_dti": 0.14399,
+        "n_dots": 36800
+      }
+    }
+  },
+  "leakage_canary_gate": {
+    "n_features_tested": 59,
+    "max_symmetric_auc": 0.78383,
+    "threshold": 0.9,
+    "pass": true
+  },
+  "uniqueness_gate": {
+    "n_registry_rasters_checked": 274,
+    "max_abs_surface_spearman": 0.34271,
+    "max_abs_dots_spearman": 0.07711,
+    "spearman_limit": 0.9,
+    "max_dot_overlap_3px": 0.46926,
+    "dot_overlap_limit": 0.7,
+    "nearest_neighbor_by_spearman": "GEMSDOE48/GEMSDOE48-H53-3SRC-DS-20261007-9242c831-nan-outside.tif",
+    "nearest_neighbor_by_overlap": "GEMSDOE28/gems27-h27-4-r1-pruned-d1-5-20261003-450eb6859636-allfinite.tif",
+    "pass": true
+  },
+  "artifact": {
+    "submission_name": "gems75-trlt-radon-loco-ridge-36800-zeros",
+    "submission_note": "TRLT-75: SI-tilt mag/grav + 1m/10m Radon phase lock + Byerlee3D/HF + LOCO-Quat + Stage2 gap-bridge + 1D-ridge 200m Tversky pack",
+    "note_length_chars": 127,
+    "tif_path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+    "zip_path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.zip",
+    "tif_sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
+    "tif_bytes": 144737,
+    "zip_sha256": "0e6216492eea3ee5e15548e285e251be429b281d8dfad60889bb6f639a557883",
+    "zip_bytes": 111022,
+    "n_dots": 36800,
+    "basin_piedmont_fraction": 0.75611,
+    "validator_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "validator_all_pass": true
+  }
+}

@@ -25,6 +25,11 @@ from gems_doe.h75_lane import (
 )
 
 
+def _default_out_path(rule: str, is_real: bool) -> Path:
+    suffix = "" if is_real else DO_NOT_SUBMIT_SUFFIX
+    return DOWNLOADS_DIR / f"gemsdoe75-{rule}{suffix}.tif"
+
+
 def main() -> int:
     sample_path = ROOT / ".cache" / "inputs" / "sample_submission.tif"
     existing_path = ROOT / ".cache" / "inputs" / "existing_faults.tif"
