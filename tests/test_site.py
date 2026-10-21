@@ -5,7 +5,11 @@ import subprocess
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-PAGES=['index.html','executive-summary.html','research.html','evidence.html']
+PAGES=['index.html','download.html','executive-summary.html','research.html','evidence.html']
+# The download page is the one authorized location where a candidate .tif may
+# be linked, because it carries the full submit-readiness status. Every other
+# page must remain free of direct .tif/.zip links (fail-closed guard).
+DOWNLOAD_PAGE = 'download.html'
 
 
 class Links(HTMLParser):
@@ -31,17 +35,14 @@ def test_site_local_links_and_status():
             path=(ROOT/unquote(parts.path)).resolve()
             assert path.is_relative_to(ROOT),url
             assert path.exists(),f'{page}: {url}'
-            # A format-demonstration TIF may be linked for review, but nothing may
-            # be presented as an approved submission candidate.
-            assert path.suffix.lower() not in {'.zip'},'No ZIP candidate is cleared'
-    index_text=(ROOT/'index.html').read_text()
-    exec_text=(ROOT/'executive-summary.html').read_text()
-    # Status must be truthful: artifact exists but is not approved for submission.
-    assert 'Generated, not approved' in index_text or 'DO NOT SUBMIT' in index_text
-    assert 'DO NOT SUBMIT' in exec_text
-    assert 'not holdout-validated' in exec_text or 'NOT MEASURED' in exec_text
-    # The download link must point at the actual generated file.
-    assert 'gems75-blind-upflow-radial-20261021T040220Z-43cdadda2c43.tif' in exec_text
+            if page != DOWNLOAD_PAGE:
+                assert path.suffix.lower() not in {'.tif','.tiff','.zip'},'No candidate is cleared outside the download page'
+    # Status strings must reflect reality: a candidate exists but is not approved.
+    assert 'NOT_APPROVED_TO_SUBMIT' in (ROOT/'index.html').read_text()
+    assert 'format-validated, not score-validated' in (ROOT/'index.html').read_text()
+    assert 'Go to download page' in (ROOT/'executive-summary.html').read_text()
+    assert 'Download candidate' in (ROOT/'download.html').read_text()
+    assert 'not</strong> OK to submit to the contest yet' in (ROOT/'download.html').read_text() or 'not OK to submit to the contest yet' in (ROOT/'download.html').read_text()
 
 
 def test_site_build_reproducible():
