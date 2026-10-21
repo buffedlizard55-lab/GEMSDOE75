@@ -1,83 +1,52 @@
-# GEMSDOE75 — GEMS geothermal-fault prospectivity
+# GEMSDOE75 — DOE GEMS Prize research workbench
 
-> **Submission status: NOT READY.** This checkout contains no competition rasters, cached feature stack, evaluator, submission writer, website, or prior submission registry. No GeoTIFF was generated. Do not download or submit a purported prediction from this repository until the data, spatial holdout, validation, and format checks described below have actually passed.
+> **Submission status: NOT READY — do not download or submit a TIFF from this checkout.** There is no competition data, cached feature stack, validator, holdout evaluator, submission writer, or GeoTIFF in this repository. A fabricated/placeholder raster would not be a valid competition prediction. The official competition data page redirects to login in this environment. This is an explicit blocker, not a claim that a submission was generated.
 
-## Project charter
+## Executive summary
 
-Build an auditable, reproducible system to identify geothermal-fault targets that may be absent from the USGS/INGENIOUS catalogue, maximize the probability of a scientifically defensible competition result, and own the outcome end to end. Prefer measured spatially blocked holdout performance to leaderboard folklore. Use free, publicly available, official data where possible; keep a source ledger, methods, code, and validation evidence together. Do not claim a score without an evaluator version, withheld-positive count, and confidence interval. Do not treat a prediction or a submission-page receipt as interchangeable with a confirmed competition score.
+This project is intended to support an auditable, scientifically grounded search for unmapped geological faults in the GeoDAWN region for DrivenData competition #306. The official task requires a single-band float32 GeoTIFF on the training grid, EPSG:32611, 100 m resolution, with prediction values in [0, 1] and null/NaN outside the stated bounds. The official metric is distance-weighted Tversky, using alpha=0.2, beta=0.8, and a 300 m triangular distance kernel. See the [official problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
 
-### Operating protocol (read before every experiment)
+**Current verified public-board observation (2026-10-21):** the official leaderboard page displayed xiaofanhu at 0.4413. Evidence class: `PUBLIC-LEADERBOARD` (live public board, not a submission-page receipt, not a private-test or final-award score). The user's cited 0.3195 is therefore not the current public leader at the time checked. The provided H33 TIFF name / 0.2778 attribution was not independently established: a score match does not prove that a specific TIFF earned it. See [the evidence and caveats](docs/irregularities.md).
 
-1. **One declared hypothesis/lane per experiment.** Compare its surface to every available registry raster before placing dots and compare final dots afterward. If rank correlation with any registry raster exceeds 0.90, or more than 70% of the dots lie within 3 pixels of one registry raster's dots, record a duplicate and stop that experiment. The full registry rasters are currently absent, so this gate cannot yet be run.
-2. **Reuse shared tools.** Use the template's cached feature stack, `evaluate_holdout.py`, and `submission_writer.py` where available. The evaluator must withhold whole fault segments with a buffer, derive catalogue features from visible faults only, mask visible faults pixel-exactly, and calculate pooled DTI with alpha 0.2, beta 0.8, and a 300 m triangular kernel. Fix shared-tool defects in the shared template rather than maintaining private forks. None of those tools is present in this checkout.
-3. **Label every metric.** A score must be marked either **HOLDOUT-DTI** (evaluator version, withheld-positive count, 95% CI) or **ORGANIZER-CONFIRMED** (submission-page receipt). A projection is not a score.
-4. **Leakage canary.** Test each feature alone on the spatial holdout before trusting a composite. AUC above 0.90 is a leakage alarm until investigated and explained.
-5. **Run card.** End each experiment with JSON containing: hypothesis; mechanism; named non-fault mimic process; holdout DTI and CI; registry correlation/overlap; raster SHA-256; validator output (no NaN within footprint, values in [0,1], CRS/shape/transform match); submission name and <=140-character note; verdict `promote` or `negative`.
-6. **Budget and selection.** Stop after three experiments or two hours, whichever comes first. Do not promote/select or spend a weekly submission slot unless the independent selector and holdout gate authorize it. Negative results are deliverables.
-7. **Submission safety.** A downloadable TIFF may be called submission-ready only after checking one band, required CRS, shape, geotransform, footprint, finite values in [0,1], and valid file integrity against the official sample submission. Never normalize/clip silently to conceal invalid predictions.
+### One-click submission file
 
-## Current checkout audit (2026-10-21)
+**Not available yet.** There is deliberately no download link until a unique candidate raster has been generated from the licensed competition inputs, passed the independent format validator, passed the prescribed holdout and duplicate-lane gates, and had its checksum/metadata recorded. The [submission guide](docs/executive-summary.html) explains the exact contest upload steps and what must be checked first.
 
-This repository is a clean, single-commit checkout with only this README. It has no scripts, tests, data directory, source catalogue, raster, web app, or competition artifacts. Consequently, there is no model or previous code to review line-by-line, no cached features or evaluator/writer to reuse, no spatial holdout to run, and no basis for a valid TIFF or performance claim. These are concrete blockers, not evidence that the requested method failed. The user's reported leaderboard/submission scores are not independently confirmed here. The public GEMSDOE32 page was fetched and visibly labels its 0.2747 value as a model projection, not an organizer score; its displayed artifact metadata and claims are not independently verified by this checkout. The submitted user claim that the historical `h33-h33-2...-zeros` artifact scored 0.2778 cannot be explained causally from that score alone: the precise reason requires the TIFF, its producer/configuration, and the leaderboard/receipt context. A score is a result, not a scientific mechanism. Do not conflate it with the current leaderboard value in the prompt.
+## Session-start brief — read before every project session
 
-The official DrivenData problem page was fetched during this review. It confirms the target is faults missing from the existing USGS catalogue, describes GeoDAWN magnetic/radiometric and other provided features, gives the distance-weighted Tversky metric (300 m triangular kernel, alpha 0.2, beta 0.8), and states the output requirements: one float32 band, EPSG:32611, 100 m, same bounds, values [0,1], null/NaN outside bounds. Those are source-verified requirements; see the linked official problem page below. The official rules PDF was also fetched and identifies itself as the GEMS Prize Official Rules, dated September 2026. The exact input raster dimensions/geotransform still must be checked from the competition sample, which is not present here.
+1. **Mission.** Build a useful, auditable workflow to discover faults that are missing from the public USGS/INGENIOUS catalogue and may be relevant to geothermal systems. Aim to improve the chance of winning through sound experiments, not leaderboard speculation. Own results end-to-end; publish failures and blockers as well as wins.
+2. **Do not fabricate evidence.** Every score claim must be one of: `HOLDOUT-DTI` (evaluator version, number of withheld positives, 95% CI), `ORGANIZER-CONFIRMED` (copied from a submission-page receipt), `PUBLIC-LEADERBOARD` (dated capture), or explicitly `USER-REPORTED`. A projection is never a score. Never infer which TIFF earned a leaderboard score from a similar name or score alone.
+3. **Reuse the shared template.** If the shared template and cached features are present, use its feature stack, `evaluate_holdout.py`, and `submission_writer.py`; fix shared-tool defects in the template, not in a private fork. This checkout currently has none of those assets. Do not silently recreate or claim to have run them.
+4. **Holdout before slot.** Hide whole fault segments with a spatial buffer. Derive every catalogue-based feature only from visible faults; mask visible fault pixels exactly. Evaluate pooled DTI at alpha=0.2, beta=0.8, with a 300 m triangular kernel. Report evaluator version, withheld positive count, and a segment-clustered 95% CI. Test each feature alone first; an AUC above 0.90 is a leakage alarm until explained. Do not promote an idea to a real submission slot unless it beats the frozen holdout best under the preregistered rule.
+5. **Novelty / lane gate.** Before placement and again on final dots, compare candidate score surface/raster and placements against every available registry raster. Stop and mark duplicate if rank correlation exceeds 0.90 or more than 70% of candidate dots lie within 3 pixels of a registry dot set. If registry artifacts are unavailable, record the comparison as not run; do not claim uniqueness. Never copy an earlier TIFF except for explicitly labeled educational diagnostics.
+6. **Slots and budget.** Maximum 3 experiments or 2 hours per session. Promotion to a weekly competition slot is a separate selector decision; do not spend a slot while the holdout gate is unmet.
+7. **Submission validator.** Re-open the written bytes independently; check one band, float32, exact CRS/shape/transform/bounds, finite values inside the footprint in [0,1], and allowed null/NaN outside. Include a SHA-256. The download page must unmistakably say whether the artifact is ready to submit.
+8. **Research discipline.** Use free official or otherwise challenge-permitted sources. Track DOI, license, spatial coverage, version, retrieval status, and a manual-review URL. Distinguish a source being publicly downloadable from proof that its coverage overlaps the competition footprint.
+9. **End each experiment with one JSON run card** containing hypothesis, mechanism, a named non-fault mimic, `HOLDOUT-DTI` plus CI (or explicit not-run reason), correlation/overlap vs registry, raster SHA-256, validator output, submission name/note (or none), and verdict `promote` or `negative`.
+10. **This prompt is the operating brief.** Review it and the [research register](docs/hypotheses.md) at the start of each session and update claims when evidence changes. Core values: **Maximize P(Win)** through disciplined evidence and **Own the Outcome** by surfacing defects and blockers.
 
-### Candidate hypotheses for future blocked-holdout evaluation
+## Current repo review
 
-These are **proposals, not tested results**. The repository is empty, so “difference from existing implementation” means no implementation exists here to compare against. Rank is a research-priority ranking, not an expected numerical score improvement.
+The starting checkout was inspected on 2026-10-21. It contained only a title-only README (plus Git metadata); the research/site files added in this review do not add input data or a model pipeline. There is still no `data/`, `scripts/`, test suite, cached feature stack, registry artifact, shared evaluator/writer, or TIFF. Consequently, no holdout, leakage canary, correlation/overlap screen, raster validation, or submission generation could be run. No weekly slot should be spent from this state.
 
-| Rank | Hypothesis / layers | Physical signature | Why it might find an uncatalogued fault | Key non-fault mimic | Cost / validation |
-|---|---|---|---|---|---|
-| 1 | Multi-scale magnetic-gradient edge persistence using official GeoDawn magnetic channels (only if present in the cached stack) | Directional/analytic-signal gradient edges that persist across scales, with locally coherent strike | Buried or unmapped structures can produce linear magnetic contrasts even where surface mapping is incomplete; persistence/coherence is intended to reject isolated noise | Lithologic contacts, dikes, survey-line striping | Low–medium if channels and cached stack exist; feature-only leakage test and whole-segment spatial holdout required |
-| 2 | Radiometric boundary concordance (K, eTh, eU channels if available) gated by magnetic edge orientation | Coincident but independently measured radiometric gradient and magnetic boundary, not raw anomaly magnitude | Alteration/weathering or structurally juxtaposed units may create boundaries that guide field mapping to previously unmapped structures | Soil/moisture variation, lithologic contact, cultural disturbance | Medium; requires confirmed channels and careful masking; spatial holdout plus single-feature leakage checks |
-| 3 | DEM curvature / channel-network discontinuity at multiple scales (official 1 m DEM coverage if already available) | Profile/plan curvature and drainage deflection aligned along a persistent linear trace | Subtle scarps or drainage offsets may expose young or low-relief structures absent from the fault catalogue | Stream incision, road cuts, landslides, erosional contacts | High due to DEM coverage/processing; requires official DEM availability and holdout before proposing as viable |
-| 4 | Geophysical lineament termination/stepover geometry, conditioned on independent terrain corroboration | Junctions, terminations, and stepovers among extracted geophysical edges; terrain used only as corroboration | Fault intersections/relay zones may be structurally meaningful even if no mapped segment is present | Survey artifacts, non-tectonic contacts, random edge intersections | Medium–high; requires robust edge extraction and spatial nulls; distinguish from dot/lineament strategies in the supplied historical results |
+The exact next prerequisite is to obtain the competition-provided files through the authorized DrivenData account (the data page currently redirects to login), place them in the expected `data/` directory, and provide this session with the actual shared-template repository/artifacts including the evaluator and writer. See [limitations and irregularities](docs/irregularities.md). Do not place credentials in the repository or chat.
 
-The magnetic and radiometric sources are suggested only where they are part of the provided competition feature stack; this repository does not establish channel availability. Do not fetch external data or treat these as viable until official source, license, coverage, and retrieval are verified. The official USGS GeoDawn dataset landing page is listed below for manual review.
+## Research and site pages
 
-### Next actions and blockers
+- [Executive summary and contest submission walkthrough](docs/executive-summary.html)
+- [Ranked candidate hypotheses and feasibility](docs/hypotheses.md)
+- [Official sources and what was actually verified](docs/sources.md)
+- [Holdout, leakage, novelty, and submission gates](docs/experiment-protocol.md)
+- [Irregularities, data blockers, and evidence classes](docs/irregularities.md)
 
-1. Obtain the official competition data and place it in the project's documented `data/` location. DrivenData's data tab requires an authenticated account; this sandbox does not have that access. Do not invent or replace competition labels with public proxies.
-2. Restore/add the shared template feature cache, `evaluate_holdout.py`, `submission_writer.py`, feature definitions, and registry rasters. Record versions and hashes.
-3. Verify evaluator implementation against the protocol (segment-level buffered withholding, visible-only catalogue-derived features, exact visible-fault mask, pooled DTI parameters). Add leakage-canary tests and test the evaluator on a known synthetic fixture.
-4. Run no more than three candidate experiments/two hours; record JSON run cards and registry duplication checks. Promote only if the top candidate beats the current holdout best with uncertainty reported.
-5. Generate a uniquely named GeoTIFF only from a validated experiment, then run a strict format/range/footprint validator against the official sample submission. Provide it as a clearly labeled download; report an organizer score only from the submission receipt.
-6. Add the requested executive-summary/submission guide and GitHub Pages site after a usable, auditable implementation exists. This checkout currently has no website to improve or publish.
+## Core official references
 
-## Authoritative references
+- [DrivenData problem description, metric, and output contract](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [DrivenData data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) — login required in this environment
+- [Official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+- [Official reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+- [USGS GeoDAWN data release](https://doi.org/10.5066/P93LGLVQ)
+- [DOE Geothermal Data Repository: INGENIOUS compilation](https://gdr.openei.org/submissions/1391)
+- [USGS 3DEP products and services](https://www.usgs.gov/3d-elevation-program/about-3dep-products-services)
 
-Links below are starting points supplied for this project; they have not been fetched or independently checked in this checkout. Verify current details at the source before relying on them.
-
-- [DrivenData competition overview and rules](https://www.drivendata.org/competitions/306/competition-doe-gems/)
-- [DrivenData problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-- [DrivenData about page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/)
-- [DrivenData data tab (login required)](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
-- [DrivenData leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
-- [DOE/NLR GEMS prize reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
-- [USGS GeoDawn airborne magnetic and radiometric surveys](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
-- [GBCGE INGENIOUS current projects](https://gbcge.org/current-projects/ingenious/)
-- [GEMS competition technical report PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
-- [EPSG:32611 / WGS 84 UTM zone 11N](https://epsg.io/32611)
-- [Tversky index overview](https://en.wikipedia.org/wiki/Tversky_index) (secondary source; prefer competition documentation for metric implementation)
-
-## Run-card status for this review
-
-No experiment ran; no raster exists. This is an explicit negative/readiness finding, **not a holdout score**.
-
-```json
-{
-  "hypothesis": "No experiment: the checkout contains no data, feature stack, holdout evaluator, or writer",
-  "mechanism": "Not tested",
-  "named_non_fault_mimic": "Not applicable; no raster was produced",
-  "holdout_dti": null,
-  "holdout_evaluator_version": null,
-  "withheld_positives": null,
-  "holdout_95_ci": null,
-  "registry_correlation_overlap": "Not computable: registry rasters absent",
-  "raster_sha256": null,
-  "validator_output": "NOT RUN: no raster; CRS/shape/transform/range/footprint checks unavailable",
-  "submission_name": null,
-  "submission_note": "No valid TIFF generated; do not download or submit",
-  "verdict": "negative"
-}
-```
+See [sources.md](docs/sources.md) for evidence notes and additional links.
