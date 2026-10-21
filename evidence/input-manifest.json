@@ -7,7 +7,8 @@
       "commit": "158aec19800d4c7b8ca9fb94b06567e2b7d61e8d",
       "path": "data/bridge/sample_submission.tif",
       "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "purpose": "Audit only; never republish as a new submission"
+      "purpose": "Audit only; never republish as a new submission",
+      "git_blob": "7d865a9921a40ed2ea4c742a6a25b1fa2f357c5a"
     },
     {
       "name": "existing_faults.tif",
@@ -15,7 +16,8 @@
       "commit": "158aec19800d4c7b8ca9fb94b06567e2b7d61e8d",
       "path": "data/bridge/existing_faults.tif",
       "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "purpose": "Audit only; never republish as a new submission"
+      "purpose": "Audit only; never republish as a new submission",
+      "git_blob": "4ad3c1f3f19823e40924589bee7e51e44ae3a2e7"
     },
     {
       "name": "registry-witness.tif",
@@ -23,7 +25,8 @@
       "commit": "6fc71d19d49dca4960d5434bd81b6dd06fcc030a",
       "path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
       "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-      "purpose": "Audit only; never republish as a new submission"
+      "purpose": "Audit only; never republish as a new submission",
+      "git_blob": "374c88b1da2b803e2ed160de467fd71ae114010d"
     },
     {
       "name": "h33.tif",
@@ -31,7 +34,8 @@
       "commit": "98901f3130e8704f4254f173784589e63f000673",
       "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
       "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-      "purpose": "Audit only; never republish as a new submission"
+      "purpose": "Audit only; never republish as a new submission",
+      "git_blob": "17a76895f68174cc93f3cb1597d25686f6d6bc67"
     }
   ]
 }

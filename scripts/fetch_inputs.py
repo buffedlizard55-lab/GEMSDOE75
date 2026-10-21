@@ -1,4 +1,5 @@
 """Restore educational audit inputs from immutable GitHub mirrors, never predictions."""
+import base64
 import hashlib
 import json
 from pathlib import Path
@@ -27,8 +28,12 @@ def fetch(record, folder):
         with tempfile.NamedTemporaryFile(dir=folder, delete=False) as out:
             temporary = Path(out.name)
             subprocess.run(['gh', 'api',
-                f"repos/{record['repo']}/contents/{record['path']}?ref={record['commit']}",
-                '-H', 'Accept: application/vnd.github.raw+json'], stdout=out, stderr=subprocess.PIPE, check=True)
+                f"repos/{record['repo']}/git/blobs/{record['git_blob']}",
+                '--jq', '.content'], stdout=out, stderr=subprocess.PIPE, check=True)
+        # Keep binary TIFFs out of gh's terminal text/encoding transform path.
+        # Blob identity is pinned alongside the source commit/path in the manifest.
+        encoded = b''.join(temporary.read_bytes().split())
+        temporary.write_bytes(base64.b64decode(encoded, validate=True))
         if sha256(temporary) != record['sha256']:
             raise ValueError(f"SHA-256 mismatch: {record['name']}; expected {record['sha256']}, got {sha256(temporary)}")
         temporary.replace(dest)

@@ -1,3 +1,4 @@
+import base64
 import hashlib
 import json
 from pathlib import Path
@@ -96,9 +97,9 @@ def test_ci_requires_aligned_truth():
 
 def test_bad_download_does_not_replace_verified_path(tmp_path,monkeypatch):
     dest=tmp_path/'a.tif';dest.write_bytes(b'old')
-    def fake_run(args,stdout,stderr,check): stdout.write(b'corrupt')
+    def fake_run(args,stdout,stderr,check): stdout.write(base64.b64encode(b'corrupt'))
     monkeypatch.setattr('scripts.fetch_inputs.subprocess.run',fake_run)
-    record=dict(name='a.tif',repo='r',path='p',commit='c',sha256='f'*64)
+    record=dict(name='a.tif',repo='r',path='p',commit='c',git_blob='b',sha256='f'*64)
     with pytest.raises(ValueError,match='SHA-256'):
         fetch(record,tmp_path)
     assert dest.read_bytes()==b'old'
