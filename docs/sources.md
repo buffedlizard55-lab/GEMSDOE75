@@ -1,0 +1,25 @@
+# Source register and verification notes
+
+Checked during this repository review on 2026-10-21 (UTC). “Page reachable” means the linked public page was fetched; it does not mean every underlying file was downloaded, spatially checked, or suitable for the competition.
+
+| Source | What it establishes | Access / caveat | Manual review |
+|---|---|---|---|
+| DrivenData competition problem description | Official task is fault mapping for geothermal-resource indicators; competition describes GeoDAWN features, known-fault labels, metric and output format. | Public page fetched. | [Problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) |
+| DrivenData data page | Location of competition-provided training features, labels, sample submission and DEM links. | Fetch redirected to DrivenData login. No data was downloaded. | [Data download page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) |
+| DrivenData official leaderboard | Live public scores and ranks. | Fetched 2026-10-21; volatile. Page displayed xiaofanhu at 0.4413. Evidence class is `PUBLIC-LEADERBOARD`, not an organizer receipt or private-set score. | [Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) |
+| DrivenData rules landing page | Points users to the official GEMS Prize rules. | Public landing page links to HeroX rules; the rules document itself was not reviewed here. | [Rules](https://www.drivendata.org/competitions/306/competition-doe-gems/rules/) |
+| Official reference solution | Official starter baseline code and notebook. | Public GitHub page fetched; not cloned into this repo and not executed. | [GitHub repository](https://github.com/drivendataorg/gems-prize-reference-solution) |
+| USGS GeoDAWN data release | USGS/DOE airborne magnetic and radiometric surveys; describes associated lidar collection; public release DOI P93LGLVQ and CC0 rights. | Official USGS page fetched. Does not by itself establish 1 m DEM coverage for each competition tile. | [USGS data release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [DOI](https://doi.org/10.5066/P93LGLVQ) |
+| DOE Geothermal Data Repository, INGENIOUS compilation | Describes public datasets including 2 m temperatures, geothermal features, geophysics, seismicity, heat flow and chemistry; page lists individual downloads and CC BY 4.0 license. | Public page fetched. No dataset files downloaded; spatial suitability, attribution details, and competition rule compatibility still need project-level review. | [GDR submission 1391](https://gdr.openei.org/submissions/1391) · [DOI](https://doi.org/10.15121/1881483) |
+| Great Basin Center for Geothermal Energy — INGENIOUS | Project objectives, partners and linked dataset publications. | Public project page fetched; informational source. | [INGENIOUS project](https://gbcge.org/current-projects/ingenious/) |
+| USGS 3DEP | USGS states elevation products are free and without use restrictions and exposes lidar/DEM discovery/download services. | Official program pages/search results checked. Exact competition-footprint 1 m tiles and coverage were not queried, so do not infer full coverage. | [3DEP products and services](https://www.usgs.gov/3d-elevation-program/about-3dep-products-services) · [LidarExplorer](https://www.usgs.gov/tools/lidarexplorer) · [3DEP data collection](https://data.usgs.gov/datacatalog/data/USGS:b7e353d2-325f-4fc6-8d95-01254705638a) |
+| EPSG Registry page | EPSG:32611 is the competition's stated projected coordinate reference. | Referenced by official competition description. | [EPSG:32611](https://epsg.io/32611) |
+| GEMSDOE32 project site | Historical team's own method/score claims and caveats, useful as owner-reported background. | Not an official competition evidence source. Its page itself distinguishes local/owner claims, projections and organizer-scored results; score-to-file attribution must be independently checked. | [GEMSDOE32 main page](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) · [hypotheses page](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/hypotheses.html) |
+
+## Evidence-label rules
+
+- `HOLDOUT-DTI`: include evaluator version, withheld-positive count, and segment-level 95% CI.
+- `ORGANIZER-CONFIRMED`: quote/copy the score from the specific submission-page receipt and retain receipt evidence.
+- `PUBLIC-LEADERBOARD`: dated public table observation; not the private test score or final award.
+- `USER-REPORTED`: supplied in the project prompt or another team site, not independently verified as a score for a named file.
+- `PROJECTION`: never call a score; preferably do not report as a scalar competition result.
