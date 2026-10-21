@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-21T04:23:48Z",
+  "evidence_class": "LEAKAGE-CANARY-RECEIPT",
+  "evaluator": "buffered-whole-components-loqo-v2 (seeds 20, 21; 22,893 withheld positive px)",
+  "rule": "Parallel-Run Protocol Rule 4: Test each feature alone on the holdout before trusting any result; discriminative AUC > 0.90 means leakage until proven otherwise.",
+  "features_tested": 47,
+  "max_discriminative_auc": 0.59003,
+  "max_feature": "lidar_lappos_max",
+  "any_leakage_flagged": false,
+  "verdict": "PASS",
+  "features": [
+    {
+      "feature": "lidar_lappos_max",
+      "discriminative_auc": 0.59003,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_lapneg_max",
+      "discriminative_auc": 0.58524,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_relief",
+      "discriminative_auc": 0.58438,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_slope_std",
+      "discriminative_auc": 0.58268,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_step_max",
+      "discriminative_auc": 0.5801,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_curv_prof_absmax",
+      "discriminative_auc": 0.57685,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_ex_max",
+      "discriminative_auc": 0.57559,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_hs_lineament",
+      "discriminative_auc": 0.57015,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_slope_max",
+      "discriminative_auc": 0.56808,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_upface_max",
+      "discriminative_auc": 0.56613,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_slope_p90",
+      "discriminative_auc": 0.56552,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_ex_mean",
+      "discriminative_auc": 0.56469,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "07_geod_shearrate",
+      "discriminative_auc": 0.5637,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_relief_local",
+      "discriminative_auc": 0.56347,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "19_det_elev_slope",
+      "discriminative_auc": 0.56287,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "04_geod_2ndinv",
+      "discriminative_auc": 0.56204,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "rad_K",
+      "discriminative_auc": 0.55833,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_downface_max",
+      "discriminative_auc": 0.55818,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_cross_max",
+      "discriminative_auc": 0.5549,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "16_ieq_n100a15",
+      "discriminative_auc": 0.55289,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "06_tc",
+      "discriminative_auc": 0.54896,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "rad_TC",
+      "discriminative_auc": 0.54894,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_steep_frac",
+      "discriminative_auc": 0.54802,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "rad_Th",
+      "discriminative_auc": 0.53969,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "10_deq_n100a15",
+      "discriminative_auc": 0.53847,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "13_iso_grav_anom",
+      "discriminative_auc": 0.53709,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "rad_U",
+      "discriminative_auc": 0.53535,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "05_iso_grav_anom_slope",
+      "discriminative_auc": 0.53523,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "03_tmi_hg",
+      "discriminative_auc": 0.53395,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "ext_UTh",
+      "discriminative_auc": 0.52663,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "ext_UK",
+      "discriminative_auc": 0.52554,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "08_geod_dilaterate",
+      "discriminative_auc": 0.52527,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "15_depth_to_base_surf",
+      "discriminative_auc": 0.52312,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "18_iso_grav_anom_hg",
+      "discriminative_auc": 0.52254,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_coh100",
+      "discriminative_auc": 0.52129,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "02_rtp",
+      "discriminative_auc": 0.51845,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_dem_mean",
+      "discriminative_auc": 0.51666,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "17_cond_surf",
+      "discriminative_auc": 0.51362,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "09_tmi_vg",
+      "discriminative_auc": 0.51307,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "topo10m_aspect_coherence",
+      "discriminative_auc": 0.51037,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "12_det_elev",
+      "discriminative_auc": 0.50971,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "ext_ThK",
+      "discriminative_auc": 0.50838,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "lidar_strike",
+      "discriminative_auc": 0.50818,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "11_iso_grav_anom_vg",
+      "discriminative_auc": 0.50782,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "14_tmi",
+      "discriminative_auc": 0.50769,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "ext_TMI_up150",
+      "discriminative_auc": 0.50685,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    {
+      "feature": "01_mag_anom",
+      "discriminative_auc": 0.5058,
+      "threshold": 0.9,
+      "leakage_flag": false
+    }
+  ]
+}
