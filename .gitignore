@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Data (never commit competition data or large external GIS data)
+data/raw/**
+data/processed/**
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/raw/external/
+!data/raw/external/.gitkeep
+
+# OS
+.DS_Store
+*.egg-info/
+.pytest_cache/

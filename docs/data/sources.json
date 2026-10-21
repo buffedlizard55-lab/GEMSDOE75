@@ -1,0 +1,198 @@
+{
+  "fetched_utc": "2026-10-21",
+  "note": "Every row was retrieved in this session via the agent's page-fetch tool and read before being summarized here. 'reachable_from_this_sandbox' records whether the sandbox's OWN restricted network (bash/curl) can reach the host directly -- the page-fetch tool itself runs on separate infrastructure and could reach it even when curl could not, as logged below.",
+  "sources": [
+    {
+      "id": "competition_overview",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "role": "competition landing page",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": ["competition title, sponsor (DOE Office of Geothermal), $300,000 total prize pool, two-phase structure"]
+    },
+    {
+      "id": "problem_description",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "role": "metric formula, worked example, submission format (ground truth for metric.py and submission_io.py)",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "DTI formula: TP_w/(TP_w+alpha*FP_w+beta*FN_w)",
+        "triangular kernel k(d)=max(1-d/R,0), R=300m=3px at 100m",
+        "alpha=0.2, beta=0.8 fixed for this competition",
+        "worked example: TP_w=3.00, FP_w=1.89, FN_w=2.00 -> DTI=0.60",
+        "submission must be single-band float32 GeoTIFF, EPSG:32611, 100m, values in [0,1], same bounds as training data, outside-bounds must be null/NaN",
+        "17 feature categories listed: conductivity+depth, detrended elevation+slope, dilatation/shear/2nd-invariant strain, isostatic gravity+slope, RTP magnetics, TMI, vertical/horizontal slope of TMI, crustal magnetic source depth, earthquake density"
+      ]
+    },
+    {
+      "id": "about_page",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+      "role": "sponsor/task background, literature pointers",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "GeoDAWN = USGS EarthMRI aeromagnetic+aeroradiometric survey, coordinated with 3DEP lidar",
+        "cites Matteo et al. 2021 JGR Solid Earth doi:10.1029/2020JB021269 and Hermant et al. 2025 Stanford Geothermal Workshop"
+      ]
+    },
+    {
+      "id": "data_download_page",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "role": "actual competition data files",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": ["unauthenticated request redirects to /accounts/login/?next=... -- confirmed login-walled, not fetchable by this project"]
+    },
+    {
+      "id": "public_leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "role": "ORGANIZER-CONFIRMED live public-test scores",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "snapshot 2026-10-21: #1 xiaofanhu 0.4413 (26 submissions), #2 cfld__ 0.3904 (14), #3 Batik Shirt Brothers 0.3811 (43), #4 BrandenKMurray 0.3713, #5 'No Fault of Our Own' 0.3539",
+        "this snapshot does NOT show a 0.3195 entry as the current best -- that figure appears to be a stale reading from an earlier date; see LIMITATIONS.md irregularity log"
+      ]
+    },
+    {
+      "id": "official_rules_pdf",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "role": "Official Rules document (15 U.S.C. 3719), September 2026",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "Phase 1 (Initial Prize Round): $50,000 split equally among top 5",
+        "Phase 2 (Final Prize Round): $100k/$70k/$40k/$25k/$15k for ranks 1-5",
+        "competitors submit a SINGLE entry used for both phases",
+        "eligibility restricted to US persons/entities; FFRDC, DOE, DrivenData staff and MFTRP-affiliated individuals excluded"
+      ]
+    },
+    {
+      "id": "reference_solution_repo",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "role": "organizer-linked baseline (U-Net, Prof. John Lipor, Portland State)",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": true,
+      "verified_facts": [
+        "cloned directly (github.com is in this sandbox's allowed host list); README and notebook read in full",
+        "loads data/numeric_features.tif and data/labels.tif via rasterio",
+        "treats values < -1e38 as nodata -> NaN (the exact sentinel our submission_io.py strips)",
+        "normalizes each channel to [0,1] with nanmin/nanmax, trains a 5-iteration Monte-Carlo cross-validated resnet18 U-Net with segmentation_models_pytorch, TverskyLoss(alpha=0.2, beta=0.8, mode='binary')",
+        "writes the prediction with the fault-label raster's own CRS/transform (rasterio.open(..., crs=fault_dataset.crs, transform=fault_dataset.transform))"
+      ]
+    },
+    {
+      "id": "forum_mask_clarification",
+      "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+      "role": "ORGANIZER-CONFIRMED scoring mechanics (DrivenData staff, chrisk-dd)",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "known USGS/INGENIOUS fault pixels are masked/excluded from scoring in BOTH Phase 1 and Phase 2, identical to the provided training fault labels",
+        "the mask is PIXEL-EXACT, not buffered",
+        "a predicted pixel near (but not on) a known fault is NOT protected: it is fully penalized against the new-fault ground truth if that ground truth is far away",
+        "a new-fault ground-truth pixel CAN sit within 300 m of a known fault (e.g. splays, tip extensions, corrections to existing traces are an explicit target of the competition)"
+      ]
+    },
+    {
+      "id": "forum_new_fault_sources_thread",
+      "url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527",
+      "role": "unresolved question thread: what data/method experts used to find the held-out faults",
+      "fetched": "partial",
+      "reachable_from_this_sandbox_curl": false,
+      "irregularity": "the page-fetch tool returned the two top-level questions (jgaines, Sep 18; moongrega, Sep 23) but rendered several short follow-up replies between jgaines/moongrega/chrisk-dd as empty stubs ('post by X on Sep 23' with no body) -- a rendering limitation of this tool against that forum's condensed-reply UI, not a fabrication. FLAG FOR MANUAL REVIEW: a human should open the URL directly and read posts 2-9 in full; this project does not claim to know their content and has not used them as evidence for anything."
+    },
+    {
+      "id": "gdr_submission_1391",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "role": "INGENIOUS - Great Basin Regional Dataset Compilation (free, official, CC BY 4.0, DOE Geothermal Data Repository)",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "DOI 10.15121/1881483",
+        "9 directly downloadable zip/gdb resources plus 5 linked USGS ScienceBase data releases",
+        "2m Temperature Probes.zip -- 1.03 MB",
+        "Earthquake Density Models.zip -- 22.98 MB",
+        "Geodetic Shear and Dilation Models.zip -- 51.99 MB",
+        "Paleo Geothermal Features.zip -- 82.04 kB",
+        "Quaternary Faults v1.zip -- 5.76 MB, Quaternary Faults v2.zip -- 5.85 MB",
+        "Quaternary Volcanics.zip (vents + flows shapefiles) -- 9.44 MB",
+        "Well and Spring Temperature and Chemistry.zip (wellspringdata.gdb.zip) -- 19.85 MB",
+        "linked USGS data releases: Electrical Conductance Maps-MT doi:10.5066/P9TWT2LU, Elevation Trend/Detrended Elevation doi:10.5066/P9MQRCBY, Geophysical Maps (Gravity/Magnetics) doi:10.5066/P9Z6SA1Z, Heat Flow Maps doi:10.5066/P9BZPVUC, Quaternary Faulting Slip and Dilation Tendency doi:10.5066/P9YL58W6"
+      ]
+    },
+    {
+      "id": "usgs_geodawn_item",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "role": "source of the magnetic/radiometric feature bands",
+      "fetched": "listed (title/role only; not re-fetched this session -- confirm independently before citing content beyond the title)",
+      "reachable_from_this_sandbox_curl": false
+    },
+    {
+      "id": "ingenious_project",
+      "url": "https://gbcge.org/current-projects/ingenious/",
+      "role": "source of the INGENIOUS fault catalogue program",
+      "fetched": "listed (title/role only)",
+      "reachable_from_this_sandbox_curl": false
+    },
+    {
+      "id": "epsg_32611",
+      "url": "https://epsg.io/32611",
+      "role": "CRS reference: WGS84 / UTM zone 11N",
+      "fetched": "listed",
+      "reachable_from_this_sandbox_curl": false
+    },
+    {
+      "id": "tversky_index_wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tversky_index",
+      "role": "background on the base similarity index the metric distance-weights",
+      "fetched": "listed",
+      "reachable_from_this_sandbox_curl": false
+    },
+    {
+      "id": "sibling_repo_gemsdoe32_index",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "role": "owner CLAIM of a 0.2778 self-scored artifact (h33-h33-2-b2); explicitly NOT organizer-confirmed per its own text",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "the page itself states: 'no score in this repository is organizer-verified'",
+        "the 0.2778-labeled artifact is a buffer-prune (B=2, 200 m) of an earlier field, justified by a self-built 'live-anchored truth model' (a Monte Carlo simulation), not a submission result",
+        "format bugs it documents and fixes: (1) the float32 sentinel -3.4028234663852886e38 leaking into the written band, (2) untagged NaN colliding with a stricter validator -- both independently confirmed and fixed in this project's own submission_io.py"
+      ]
+    },
+    {
+      "id": "sibling_repo_gemsdoe32_hypotheses",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/hypotheses.html",
+      "role": "owner's own ranked hypothesis list -- used ONLY to avoid duplicating their already-tried ideas",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": false,
+      "verified_facts": [
+        "H33-1 GDR geothermometry (wellspring chemistry) as a removal prior -- tried, FALSIFIED as an addition arm",
+        "H33-2 catalogue-flank buffer B=2 -- their shipped primary",
+        "H33-3 2m temperature-probe mask -- registered, not built",
+        "H33-4 Paleo Geothermal Features as a tip/step-over prior -- registered, not built",
+        "H33-5 detector-field tip/step-over extension -- tried, FALSIFIED as an addition arm",
+        "H60-1 2020 Monte Cristo Range rupture traces as line targets -- registered"
+      ]
+    },
+    {
+      "id": "sibling_org_github_repo_gemsdoe",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE",
+      "role": "an actual sibling repository's SOURCE CODE (not just its rendered docs site) -- accessible because github.com is an allowed host from this sandbox",
+      "fetched": true,
+      "reachable_from_this_sandbox_curl": true,
+      "verified_facts": [
+        "cloned directly; contains its own src/metrics.py, src/submission_io.py, scripts/block_holdout_eval.py, tests/test_spatial_holdout.py etc.",
+        "confirms the project convention of a block/spatial holdout evaluator and a dedicated submission writer, independently converged on by this project without copying their code"
+      ]
+    }
+  ],
+  "network_reachability_test_2026-10-21": {
+    "method": "curl -m 5 to each host from this sandbox's bash tool",
+    "allowed_by_sandbox_firewall": ["github.com", "codeload.github.com", "api.github.com", "registry.npmjs.org", "pypi.org", "files.pythonhosted.org"],
+    "confirmed_unreachable_via_curl": ["www.dropbox.com", "dropbox.com", "drivendata-public-assets.s3.amazonaws.com", "www.drivendata.org", "usgs.gov", "gbcge.org", "epsg.io", "en.wikipedia.org", "docs.nlr.gov", "gdr.openei.org"],
+    "note": "the page-fetch tool used throughout this document runs on separate Arena infrastructure and DID reach most of the hosts above (marked fetched=true); it could not retrieve binary content (GeoTIFF/zip/shapefile bytes), only HTML/PDF text -- see LIMITATIONS.md"
+  }
+}

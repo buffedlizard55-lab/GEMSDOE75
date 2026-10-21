@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE75 — DOE GEMS Prize fault-discovery project</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE<span>75</span></a>
+    <nav class="site-nav">
+      <a href="index.html" class="active">Executive summary</a>
+      <a href="submission-guide.html">How to submit</a>
+      <a href="research.html">Research</a>
+      <a href="hypotheses.html">Hypotheses</a>
+      <a href="sources.html">Sources</a>
+      <a href="limitations.html">Limitations</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<h1>GEMSDOE75 — an auditable fault-discovery pipeline for the DOE GEMS Prize</h1>
+
+<p><strong>Core Values.</strong> <strong>Maximize P(Win)</strong> — every design choice here is
+weighed against whether it raises the probability of a real, defensible, high-scoring
+submission, not against what looks impressive. <strong>Own the Outcome</strong> — this page says
+plainly what is proven, what is a claim, and what is simply blocked, and names exactly what is
+needed to unblock it.</p>
+
+<div class="callout danger">
+<span class="badge danger">DO NOT SUBMIT THE DEMO FILE</span>
+<p>This project currently has <strong>no access to the real competition data</strong> (see
+<a href="limitations.html">Limitations</a>). The one downloadable file below is a
+<strong>format/schema demonstration only</strong> — it proves our submission-writer code produces a
+valid, spec-compliant GeoTIFF, nothing more. Its geometry is an <em>unverified placeholder</em>,
+not read from the real <code>training_features.tif</code>. Submitting it to DrivenData would waste a
+weekly submission slot on a file with zero predictive content. Follow the steps in
+<a href="submission-guide.html">How to submit</a> to generate the real, verified file once the data
+blocker is resolved.</p>
+</div>
+
+<h2>⬇ What you can download right now</h2>
+<p>
+<a class="btn secondary" href="downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.tif">Download the schema-demo GeoTIFF (.tif)</a>
+<a class="btn secondary" href="downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.json">Format receipt (.json)</a>
+</p>
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Status</td><td><span class="badge danger">DO NOT SUBMIT</span> schema/format demo only</td></tr>
+<tr><td>Format</td><td>single band · float32 · EPSG:32611 · 100 m resolution</td></tr>
+<tr><td>Shape (UNVERIFIED)</td><td>3730 rows × 3292 cols — a value independently claimed by several sibling repos, not confirmed here against the real organizer file</td></tr>
+<tr><td>Values</td><td>every cell = 0.0, i.e. the organizer's own documented reference baseline ("predicts total fault absence")</td></tr>
+<tr><td>Validator</td><td>0 NaN, 0 cells below 0, 0 cells above 1, no nodata tag — <a href="downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.json">full receipt</a></td></tr>
+<tr><td>sha256</td><td><small class="mono">76e78cbd515e51afc3741c8000a61434a0839f1d84e9577631b83560fc59a5c8</small></td></tr>
+</table>
+
+<h2>What this project is</h2>
+<p>GEMSDOE75 targets the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE
+GEMS Prize</a> (DrivenData #306): find geological faults in the GeoDAWN survey region of
+northwestern Nevada that are <em>not</em> already in the USGS/INGENIOUS fault catalogue, submitted as
+a single-band GeoTIFF of per-pixel fault probability, scored with a distance-weighted Tversky index
+(DTI, α=0.2, β=0.8, 300 m triangular kernel). Full prize structure: Phase 1 (Initial Round) pays
+$50,000 across the top 5 on a private pre-registered new-fault set; Phase 2 (Final Round) pays
+$250,000 across the top 5 after an expert panel expands the label set using every team's
+submissions. Source: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules PDF</a>,
+September 2026.</p>
+
+<p>This repository ships three things, each independently tested:</p>
+<ol>
+<li><strong>A from-scratch, line-by-line verified implementation of the organizer's own metric</strong>
+(<code>src/gems_doe/metric.py</code>), which reproduces the organizer's published worked example
+(TP<sub>w</sub>=3.00, FP<sub>w</sub>=1.89, FN<sub>w</sub>=2.00 → DTI=0.60) exactly.</li>
+<li><strong>A submission writer/validator</strong> (<code>src/gems_doe/submission_io.py</code>) that
+diagnoses and fixes, by construction, both documented causes of the
+<code>"Predicted values must be in range [0, 1]"</code> rejection.</li>
+<li><strong>A spatially-blocked hide-and-recover holdout evaluator</strong>
+(<code>src/gems_doe/holdout.py</code>) with a built-in leakage canary, ready to run the moment real
+catalogue data is available.</li>
+</ol>
+
+<h2>The honest status, in one table</h2>
+<table>
+<tr><th>Claim</th><th>Evidence class</th><th>Status</th></tr>
+<tr><td>DTI formula implementation is correct</td><td>ORGANIZER-CONFIRMED worked example reproduced</td><td><span class="badge ok">verified</span> — <code>pytest tests/test_metric.py</code></td></tr>
+<tr><td>Submission writer produces a format-valid file</td><td>Re-opened and re-validated from disk</td><td><span class="badge ok">verified</span> — <code>pytest tests/test_submission_io.py</code></td></tr>
+<tr><td>Holdout evaluator mechanics are correct</td><td>Hand-derivable synthetic cases</td><td><span class="badge ok">verified</span> — <code>pytest tests/test_holdout.py</code></td></tr>
+<tr><td>Any hypothesis beats the current holdout best</td><td>HOLDOUT-DTI</td><td><span class="badge danger">not measured</span> — no real catalogue data available; see <a href="limitations.html">Limitations</a></td></tr>
+<tr><td>A 0.4413 public leaderboard score exists</td><td>ORGANIZER-CONFIRMED, fetched live 2026-10-21</td><td><span class="badge ok">verified</span> — <a href="sources.html">sources</a></td></tr>
+<tr><td>Sibling-repo scores like "0.2778"</td><td>Self-reported CLAIM, explicitly not organizer-verified by its own publisher</td><td><span class="badge warn">unverifiable claim</span> — see <a href="research.html">research</a></td></tr>
+</table>
+
+<h2>Next steps (in priority order)</h2>
+<ol>
+<li>A human with a DrivenData login downloads the four competition files and places them in
+<code>data/raw/</code> (5 minutes; see <a href="submission-guide.html">How to submit</a>).</li>
+<li>Run <code>python scripts/prepare_data.py</code>, then test hypothesis H75-2 first (cheapest to
+validate — see <a href="hypotheses.html">Hypotheses</a>) against the hide-and-recover holdout.</li>
+<li>Only promote a hypothesis to a real weekly submission slot once it beats the current holdout
+best, per the project's own budget rule.</li>
+</ol>
+
+</main>
+<footer>
+GEMSDOE75 · DOE GEMS Prize Challenge research project · not affiliated with DrivenData or DOE ·
+all figures are labeled by evidence class — see <a href="sources.html">sources</a> and
+<a href="limitations.html">limitations</a>.
+</footer>
+</body>
+</html>
