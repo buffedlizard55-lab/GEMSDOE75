@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Auditable research workbench for discovering unmapped faults in the DOE GEMS Prize challenge.">
+  <title>GEMSDOE75 | DOE GEMS research workbench</title>
+  <style>
+    :root { color-scheme: light; --ink:#162b36; --muted:#5b6d77; --navy:#123449; --teal:#087e78; --paper:#f4f7f6; --line:#dce6e3; --amber:#fff2d3; --amber-ink:#684700; }
+    * { box-sizing:border-box } body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif }
+    a { color:#075d78; text-underline-offset:3px } a:hover { color:#083e52 }
+    .top { background:var(--navy); color:white; padding:3.5rem 1.25rem 3rem } .wrap { max-width:1050px; margin:auto }
+    .eyebrow { text-transform:uppercase; letter-spacing:.13em; font-size:.78rem; font-weight:750; color:#b8dad2 }
+    h1 { font-size:clamp(2rem,5vw,3.4rem); line-height:1.08; margin:.5rem 0 1rem } .top p { max-width:760px; color:#e0ecea; font-size:1.08rem }
+    main { max-width:1050px; padding:1.5rem 1.25rem 4rem; margin:auto }
+    .status { background:var(--amber); border:1px solid #e8ca7a; color:var(--amber-ink); border-radius:12px; padding:1.2rem 1.35rem; margin:0 0 1.5rem }
+    .status strong { display:block; font-size:1.15rem; letter-spacing:.03em } .status p { margin:.35rem 0 0 }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(235px,1fr)); gap:1rem; margin:1rem 0 2rem }
+    .card { background:white; border:1px solid var(--line); border-radius:12px; padding:1.25rem; box-shadow:0 3px 12px #112b3608 }
+    h2 { color:var(--navy); font-size:1.45rem; margin:2rem 0 .6rem } h3 { margin:.1rem 0 .4rem; font-size:1.1rem }
+    .pill { display:inline-block; background:#e5f3ef; color:#07574e; border-radius:999px; padding:.2rem .65rem; font-size:.8rem; font-weight:700 }
+    .links { padding-left:1.2rem } footer { border-top:1px solid var(--line); color:var(--muted); padding:1.2rem 0; font-size:.9rem }
+    @media(max-width:600px){ .top{padding:2.5rem 1rem} main{padding:1rem} }
+  </style>
+</head>
+<body><aside style="padding:20px;background:#fff2d3;color:#162b36"><strong>Earlier session snapshot:</strong> these readiness statements predate the restored audit inputs and tools. <a href="../index.html">View current submission status and byte-level audit →</a></aside>
+  <header class="top"><div class="wrap">
+    <div class="eyebrow">DOE GEMS Prize · DrivenData #306</div>
+    <h1>GEMSDOE75</h1>
+    <p>An auditable research workbench for identifying unmapped geological faults in the GeoDAWN region—grounded in official sources, spatially blocked validation, and honest evidence labels.</p>
+  </div></header>
+  <main>
+    <section class="status" aria-live="polite">
+      <strong>NOT READY TO SUBMIT — no TIFF download is available</strong>
+      <p>This checkout has no competition raster data, cached feature stack, shared holdout evaluator, submission writer, or validated prediction file. We will not offer a placeholder or copied TIFF. The official data page redirects to login here. A real download will appear only after a unique candidate passes the holdout, novelty, and format gates.</p>
+    </section>
+    <section class="grid" aria-label="Project status">
+      <article class="card"><span class="pill">Research</span><h3>Candidate hypotheses</h3><p>Five ranked, testable ideas with layers, target signatures, geological rationale, confounders, data needs, and explicit uncertainty.</p><a href="hypotheses.md">Open hypotheses register</a></article>
+      <article class="card"><span class="pill">Submission help</span><h3>Executive summary</h3><p>Step-by-step contest upload guide, file-format requirements, and the evidence needed before a file is offered.</p><a href="executive-summary.html">Open submission guide</a></article>
+      <article class="card"><span class="pill">Reproducibility</span><h3>Evaluation protocol</h3><p>Blocked segment holdout, leakage canaries, duplicate-lane limits, raster validator, and run-card requirements.</p><a href="experiment-protocol.md">Read the protocol</a></article>
+      <article class="card"><span class="pill">Evidence</span><h3>Sources and irregularities</h3><p>Official links, access checks, score evidence classes, current blockers, and findings that could not be independently confirmed.</p><a href="sources.md">Source register</a> · <a href="irregularities.md">Irregularities</a></article>
+    </section>
+    <h2>What the competition asks for</h2>
+    <p>The official problem describes fault prediction over GeoDAWN and a single-band float32 GeoTIFF in EPSG:32611 at 100 m, with probabilities/confidence values in [0, 1] and null/NaN outside the submission bounds. Its distance-weighted Tversky metric uses α=0.2, β=0.8, and a 300 m triangular kernel. Read the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem description</a> before using any result.</p>
+    <h2>Evidence labels matter</h2>
+    <p>A local holdout result is not an organizer score. A projection is not a score. Public leaderboard values are dynamic and are not private-set results. Each experiment must include its holdout evaluator, withheld-positive count, confidence interval, registry comparison, validator result, and raster SHA-256—or clearly say why those checks were not run.</p>
+    <h2>Verified starting points</h2>
+    <ul class="links">
+      <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a></li>
+      <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a></li>
+      <li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a></li>
+      <li><a href="https://gdr.openei.org/submissions/1391">DOE GDR INGENIOUS compilation</a></li>
+      <li><a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP products and services</a></li>
+    </ul>
+    <footer>Mission: maximize the probability of a genuinely useful discovery; own the outcome by publishing blockers and negative results. Repository evidence last reviewed 2026-10-21.</footer>
+  </main>
+</body>
+</html>

@@ -55,3 +55,10 @@ exact reference CRS, shape and transform. Give it a unique informative name and 
 (at most 140 characters). At the top of the site, state separately whether downloading is safe,
 whether format validation passed, whether uniqueness passed, and whether the selector approved
 submission. No raw features, labels or report PDF may masquerade as the predicted TIFF.
+
+## Concurrent-source note
+
+The subsequently integrated PR #2 source register reports a dated public-board observation at
+0.4413. See `docs/sources.md`; this is inherited verification from that session, not an independent
+re-fetch or ORGANIZER-CONFIRMED submission receipt in this run. This narrows the historical
+leader ambiguity but does not establish a current live value or H33 score-to-file attribution.

@@ -103,3 +103,13 @@ that every external page or every historical file was verified.
 6. Only if authorized and gates pass: scan all accessible registry rasters on the surface and
    final dots, use the shared writer, validate roundtrip, publish the unique TIFF/ZIP and receipt.
    The selector—not this runner—decides the slot. Current metadata inventory is not clearance.
+
+## Concurrent-session work preserved
+
+During this run, PRs #1–2 merged documentation into main. Their source register, hypotheses,
+protocol and earlier site remain under `docs/`, with explicit snapshot banners; their README
+is preserved at [docs/history/concurrent-readme.md](docs/history/concurrent-readme.md).
+Their [source notes](docs/sources.md) report a dated public leaderboard observation and external
+page checks. Those are inherited session reports, not independently re-fetched here and not
+submission-page receipts. Earlier claims that the repository has no scripts, tests or evaluator
+are superseded by this audit. Both sessions' contributions are retained rather than overwritten.

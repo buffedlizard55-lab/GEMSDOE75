@@ -28,9 +28,9 @@ def fetch(record, folder):
             temporary = Path(out.name)
             subprocess.run(['gh', 'api',
                 f"repos/{record['repo']}/contents/{record['path']}?ref={record['commit']}",
-                '-H', 'Accept: application/vnd.github.raw+json'], stdout=out, check=True)
+                '-H', 'Accept: application/vnd.github.raw+json'], stdout=out, stderr=subprocess.PIPE, check=True)
         if sha256(temporary) != record['sha256']:
-            raise ValueError(f"SHA-256 mismatch: {record['name']}")
+            raise ValueError(f"SHA-256 mismatch: {record['name']}; expected {record['sha256']}, got {sha256(temporary)}")
         temporary.replace(dest)
         return dest
     finally:
@@ -40,4 +40,12 @@ def fetch(record, folder):
 
 if __name__ == '__main__':
     for row in json.loads((ROOT / 'evidence/input-manifest.json').read_text())['files']:
-        print(fetch(row, ROOT / '.cache/inputs').relative_to(ROOT))
+        try:
+            print(fetch(row, ROOT / '.cache/inputs').relative_to(ROOT))
+        except subprocess.CalledProcessError as exc:
+            detail = (exc.stderr or b'').decode(errors='replace').strip()
+            print(f"::error::Mirror retrieval failed for {row['name']}: {detail}")
+            raise
+        except ValueError as exc:
+            print(f'::error::{exc}')
+            raise
