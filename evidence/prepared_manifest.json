@@ -1,196 +1,532 @@
 {
-  "evidence_class": "DATA-MEASUREMENT",
-  "crs": "EPSG:32611",
-  "shape": [
-    3730,
-    3292
-  ],
-  "transform": [
-    100.0,
-    0.0,
-    243350.0,
-    0.0,
-    -100.0,
-    4508550.0
-  ],
-  "footprint_pixels": 5167373,
-  "outside_footprint_pixels": 7111787,
-  "known_catalogue_pixels": 60988,
-  "active_off_catalogue_pixels": 5106385,
-  "eroded_12px_valid_pixels": 4989581,
-  "training_feature_bands": [
+  "schema_version": 1,
+  "prepared_utc": "2026-10-21T04:08:24Z",
+  "evidence_class": "DATA-PREPARATION-RECEIPT",
+  "provenance": "Prepared from SHA-256-verified owner/template mirrors of the competition and public USGS/DOE GDR datasets (see evidence/data_restore_receipt.json).",
+  "grid": {
+    "epsg": 32611,
+    "height": 3730,
+    "width": 3292,
+    "total_cells": 12279160,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "pixel_size_m": [
+      100.0,
+      100.0
+    ]
+  },
+  "counts": {
+    "footprint_valid_pixels": 5167373,
+    "outside_footprint_pixels": 7111787,
+    "positive_catalogue_label_pixels": 60988,
+    "sgmc_positive_in_footprint_pixels": 83593,
+    "sample_submission_ones_in_footprint": 60988,
+    "negative_in_footprint_pixels": 5106385,
+    "total_sentinel_band_pixels_inside_footprint": 58171,
+    "unique_footprint_pixels_with_any_sentinel": 3073
+  },
+  "source_hashes": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "labels.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "lidar_scarp_features_u8.tif": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+    "topo_10m_derived_100m_u8.tif": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+    "geodawn_rad_u8.tif": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+    "geodawn_extensions_u8.tif": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+    "derived_sgmc_faults_100m_u8.tif": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+    "gdr_volcanic_vents_in_footprint.csv": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+    "gdr_wellspring_in_footprint.csv": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+    "gdr_qfaults_traces.csv": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
+    "trace_segments_utm11.csv": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513"
+  },
+  "bands": [
     {
-      "band": 1,
+      "index": 1,
+      "name": "mag_anom",
+      "source": "training_features.tif",
       "description": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -288.56201171875,
-      "p50": -57.68793487548828,
-      "p99": 311.9136657714844
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -1052.0047607421875,
+      "p05": -204.36949157714844,
+      "median": -57.68793487548828,
+      "p95": 162.7369384765625,
+      "max": 2109.447509765625
     },
     {
-      "band": 2,
+      "index": 2,
+      "name": "rtp",
+      "source": "training_features.tif",
       "description": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -458.7529602050781,
-      "p50": -137.22166442871094,
-      "p99": 395.7310485839844
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -2786.299560546875,
+      "p05": -332.47589111328125,
+      "median": -137.22166442871094,
+      "p95": 153.74588012695312,
+      "max": 4508.76025390625
     },
     {
-      "band": 3,
+      "index": 3,
+      "name": "tmi_hg",
+      "source": "training_features.tif",
       "description": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 0.6607922315597534,
-      "p50": 13.155465126037598,
-      "p99": 189.2279510498047
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.004909869749099016,
+      "p05": 1.6395492553710938,
+      "median": 13.155465126037598,
+      "p95": 93.85163116455078,
+      "max": 2200.4365234375
     },
     {
-      "band": 4,
+      "index": 4,
+      "name": "geod_2ndinv",
+      "source": "training_features.tif",
       "description": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 1.7517664432525635,
-      "p50": 19.90778923034668,
-      "p99": 57.773651123046875
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 1.2000000476837158,
+      "p05": 2.5,
+      "median": 19.90778923034668,
+      "p95": 46.20000076293945,
+      "max": 87.45342254638672
     },
     {
-      "band": 5,
+      "index": 5,
+      "name": "iso_grav_anom_slope",
+      "source": "training_features.tif",
       "description": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 0.015869835391640663,
-      "p50": 0.10218460857868195,
-      "p99": 0.3678494393825531
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.0013825353235006332,
+      "p05": 0.02875160053372383,
+      "median": 0.10218460857868195,
+      "p95": 0.27035272121429443,
+      "max": 0.6517290472984314
     },
     {
-      "band": 6,
+      "index": 6,
+      "name": "tc",
+      "source": "training_features.tif",
       "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
-      "valid_in_footprint": 5164300,
-      "missing_sentinel_in_footprint": 3073,
-      "p01": 7.722299575805664,
-      "p50": 18.481700897216797,
-      "p99": 29.100452423095703
+      "finite_in_footprint": 5164300,
+      "sentinel_in_footprint": 3073,
+      "min": 2.9534237384796143,
+      "p05": 11.806571960449219,
+      "median": 18.481700897216797,
+      "p95": 25.58231544494629,
+      "max": 88.56654357910156
     },
     {
-      "band": 7,
+      "index": 7,
+      "name": "geod_shearrate",
+      "source": "training_features.tif",
       "description": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 0.0,
-      "p50": 9.699999809265137,
-      "p99": 38.5
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 9.699999809265137,
+      "p95": 29.143348693847656,
+      "max": 54.400001525878906
     },
     {
-      "band": 8,
+      "index": 8,
+      "name": "geod_dilaterate",
+      "source": "training_features.tif",
       "description": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -9.5,
-      "p50": 5.5,
-      "p99": 27.0
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -16.5,
+      "p05": -2.850332498550415,
+      "median": 5.5,
+      "p95": 19.200000762939453,
+      "max": 34.52448272705078
     },
     {
-      "band": 9,
+      "index": 9,
+      "name": "tmi_vg",
+      "source": "training_features.tif",
       "description": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -0.6922200322151184,
-      "p50": -0.008997071534395218,
-      "p99": 0.7935372591018677
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -7.650597095489502,
+      "p05": -0.2846248149871826,
+      "median": -0.008997071534395218,
+      "p95": 0.31916630268096924,
+      "max": 20.510923385620117
     },
     {
-      "band": 10,
+      "index": 10,
+      "name": "deq_n100a15",
+      "source": "training_features.tif",
       "description": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 118.30000305175781,
-      "p50": 622.7999877929688,
-      "p99": 50237.19921875
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.0,
+      "p05": 180.8000030517578,
+      "median": 622.7999877929688,
+      "p95": 8631.3828125,
+      "max": 4962515.0
     },
     {
-      "band": 11,
+      "index": 11,
+      "name": "iso_grav_anom_vg",
+      "source": "training_features.tif",
       "description": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -4.330517292022705,
-      "p50": -0.07213491946458817,
-      "p99": 4.242436408996582
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -18.164581298828125,
+      "p05": -2.696582317352295,
+      "median": -0.07213491946458817,
+      "p95": 2.606743335723877,
+      "max": 12.578903198242188
     },
     {
-      "band": 12,
+      "index": 12,
+      "name": "det_elev",
+      "source": "training_features.tif",
       "description": "det_elev - Detrended elevation - topography with regional trends removed",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -466.8299865722656,
-      "p50": -75.57621002197266,
-      "p99": 707.4249267578125
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -589.9837036132812,
+      "p05": -330.6675109863281,
+      "median": -75.57621002197266,
+      "p95": 450.23626708984375,
+      "max": 1469.9127197265625
     },
     {
-      "band": 13,
+      "index": 13,
+      "name": "iso_grav_anom",
+      "source": "training_features.tif",
       "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -32.76560974121094,
-      "p50": -7.26103401184082,
-      "p99": 12.89549732208252
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -45.75756072998047,
+      "p05": -26.093978881835938,
+      "median": -7.26103401184082,
+      "p95": 7.737759590148926,
+      "max": 24.232954025268555
     },
     {
-      "band": 14,
+      "index": 14,
+      "name": "tmi",
+      "source": "training_features.tif",
       "description": "tmi - Total magnetic intensity - total strength of magnetic field",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -429.7847900390625,
-      "p50": -124.8157730102539,
-      "p99": 354.6851501464844
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -2178.27783203125,
+      "p05": -298.6368713378906,
+      "median": -124.8157730102539,
+      "p95": 140.07701110839844,
+      "max": 4506.14111328125
     },
     {
-      "band": 15,
+      "index": 15,
+      "name": "depth_to_base_surf",
+      "source": "training_features.tif",
       "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 1.2142881155014038,
-      "p50": 316.3645324707031,
-      "p99": 3416.077392578125
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -14.837310791015625,
+      "p05": 6.208613395690918,
+      "median": 316.3645324707031,
+      "p95": 1881.2606201171875,
+      "max": 7135.306640625
     },
     {
-      "band": 16,
+      "index": 16,
+      "name": "ieq_n100a15",
+      "source": "training_features.tif",
       "description": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 263.8999938964844,
-      "p50": 755.7000122070312,
-      "p99": 5082.49365234375
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 236.8000030517578,
+      "p05": 312.5,
+      "median": 755.7000122070312,
+      "p95": 2723.60009765625,
+      "max": 7869.5
     },
     {
-      "band": 17,
+      "index": 17,
+      "name": "cond_surf",
+      "source": "training_features.tif",
       "description": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 1.1678259372711182,
-      "p50": 2.885897636413574,
-      "p99": 4.488641262054443
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.1937037855386734,
+      "p05": 1.8359887599945068,
+      "median": 2.885897636413574,
+      "p95": 3.9114627838134766,
+      "max": 4.969292640686035
     },
     {
-      "band": 18,
+      "index": 18,
+      "name": "iso_grav_anom_hg",
+      "source": "training_features.tif",
       "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": -5.133356094360352,
-      "p50": 0.037620771676301956,
-      "p99": 5.404924392700195
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -15.441243171691895,
+      "p05": -3.3952438831329346,
+      "median": 0.037620771676301956,
+      "p95": 3.296633005142212,
+      "max": 12.856057167053223
     },
     {
-      "band": 19,
+      "index": 19,
+      "name": "det_elev_slope",
+      "source": "training_features.tif",
       "description": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
-      "valid_in_footprint": 5164312,
-      "missing_sentinel_in_footprint": 3061,
-      "p01": 0.07005272060632706,
-      "p50": 3.749262809753418,
-      "p99": 32.722740173339844
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.001103136339224875,
+      "p05": 0.16759774088859558,
+      "median": 3.749262809753418,
+      "p95": 25.336517333984375,
+      "max": 62.64591598510742
     }
   ],
-  "external_dir_present": true,
-  "dem10_dir_present": true
+  "external_channels": [
+    {
+      "name": "lidar_ex_max",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 1,
+      "finite_in_footprint": 3893184,
+      "median": 0.29921260476112366,
+      "p95": 0.6496062874794006
+    },
+    {
+      "name": "lidar_ex_mean",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 2,
+      "finite_in_footprint": 3893184,
+      "median": 0.25590550899505615,
+      "p95": 0.7047244310379028
+    },
+    {
+      "name": "lidar_step_max",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 3,
+      "finite_in_footprint": 3893184,
+      "median": 0.23228345811367035,
+      "p95": 0.5944882035255432
+    },
+    {
+      "name": "lidar_lapneg_max",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 4,
+      "finite_in_footprint": 3893184,
+      "median": 0.28740158677101135,
+      "p95": 0.7440944910049438
+    },
+    {
+      "name": "lidar_lappos_max",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 5,
+      "finite_in_footprint": 3893184,
+      "median": 0.28740158677101135,
+      "p95": 0.751968502998352
+    },
+    {
+      "name": "lidar_downface_max",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 6,
+      "finite_in_footprint": 3207200,
+      "median": 0.24015748500823975,
+      "p95": 0.5354330539703369
+    },
+    {
+      "name": "lidar_upface_max",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 7,
+      "finite_in_footprint": 3207200,
+      "median": 0.20472441613674164,
+      "p95": 0.5236220359802246
+    },
+    {
+      "name": "lidar_cross_max",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 8,
+      "finite_in_footprint": 3207200,
+      "median": 0.31496062874794006,
+      "p95": 0.6574802994728088
+    },
+    {
+      "name": "lidar_relief",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 9,
+      "finite_in_footprint": 3893184,
+      "median": 0.16929133236408234,
+      "p95": 0.4448818862438202
+    },
+    {
+      "name": "lidar_coh100",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 10,
+      "finite_in_footprint": 3882902,
+      "median": 0.665354311466217,
+      "p95": 0.9291338324546814
+    },
+    {
+      "name": "lidar_strike",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 11,
+      "finite_in_footprint": 3893184,
+      "median": 0.4921259880065918,
+      "p95": 0.9488189220428467
+    },
+    {
+      "name": "lidar_valid",
+      "source": "lidar_scarp_features_u8.tif",
+      "band": 12,
+      "finite_in_footprint": 5167373,
+      "median": 1.0,
+      "p95": 1.0
+    },
+    {
+      "name": "topo10m_slope_p90",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 1,
+      "finite_in_footprint": 5167373,
+      "median": 0.14960630238056183,
+      "p95": 0.7637795209884644
+    },
+    {
+      "name": "topo10m_slope_max",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 2,
+      "finite_in_footprint": 5167373,
+      "median": 0.16929133236408234,
+      "p95": 0.7283464670181274
+    },
+    {
+      "name": "topo10m_steep_frac",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 3,
+      "finite_in_footprint": 5167373,
+      "median": 0.011811023578047752,
+      "p95": 1.0
+    },
+    {
+      "name": "topo10m_slope_std",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 4,
+      "finite_in_footprint": 5167373,
+      "median": 0.12598425149917603,
+      "p95": 0.6338582634925842
+    },
+    {
+      "name": "topo10m_relief_local",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 5,
+      "finite_in_footprint": 5167373,
+      "median": 0.10236220806837082,
+      "p95": 0.6811023354530334
+    },
+    {
+      "name": "topo10m_curv_prof_absmax",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 6,
+      "finite_in_footprint": 5167373,
+      "median": 0.09842519462108612,
+      "p95": 0.586614191532135
+    },
+    {
+      "name": "topo10m_aspect_coherence",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 7,
+      "finite_in_footprint": 5111794,
+      "median": 0.874015748500824,
+      "p95": 0.9921259880065918
+    },
+    {
+      "name": "topo10m_hs_lineament",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 8,
+      "finite_in_footprint": 5167373,
+      "median": 0.11811023950576782,
+      "p95": 0.6692913174629211
+    },
+    {
+      "name": "topo10m_dem_mean",
+      "source": "topo_10m_derived_100m_u8.tif",
+      "band": 9,
+      "finite_in_footprint": 5167373,
+      "median": 0.28740158677101135,
+      "p95": 0.7283464670181274
+    },
+    {
+      "name": "rad_K",
+      "source": "geodawn_rad_u8.tif",
+      "band": 1,
+      "finite_in_footprint": 5166085,
+      "median": 0.4921259880065918,
+      "p95": 0.8149606585502625
+    },
+    {
+      "name": "rad_Th",
+      "source": "geodawn_rad_u8.tif",
+      "band": 2,
+      "finite_in_footprint": 5166085,
+      "median": 0.4921259880065918,
+      "p95": 0.8149606585502625
+    },
+    {
+      "name": "rad_U",
+      "source": "geodawn_rad_u8.tif",
+      "band": 3,
+      "finite_in_footprint": 5166085,
+      "median": 0.4448818862438202,
+      "p95": 0.7952755689620972
+    },
+    {
+      "name": "rad_TC",
+      "source": "geodawn_rad_u8.tif",
+      "band": 4,
+      "finite_in_footprint": 5166085,
+      "median": 0.5039370059967041,
+      "p95": 0.834645688533783
+    },
+    {
+      "name": "ext_ThK",
+      "source": "geodawn_extensions_u8.tif",
+      "band": 1,
+      "finite_in_footprint": 5166085,
+      "median": 0.4763779640197754,
+      "p95": 0.7952755689620972
+    },
+    {
+      "name": "ext_UK",
+      "source": "geodawn_extensions_u8.tif",
+      "band": 2,
+      "finite_in_footprint": 5166085,
+      "median": 0.3818897604942322,
+      "p95": 0.7401574850082397
+    },
+    {
+      "name": "ext_UTh",
+      "source": "geodawn_extensions_u8.tif",
+      "band": 3,
+      "finite_in_footprint": 5166085,
+      "median": 0.26377952098846436,
+      "p95": 0.5590550899505615
+    },
+    {
+      "name": "ext_TMI_up150",
+      "source": "geodawn_extensions_u8.tif",
+      "band": 4,
+      "finite_in_footprint": 5164312,
+      "median": 0.3937007784843445,
+      "p95": 0.7283464670181274
+    }
+  ]
 }

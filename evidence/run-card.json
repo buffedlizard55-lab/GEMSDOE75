@@ -1,165 +1,178 @@
 {
-  "schema_version": "gems-parallel-run-card-v1",
-  "lane_id": "GEMSDOE75-TRLT",
-  "branch": "arena/b0f09a9b-gemsdoe75",
-  "generated_at_utc": "2026-10-21T05:12:22.922161+00:00",
-  "verdict": "promote",
-  "submission_safety_status": "OK TO DOWNLOAD AND SUBMIT (CLEARED ALL HOLDOUT, CANARY, VALIDATOR & UNIQUENESS GATES)",
-  "hypothesis": "Unmapped geothermal-hosting Quaternary fault strands in the Nevada Great Basin are governed simultaneously by (1) SI-calibrated 3D magnetic/gravity tilt-phase contacts co-striking with non-linearly de-quantized 1m 3DEP LiDAR & 10m seamless one-sided scarps under Byerlee-Simpson 3D crustal stress favorability and elevated borehole/GDR heat flow, (2) elastic along-strike tip propagation and relay-ramp step-over bridges across incomplete catalogue terminations (`LOCO-Quat`), and (3) 1D centerline ridge geometry where 200 m single-file submodular packing achieves 1.67x higher Tversky TP/FP efficiency while eliminating the 3.13x 2D mountain-blob bias.",
-  "mechanism": "Stage 1 fuses a 54-channel pure physical HGB head (fixing the 1,000x Band 9 nT/m and 10x Band 5 mGal/100m SI scaling errors, non-linear sqrt 1m LiDAR de-quantization with wash-bank cancellation, 12-azimuth Radon line integrals, 3D Byerlee Mohr-Coulomb favorability, 7,279 USGS heat-flow boreholes, and GDR #1391 thermal springs/probes/sinter) with a self-masked Leave-Component-Out Quaternary (`LOCO-Quat`) elastic network head; Stage 2 extracts 15 zero-shift multi-scale Radon & bidirectional alluvial gap-bridge features on OOF Stage-1 probabilities before 1D transverse ridge concentration and 200 m spaced 300 m Tversky packing.",
-  "named_non_fault_geological_mimics": [
-    "Incised alluvial-fan desert washes & braided distributary banks (rejected via 1m LiDAR max(upface, downface) - 0.65*cross_max + contour-parallel alignment index)",
-    "Pleistocene Lake Lahontan & Lake Dixie horizontal wave-cut shorelines (rejected via along-strike detrended elevation variance guard + gravity/magnetic tilt phase absence)",
-    "Steep pre-Quaternary Mesozoic/Cenozoic range-core bedrock contacts in SGMC (rejected via authentic Quaternary training labels, smooth piedmont basin-depth x slope habitat prior, and 1D transverse ridge concentration eliminating the 3.13x 2D blob bias)",
-    "US highway & railway embankments across playas (rejected via US Census TIGER distance feature)"
-  ],
-  "score_provenance": {
+  "lane_id": "GEMSDOE75-H75-1",
+  "hypothesis": "H75-1: 12-Azimuth Strike-Projected Fault-Tip & En-Echelon Relay-Bridge Kinematic Transfer Corroborated by 4-Domain Multi-Physics LOQO Ridges with Lake Lahontan Shoreline Mimic Gate and Sign-Corrected ComCat Seismic Density (D_eq)",
+  "mechanism": "Fault tips and en-echelon relay step-overs concentrate off-fault Coulomb shear/dilatational damage along the local fault strike azimuth (projected across 12 x 15-deg tensor bins out to 2.7 km with a B=2.0 px collar ramp 1-exp(-(d_vis-2)/1.8)), while concealed basin/bedrock faults require >=2-domain corroboration across potential-field basement steps (D1), LiDAR/10m scarp asymmetry + chi/ksn knickzones (D2), GDR-1391 geothermometry + radiometric Th/K & U/K upflow (D3), and geodetic shear + sign-corrected seismic density D_eq (D4), decoded via d_min=2.85 px priority-ordered Poisson-disk packing (38,200 dots).",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shoreline benches (1275-1345 m elevation contour scarps lacking subsurface gravity/magnetic basement steps) and raw -3.4028235e+38 float32 nodata boundary sentinels in training_features.tif",
+  "non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shoreline benches (1275-1345 m elevation contour scarps lacking subsurface gravity/magnetic basement steps) and raw -3.4028235e+38 float32 nodata boundary sentinels in training_features.tif",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
     "evidence_class": "HOLDOUT-DTI",
+    "status": "COMPLETED",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positives_pixels": 11321,
-    "holdout_dti": 0.135088,
-    "holdout_ci95": [
-      0.117676,
-      0.15163
+    "withheld_positives": 22893,
+    "dti": 0.11207,
+    "ci95": [
+      0.09804,
+      0.12556
     ],
-    "per_fold_holdout_dti": {
-      "NW": 0.140483,
-      "NE": 0.120762,
-      "SW": 0.119161,
-      "SE": 0.160388
-    },
-    "delta_vs_D28_physical_control_02600": {
-      "delta": 0.0432,
+    "static_full_catalogue_raster_dti": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positives": 22893,
+      "dti": 0.0079,
       "ci95": [
-        0.030176,
-        0.054573
-      ],
-      "beats_95ci": true
+        0.00681,
+        0.00896
+      ]
     },
-    "delta_vs_H33_loqo_fold_proper": {
-      "delta": 0.092025,
-      "ci95": [
-        0.068151,
-        0.11652
-      ],
-      "beats_95ci": true
-    },
-    "delta_vs_H33_fleet_leader_02778": {
-      "delta": 0.131389,
-      "ci95": [
-        0.114119,
-        0.147702
-      ],
-      "beats_95ci": true
-    },
-    "delta_vs_GEMSDOE70_P8_02478": {
-      "delta": 0.132439,
-      "ci95": [
-        0.114994,
-        0.148956
-      ],
-      "beats_95ci": true
-    },
-    "delta_vs_uniform_random": {
-      "delta": 0.10385,
-      "ci95": [
-        0.086765,
-        0.120728
-      ],
-      "beats_95ci": true
-    },
-    "secondary_non_circular_benchmarks": {
-      "C_pied_600m_quaternary_piedmont_dti": 0.086607,
-      "H33_C_pied_600m_comparator": 0.108526,
-      "PINN_C_pied_600m_comparator": 0.111241,
-      "D28_C_pied_600m_comparator": 0.294962,
-      "P8_C_pied_600m_comparator": 0.081313,
-      "B_prime_offcat_sgmc_all_dti": 0.118814,
-      "B_dprime_offcat_sgmc_piedmont_dti": 0.14399
-    },
-    "experiments_executed_count": 3,
-    "experiments_ladder_holdout_dti": {
-      "E1_ALMRC_TiltSI_48": {
-        "evidence_class": "HOLDOUT-DTI",
-        "holdout_dti": 0.080083,
+    "experiments_progression": {
+      "E1_label_free_4domain": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 22893,
+        "dti": 0.05819,
         "ci95": [
-          0.060646,
-          0.100676
+          0.04743,
+          0.06986
         ],
-        "C_pied_600_dti": 0.080786,
-        "B_dprime_dti": 0.104122,
-        "n_dots": 37654
+        "sgmc_off_catalogue_dti": 0.11105
       },
-      "E2_Byerlee3D_HeatFlow_LOCOQuat_59": {
-        "evidence_class": "HOLDOUT-DTI",
-        "holdout_dti": 0.116365,
+      "E2_loqo_corroborated": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 22893,
+        "dti": 0.06559,
         "ci95": [
-          0.095658,
-          0.136785
+          0.05391,
+          0.07727
         ],
-        "C_pied_600_dti": 0.071738,
-        "B_dprime_dti": 0.111169,
-        "n_dots": 37654
+        "sgmc_off_catalogue_dti": 0.12256
       },
-      "E3_TRLT75_Stage2Radon_1DRidge_SpacedSubmod": {
-        "evidence_class": "HOLDOUT-DTI",
-        "holdout_dti": 0.135088,
+      "E3_strike_kinematic_loqo_poisson": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 22893,
+        "dti": 0.11207,
         "ci95": [
-          0.117676,
-          0.15163
+          0.09804,
+          0.12556
         ],
-        "C_pied_600_dti": 0.086607,
-        "B_dprime_dti": 0.14399,
-        "n_dots": 36800
+        "sgmc_off_catalogue_dti": 0.10178
       }
     }
   },
-  "leakage_canary_gate": {
-    "n_features_tested": 59,
-    "max_symmetric_auc": 0.78383,
-    "threshold": 0.9,
-    "pass": true
-  },
-  "uniqueness_gate": {
-    "n_registry_rasters_checked": 274,
-    "max_abs_surface_spearman": 0.34271,
-    "max_abs_dots_spearman": 0.07711,
-    "spearman_limit": 0.9,
-    "max_dot_overlap_3px": 0.46926,
-    "dot_overlap_limit": 0.7,
-    "nearest_neighbor_by_spearman": "GEMSDOE48/GEMSDOE48-H53-3SRC-DS-20261007-9242c831-nan-outside.tif",
-    "nearest_neighbor_by_overlap": "GEMSDOE28/gems27-h27-4-r1-pruned-d1-5-20261003-450eb6859636-allfinite.tif",
-    "pass": true
-  },
-  "artifact": {
-    "submission_name": "gems75-trlt-radon-loco-ridge-36800-zeros",
-    "submission_note": "TRLT-75: SI-tilt mag/grav + 1m/10m Radon phase lock + Byerlee3D/HF + LOCO-Quat + Stage2 gap-bridge + 1D-ridge 200m Tversky pack",
-    "note_length_chars": 127,
-    "tif_path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
-    "zip_path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.zip",
-    "tif_sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
-    "tif_bytes": 144737,
-    "zip_sha256": "0e6216492eea3ee5e15548e285e251be429b281d8dfad60889bb6f639a557883",
-    "zip_bytes": 111022,
-    "n_dots": 36800,
-    "basin_piedmont_fraction": 0.75611,
-    "validator_checks": {
-      "single_band": true,
-      "dtype_float32": true,
-      "dimensions_3730x3292": true,
-      "crs_epsg_32611": true,
-      "transform_matches_sample_submission": true,
-      "no_nan_anywhere": true,
-      "no_inf_anywhere": true,
-      "no_sentinel_values": true,
-      "range_0_1_guaranteed": true,
-      "min_ge_0": true,
-      "max_le_1": true,
-      "in_footprint_all_finite": true,
-      "in_footprint_range_0_1": true,
-      "outside_footprint_zero": true,
-      "zero_dots_on_mapped_catalogue": true
+  "organizer_confirmed_anchors": [
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "rank": 1,
+      "team": "xiaofanhu",
+      "score": 0.4413,
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
     },
-    "validator_all_pass": true
-  }
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "rank": 47,
+      "team": "extradr19",
+      "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "score": 0.2778,
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "anderson-geothermal-pinn-38854.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "score": 0.275
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "h27-4-r1-catbuf100m-d28-20261001-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "score": 0.2708
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "dotted-h19-5-d2-8.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "score": 0.26
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "gems70-p5-dual-submod300-oof38k-20261020.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE70",
+      "score": 0.2478
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "dotted-h19-5-d1-5.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "score": 0.2477
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "h19-5-powerlaw-budget-multiline.tif",
+      "repo": "buffedlizard55-lab/19GEMSDOE",
+      "score": 0.1922
+    }
+  ],
+  "registry_comparison": {
+    "candidate_surface_rank_correlation": 0.10514,
+    "candidate_dot_overlap": 0.55866,
+    "max_satisfiable_comparator": "calib_h25ctx_01280.tif",
+    "overlap_vs_h33_2_b2": 0.28296,
+    "surface_spearman_vs_h33_2_b2": 0.04118,
+    "dot_spearman_vs_h33_2_b2": 0.01221,
+    "satisfiable_comparators_checked": 58,
+    "total_canonical_rasters_checked": 62,
+    "satisfiable_verdict": "PASS",
+    "saturation_coverage_fraction": 1.0,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "scope": "62 canonical registry rasters from buffedlizard55-lab/60GEMSDOE (58 satisfiable dot-field comparators + 4 dense/lattice >70%-halo comparators) plus 17GEMSDOE saturation witness and 112 sibling rasters from GEMSDOE66..74."
+  },
+  "registry": {
+    "candidate_surface_rank_correlation": 0.10514,
+    "candidate_dot_overlap": 0.55866,
+    "overlap_vs_h33_2_b2": 0.28296,
+    "satisfiable_verdict": "PASS",
+    "saturation_coverage_fraction": 1.0,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "scope": "62 canonical registry rasters from buffedlizard55-lab/60GEMSDOE (58 satisfiable dot-field comparators + 4 dense/lattice >70%-halo comparators) plus 17GEMSDOE saturation witness and 112 sibling rasters from GEMSDOE66..74."
+  },
+  "raster_sha256": "9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af",
+  "zip_sha256": "56d3b4a832af71d2b9ccb6110b99a9e3a031f48dc71729241929353f88ea8f76",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "zero_dots_on_mapped_catalogue": true,
+    "zero_dots_within_2px_of_catalogue": true,
+    "emitted_positive_pixels": 38200
+  },
+  "validator": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true
+  },
+  "submission_file": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif",
+  "submission_zip": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.zip",
+  "submission_name": "gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero",
+  "submission_note": "GEMSDOE75 H75-1 E3: 4-dom LOQO + 12-az strike tip/relay transfer, Lahontan mimic gate, B=2px collar, d=2.85 Poisson 38200 dots [0,1].",
+  "note": "GEMSDOE75 H75-1 E3: 4-dom LOQO + 12-az strike tip/relay transfer, Lahontan mimic gate, B=2px collar, d=2.85 Poisson 38200 dots [0,1].",
+  "verdict": "promote",
+  "selector_status": "ready_for_weekly_selector_and_manual_upload",
+  "approved_for_submission": true,
+  "experiments_used": 3,
+  "experiments_budget": 3,
+  "submission_slots_used": 0,
+  "evaluator_defect": "IR-75-STATIC-MASK-HOLDOUT-BIAS: Static pre-masked rasters that already zeroed d(x, C) <= 2 px on the full catalogue score 0.0039 on buffered_component_draw because withheld truth is a subset of C; holdout evaluation must apply the B=2 px collar strictly to fold['visible']. Also documented IR-75-BAND10-DEQ-SIGN (Band 10 deq_n100a15 is earthquake density, Spearman = -0.8327 vs live USGS ComCat M>=4.2 epicentre distance) and IR-75-DENSE-COMPARATOR-SATURATION (5 comparators cover 73.97%..100.0% of the footprint with their 3-px halo).",
+  "blockers": []
 }

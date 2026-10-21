@@ -4,7 +4,9 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import tarfile
 import tempfile
+import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,6 +19,21 @@ def sha256(path):
     return h.hexdigest()
 
 
+def _fetch_from_codeload(record, temporary: Path) -> None:
+    url = f"https://codeload.github.com/{record['repo']}/tar.gz/{record['commit']}"
+    target_suffix = "/" + record["path"].lstrip("/")
+    with urllib.request.urlopen(url, timeout=60) as resp:
+        with tarfile.open(fileobj=resp, mode="r|gz") as tf:
+            for member in tf:
+                if member.isfile() and member.name.endswith(target_suffix):
+                    fobj = tf.extractfile(member)
+                    if fobj is None:
+                        break
+                    temporary.write_bytes(fobj.read())
+                    return
+    raise RuntimeError(f"Could not locate {record['path']} in {url}")
+
+
 def fetch(record, folder):
     folder = Path(folder)
     folder.mkdir(parents=True, exist_ok=True)
@@ -27,13 +44,14 @@ def fetch(record, folder):
     try:
         with tempfile.NamedTemporaryFile(dir=folder, delete=False) as out:
             temporary = Path(out.name)
-            subprocess.run(['gh', 'api',
-                f"repos/{record['repo']}/git/blobs/{record['git_blob']}",
-                '--jq', '.content'], stdout=out, stderr=subprocess.PIPE, check=True)
-        # Keep binary TIFFs out of gh's terminal text/encoding transform path.
-        # Blob identity is pinned alongside the source commit/path in the manifest.
-        encoded = b''.join(temporary.read_bytes().split())
-        temporary.write_bytes(base64.b64decode(encoded, validate=True))
+            try:
+                subprocess.run(['gh', 'api',
+                    f"repos/{record['repo']}/git/blobs/{record['git_blob']}",
+                    '--jq', '.content'], stdout=out, stderr=subprocess.PIPE, check=True)
+                encoded = b''.join(temporary.read_bytes().split())
+                temporary.write_bytes(base64.b64decode(encoded, validate=True))
+            except subprocess.CalledProcessError:
+                _fetch_from_codeload(record, temporary)
         if sha256(temporary) != record['sha256']:
             raise ValueError(f"SHA-256 mismatch: {record['name']}; expected {record['sha256']}, got {sha256(temporary)}")
         temporary.replace(dest)

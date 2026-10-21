@@ -1,15 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=docs/executive-summary.html">
-  <title>GEMSDOE75 · PhD Forensic Analysis &amp; Hypotheses</title>
-  <script>window.location.replace("docs/executive-summary.html");</script>
-</head>
-<body>
-  <main id="main">
-    <p>Redirecting to <a href="docs/executive-summary.html">GEMSDOE75 · PhD Forensic Analysis &amp; Hypotheses — PROMOTE — SAFE TO DOWNLOAD &amp; SUBMIT</a>...</p>
-  </main>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="GEMSDOE75 (H75-1 E3): Validated unique GeoTIFF submission, PhD analysis of H33-2-B2 (0.2778), ranked geological hypotheses, and spatially-blocked holdout verification.">
+<title>Executive Summary &amp; How to Submit · GEMSDOE75</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="index.html"><span class="mark">G/75</span> GEMSDOE<span class="muted">75</span></a><nav aria-label="Main navigation"><a href="index.html">Overview & Download</a><a href="executive-summary.html" aria-current="page">Executive Summary & How to Submit</a><a href="research.html">PhD Research & H33 Analysis</a><a href="evidence.html">Evidence, Canaries & Uniqueness</a></nav></header>
+<main id="main"><p class="eyebrow">EXECUTIVE SUMMARY / SUBMISSION GUIDE &amp; VALIDATOR RECEIPT</p>
+<h1>Ready to Download &amp; Submit:<br>Validated Unique GeoTIFF (.tif).</h1>
+<section class="notice ready" aria-labelledby="status">
+<div>
+  <span class="tag ready">READY TO DOWNLOAD &amp; SUBMIT · VERDICT: PROMOTE</span>
+  <h2 id="status">Yes — OK to download and submit this unique GeoTIFF (.tif) to the DOE GEMS competition.</h2>
+  <p><strong>Validated Candidate:</strong> <code>submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif</code> (<strong>141,260 bytes</strong> · <code>float32</code> in <code>[0.0, 1.0]</code> · <code>0 NaN</code> · <code>0 Inf</code> · <code>38,200</code> Poisson-disk dots · <code>0</code> dots within <code>200 m</code> of mapped faults).</p>
+  <div class="meta-box">
+    <div><strong>Submission Name (copy/paste):</strong> <code>gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero</code></div>
+    <div><strong>Submission Note (133/140 chars):</strong> <code>GEMSDOE75 H75-1 E3: 4-dom LOQO + 12-az strike tip/relay transfer, Lahontan mimic gate, B=2px collar, d=2.85 Poisson 38200 dots [0,1].</code></div>
+    <div><strong>GeoTIFF SHA-256:</strong> <code>9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af</code></div>
+    <div><strong>ZIP SHA-256:</strong> <code>56d3b4a832af71d2b9ccb6110b99a9e3a031f48dc71729241929353f88ea8f76</code></div>
+    <div><strong>Holdout &amp; Uniqueness Summary:</strong> <code>HOLDOUT-DTI = 0.1121 [0.0980, 0.1256]</code> (<code>gems57-pooled-hide-v2</code>, <code>22,893</code> withheld pos px) · Off-catalogue <code>SGMC DTI = 0.1018</code> (vs H33-2-B2 <code>0.0954</code>) · Max satisfiable 3-px dot overlap = <code>55.87% &lt;= 70%</code> (vs H33-2-B2: <code>28.30%</code>) · Max surface <code>|Spearman| = 0.1051 &lt;= 0.90</code> · 47/47 Leakage Canaries <code>PASS</code> (max AUC <code>0.5900</code>).</div>
+  </div>
+</div>
+<div class="btn-group">
+  <a class="button primary" href="submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif" download>Download Validated .TIF (138 KB) ↓</a>
+  <a class="button" href="submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.zip" download>Download Single-TIFF .ZIP (103 KB) ↓</a>
+  <a class="button" href="submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.json" download>Download Validator Receipt (.JSON) ↓</a>
+  <a class="button" href="executive-summary.html">Step-by-Step Upload Guide →</a>
+</div>
+</section>
+<section class="prose">
+  <h2>Step-by-Step DrivenData Submission Instructions</h2>
+  <ol>
+    <li><strong>Download the validated GeoTIFF (or single-TIFF ZIP):</strong> Click <a href="submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif" download><code>submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif</code></a> (<code>141,260 bytes</code>, SHA-256 <code>9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af</code>) or <a href="submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.zip" download><code>submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.zip</code></a> (<code>105,470 bytes</code>, SHA-256 <code>56d3b4a832af71d2b9ccb6110b99a9e3a031f48dc71729241929353f88ea8f76</code>). Do <em>not</em> upload the JSON receipt.</li>
+    <li><strong>Verify integrity (optional local check):</strong> Run <code>python scripts/verify_submission.py</code> or check <code>sha256sum submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif</code> against <code>9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af</code>.</li>
+    <li><strong>Open the DrivenData GEMS submission portal:</strong> Navigate to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Competition #306 Submissions</a> and click <strong>New submission</strong>.</li>
+    <li><strong>Upload the file &amp; paste the exact metadata:</strong>
+      <ul>
+        <li><strong>File to submit:</strong> <code>submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif</code></li>
+        <li><strong>Submission Name:</strong> <code>gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero</code></li>
+        <li><strong>Submission Note (133 / 140 characters):</strong> <code>GEMSDOE75 H75-1 E3: 4-dom LOQO + 12-az strike tip/relay transfer, Lahontan mimic gate, B=2px collar, d=2.85 Poisson 38200 dots [0,1].</code></li>
+      </ul>
+    </li>
+    <li><strong>Record the organizer receipt:</strong> Once scored by the portal, record the live score alongside the file SHA-256 as <code>ORGANIZER-CONFIRMED</code>.</li>
+  </ol>
+
+  <h2>Why Earlier Submissions Failed with <code>&quot;Predicted values must be in range [0, 1]&quot;</code> — and How This File Fixes It</h2>
+  <p>Our forensic audit of the competition rasters identified <strong>two exact causes</strong> of the portal error <code>&quot;Predicted values must be in range [0, 1]&quot;</code>:</p>
+  <ol>
+    <li><strong>Unflagged <code>-3.4028235e+38</code> (<code>-FLT_MAX</code>) Sentinels Inside the Active Study Footprint (<code>IR-75-SENTINEL-NODATA</code>):</strong> In <code>training_features.tif</code>, the GeoTIFF header reports <code>nodata = None</code>, but <strong><code>58,171</code> band-pixel cells across <code>3,073</code> active-footprint pixels</strong> (<code>3,061</code> boundary pixels across 18 bands plus <code>12</code> interior pixels in Band 6 <code>tc</code> at rows <code>473–474</code>, cols <code>2269–2271</code>) contain raw float32 <code>-3.4028235e+38</code> values (<a href="evidence/prepared_manifest.json"><code>evidence/prepared_manifest.json</code></a>). Any spatial convolution, gradient, or model scoring run before scrubbing <code>val &lt; -1e30</code> leaks negative extreme values or <code>NaN</code> into active-footprint predictions.</li>
+    <li><strong>Outside-Footprint <code>NaN</code> Rejection on Whole-Grid Range Checks:</strong> In <code>sample_submission.tif</code>, the <code>7,111,787</code> cells outside the <code>5,167,373</code>-pixel rotated footprint are stored as IEEE <code>NaN</code> with <code>nodata = None</code>. When an upload validator checks <code>(arr &gt;= 0.0) &amp; (arr &lt;= 1.0)</code> across the full <code>3730 x 3292</code> array without masking <code>NaN</code>, IEEE-754 evaluates <code>NaN &gt;= 0.0</code> as <code>False</code> and rejects the file.</li>
+  </ol>
+  <p><strong>How <code>submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif</code> is 100% immune:</strong> All <code>58,171</code> sentinel entries are scrubbed to <code>NaN</code> and median-imputed inside the footprint in <code>scripts/prepare_data.py</code>, and <code>vendor/gems57/submission_writer.py</code> writes <code>0.0f</code> outside the footprint with <code>nodata = None</code>, verifying on disk that all <code>12,279,160</code> pixels are finite numbers in <code>[0.0, 1.0]</code> (<code>n_nan = 0</code>, <code>n_infinite = 0</code>, <code>min = 0.0</code>, <code>max = 1.0</code>).</p>
+
+  <h2>On-Disk Validator Receipt (<code>vendor/gems57/validate.py</code> &amp; <code>gates.py</code>)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Validator Gate</th><th>Measured Status on <code>submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif</code></th></tr></thead>
+      <tbody>
+        <tr><td><code>sha256</code></td><td><code>9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af</code></td></tr>
+        <tr><td><code>crs / shape / dtype / bands</code></td><td><code>EPSG:32611</code> · <code>3730 x 3292</code> · <code>float32</code> · <code>1 band</code></td></tr>
+        <tr><td><code>transform</code></td><td><code>[100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]</code></td></tr>
+        <tr><td><code>n_finite / n_nan / n_infinite</code></td><td><code>12,279,160</code> finite · <code>0</code> NaN · <code>0</code> Inf</td></tr>
+        <tr><td><code>min / max / mean</code></td><td><code>0.0</code> / <code>1.0</code> / <code>0.00311096</code></td></tr>
+        <tr><td><code>emitted_positive_pixels</code></td><td><code>38,200</code> (<code>0.7393%</code> of footprint)</td></tr>
+        <tr><td><code>on_catalogue_positive_pixels</code> (<code>d == 0</code>)</td><td><code>0</code></td></tr>
+        <tr><td><code>d_le_1_count / d_le_2_count</code> (<code>d &lt;= 200 m</code>)</td><td><code>0</code> / <code>0</code></td></tr>
+        <tr><td><code>single_band</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>dtype_float32</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>dimensions_3730x3292</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>crs_epsg_32611</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>transform_matches_sample_submission</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>no_nan_anywhere</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>no_inf_anywhere</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>no_sentinel_values</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>range_0_1_guaranteed</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>min_ge_0</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>max_le_1</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>in_footprint_all_finite</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>in_footprint_range_0_1</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>outside_footprint_zero</code></td><td><strong>PASS (true)</strong></td></tr><tr><td><code>zero_dots_on_mapped_catalogue</code></td><td><strong>PASS (true)</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a class="button dark" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Open DrivenData Competition Portal ↗</a></p>
+</section></main><footer><strong>GEMSDOE75 (Lane H75-1 E3) · Verified Unique GeoTIFF Deliverable</strong><span>Reviewed 21 October 2026 · All scores labeled HOLDOUT-DTI or ORGANIZER-CONFIRMED</span><a href="https://github.com/buffedlizard55-lab/GEMSDOE75">Source repository ↗</a></footer></body></html>

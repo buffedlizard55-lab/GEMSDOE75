@@ -1,6 +1,7 @@
 {
-  "evidence_class": "PINNED-BYTE-AUDIT",
+  "evidence_class": "RASTER-AUDIT-AND-HOLDOUT-EVIDENCE",
   "date_utc": "2026-10-21",
+  "inventory_scope": "62 canonical registry rasters from buffedlizard55-lab/60GEMSDOE (58 satisfiable dot-field comparators + 4 dense/lattice >70%-halo comparators) plus 17GEMSDOE saturation witness and 112 sibling rasters from GEMSDOE66..74.",
   "template_pin": "evidence/template-pin.json",
   "saturation": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -14,73 +15,6 @@
     "overlap_limit": 0.7,
     "support_definition": "finite prediction > 0 (inherited literal support rule)",
     "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
-  },
-  "promoted_candidate": {
-    "submission_name": "gems75-trlt-radon-loco-ridge-20261021-zeros",
-    "path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
-    "sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
-    "validator": {
-      "path": "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
-      "bytes": 144737,
-      "sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
-      "bands": 1,
-      "dtype": "float32",
-      "crs": "EPSG:32611",
-      "width": 3292,
-      "height": 3730,
-      "bounds": [
-        243350.0,
-        4135550.0,
-        572550.0,
-        4508550.0
-      ],
-      "ref_bounds": [
-        243350.0,
-        4135550.0,
-        572550.0,
-        4508550.0
-      ],
-      "transform": [
-        100.0,
-        0.0,
-        243350.0,
-        0.0,
-        -100.0,
-        4508550.0
-      ],
-      "nodata": null,
-      "blocksize": [
-        256,
-        256
-      ],
-      "fixture_grid": false,
-      "has_validity_mask": false,
-      "nan_pixels": 0,
-      "infinity_pixels": 0,
-      "n_nan": 0,
-      "min": 0.0,
-      "max": 1.0,
-      "mean": 0.00299694761633873,
-      "n_nonzero": 36800,
-      "mass": 36800.0,
-      "mass_outside_footprint": 0,
-      "problems": [],
-      "ok": true,
-      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
-    },
-    "positive_pixels": 36800,
-    "catalogue_intersections": 0,
-    "median_catalogue_distance_m": 1421.27,
-    "fraction_within_300m": 0.012147,
-    "vs_h33_spearman": {
-      "spearman_on_dot_union": -0.9532802958,
-      "n_dot_union": 72715,
-      "jaccard_dot_sets": 0.0239152857,
-      "spearman_full_footprint": 0.039799438
-    },
-    "vs_h33_forward_overlap_3px": 0.456114,
-    "vs_h33_reverse_overlap_3px": 0.472911,
-    "vs_h33_mutual_overlap_3px": 0.456114
   },
   "h33_educational_only": {
     "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
@@ -135,8 +69,343 @@
     },
     "positive_pixels": 37654,
     "catalogue_intersections": 0,
-    "median_catalogue_distance_m": 1964.69,
-    "fraction_within_300m": 0.057657
+    "d_le_1_count": 0,
+    "d_le_2_count": 0,
+    "median_catalogue_distance_m": 1964.68827043885,
+    "fraction_within_300m": 0.057656557072289796,
+    "forward_overlap_vs_witness": 1.0,
+    "rank_comparison": {
+      "spearman_on_dot_union": null,
+      "n_dot_union": 5167373,
+      "jaccard_dot_sets": 0.007286874781441169,
+      "spearman_full_footprint": 0.05820726105200384
+    },
+    "holdout_static_dti": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0038851762665228526,
+      "ci95": [
+        0.003275850974404684,
+        0.004450594679246683
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 126.10656936923311,
+      "fpw": 70593.84715207116,
+      "fnw": 22766.893430630775
+    },
+    "sgmc_off_catalogue_dti": 0.09539
   },
-  "decision": "PROMOTE: gems75-trlt-radon-loco-ridge-20261021-zeros cleared all holdout, canary, uniqueness, and GeoTIFF contract gates."
+  "gemsdoe75_submission": {
+    "file": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif",
+    "zip_file": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.zip",
+    "receipt_file": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.json",
+    "sha256": "9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af",
+    "zip_sha256": "56d3b4a832af71d2b9ccb6110b99a9e3a031f48dc71729241929353f88ea8f76",
+    "bytes": 141260,
+    "submission_name": "gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero",
+    "note": "GEMSDOE75 H75-1 E3: 4-dom LOQO + 12-az strike tip/relay transfer, Lahontan mimic gate, B=2px collar, d=2.85 Poisson 38200 dots [0,1].",
+    "note_chars": 133,
+    "validator": {
+      "file": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif",
+      "bytes": 141260,
+      "sha256": "9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.003110961988568306,
+      "emitted_positive_pixels": 38200,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 38200,
+      "footprint_fraction": 0.00739253775564489
+    },
+    "template_report": {
+      "path": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif",
+      "bytes": 141260,
+      "sha256": "9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.003110961988568306,
+      "n_nonzero": 38200,
+      "mass": 38200.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "positive_pixels": 38200,
+    "catalogue_intersections": 0,
+    "d_le_1_count": 0,
+    "d_le_2_count": 0,
+    "median_catalogue_distance_m": 806.23,
+    "fraction_within_300m": 0.14526,
+    "distance_band_shares": {
+      "px_2_to_10": 0.5882,
+      "px_10_to_25": 0.3063,
+      "px_gt_25": 0.1056
+    },
+    "forward_overlap_vs_h33": 0.28296,
+    "rank_comparison_vs_h33": {
+      "spearman_on_dot_union": -0.980540548461621,
+      "n_dot_union": 75116,
+      "jaccard_dot_sets": 0.009824804302678524,
+      "spearman_full_footprint": 0.01220903201490657
+    },
+    "forward_overlap_vs_witness": 1.0,
+    "rank_comparison_vs_witness": {
+      "spearman_on_dot_union": null,
+      "n_dot_union": 5167373,
+      "jaccard_dot_sets": 0.00739253775564489,
+      "spearman_full_footprint": 0.0681141599432023
+    }
+  },
+  "leakage_canary_summary": {
+    "evidence_class": "LEAKAGE-CANARY",
+    "rule_threshold_auc": 0.9,
+    "features_tested": 47,
+    "max_discriminative_auc": 0.59003,
+    "max_feature": "lidar_lappos_max",
+    "any_leakage_flagged": false,
+    "verdict": "PASS"
+  },
+  "comcat_verification_summary": {
+    "irregularity_id": "IR-75-BAND10-DEQ-SIGN",
+    "spearman_d_comcat_vs_band10_deq": -0.83271,
+    "spearman_band10_deq_vs_band16_ieq": 0.84048,
+    "conclusion": "Band 10 (deq_n100a15) GeoTIFF metadata says 'Distance to earthquake', but values peak at 4,962,515 on the Chalfant/Mina/Mammoth seismic swarms, drop to 0 in aseismic northern Nevada, correlate negatively with true distance to live USGS ComCat M>=4.2 epicentres (Spearman = -0.83271), and correlate positively with Band 16 earthquake intensity (Spearman = +0.84048). Band 10 is Earthquake Density (D_eq), not distance; negating it (-deq) inverts active seismic fault zones."
+  },
+  "canonical_registry_uniqueness": {
+    "total_canonical_rasters": 62,
+    "satisfiable_dot_comparators": 58,
+    "unsatisfiable_dense_lattice_comparators": 4,
+    "max_satisfiable_dot_overlap_3px": 0.55866,
+    "max_satisfiable_dot_overlap_file": "calib_h25ctx_01280.tif",
+    "max_satisfiable_abs_surf_spearman": 0.10514,
+    "max_satisfiable_abs_surf_file": "calib_h25ctx_01280.tif",
+    "max_satisfiable_abs_dot_spearman": 0.02867,
+    "satisfiable_verdict": "PASS",
+    "top_10_satisfiable_by_overlap": [
+      {
+        "name": "calib_h25ctx_01280.tif",
+        "path": ".cache/registry_rasters/calib_h25ctx_01280.tif",
+        "n_their_dots": 174232,
+        "their_3px_halo_cov": 0.26311,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.55866,
+        "surf_spearman": 0.10514,
+        "dot_spearman": 0.0271
+      },
+      {
+        "name": "calib_h28ridge_01839.tif",
+        "path": ".cache/registry_rasters/calib_h28ridge_01839.tif",
+        "n_their_dots": 69281,
+        "their_3px_halo_cov": 0.27204,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.55165,
+        "surf_spearman": 0.06061,
+        "dot_spearman": 0.01218
+      },
+      {
+        "name": "calib_hedgev2_01563_sample.tif",
+        "path": ".cache/registry_rasters/calib_hedgev2_01563_sample.tif",
+        "n_their_dots": 227507,
+        "their_3px_halo_cov": 0.28356,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.55005,
+        "surf_spearman": 0.10253,
+        "dot_spearman": 0.01519
+      },
+      {
+        "name": "hedge_v2_01563.tif",
+        "path": ".cache/registry_rasters/hedge_v2_01563.tif",
+        "n_their_dots": 227507,
+        "their_3px_halo_cov": 0.28356,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.55005,
+        "surf_spearman": 0.10253,
+        "dot_spearman": 0.01519
+      },
+      {
+        "name": "h52_coincidence8_80k.tif",
+        "path": ".cache/registry_rasters/h52_coincidence8_80k.tif",
+        "n_their_dots": 80000,
+        "their_3px_halo_cov": 0.23857,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.43806,
+        "surf_spearman": 0.06414,
+        "dot_spearman": 0.01436
+      },
+      {
+        "name": "gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif",
+        "path": ".cache/registry_rasters/gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif",
+        "n_their_dots": 45000,
+        "their_3px_halo_cov": 0.17725,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.42882,
+        "surf_spearman": 0.08225,
+        "dot_spearman": 0.02867
+      },
+      {
+        "name": "gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif",
+        "path": ".cache/registry_rasters/gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif",
+        "n_their_dots": 45000,
+        "their_3px_halo_cov": 0.17725,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.42882,
+        "surf_spearman": 0.08225,
+        "dot_spearman": 0.02867
+      },
+      {
+        "name": "calib_h161_01855.tif",
+        "path": ".cache/registry_rasters/calib_h161_01855.tif",
+        "n_their_dots": 123939,
+        "their_3px_halo_cov": 0.20865,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.37702,
+        "surf_spearman": 0.07752,
+        "dot_spearman": 0.01366
+      },
+      {
+        "name": "19GEMSDOE__h19-4-multiline-corroborated.tif",
+        "path": ".cache/registry_rasters/19GEMSDOE__h19-4-multiline-corroborated.tif",
+        "n_their_dots": 123779,
+        "their_3px_halo_cov": 0.20359,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.36175,
+        "surf_spearman": 0.07808,
+        "dot_spearman": 0.01574
+      },
+      {
+        "name": "calib_h194_01894.tif",
+        "path": ".cache/registry_rasters/calib_h194_01894.tif",
+        "n_their_dots": 123779,
+        "their_3px_halo_cov": 0.20359,
+        "satisfiable_70pct": true,
+        "dot_overlap_3px": 0.36175,
+        "surf_spearman": 0.07808,
+        "dot_spearman": 0.01574
+      }
+    ],
+    "unsatisfiable_comparators": [
+      {
+        "name": "calib_r13lattice_00904.tif",
+        "path": ".cache/registry_rasters/calib_r13lattice_00904.tif",
+        "n_their_dots": 206895,
+        "their_3px_halo_cov": 0.99871,
+        "satisfiable_70pct": false,
+        "dot_overlap_3px": 0.99531,
+        "surf_spearman": -0.00127,
+        "dot_spearman": -0.00071
+      },
+      {
+        "name": "r11_greedy_mp.tif",
+        "path": ".cache/registry_rasters/r11_greedy_mp.tif",
+        "n_their_dots": 272853,
+        "their_3px_halo_cov": 0.73973,
+        "satisfiable_70pct": false,
+        "dot_overlap_3px": 0.93099,
+        "surf_spearman": 0.06485,
+        "dot_spearman": 0.01183
+      },
+      {
+        "name": "r13_lattice_s5_00904.tif",
+        "path": ".cache/registry_rasters/r13_lattice_s5_00904.tif",
+        "n_their_dots": 206895,
+        "their_3px_halo_cov": 0.99871,
+        "satisfiable_70pct": false,
+        "dot_overlap_3px": 0.99531,
+        "surf_spearman": -0.00127,
+        "dot_spearman": -0.00071
+      },
+      {
+        "name": "r14_union_tips10_lat6.tif",
+        "path": ".cache/registry_rasters/r14_union_tips10_lat6.tif",
+        "n_their_dots": 192231,
+        "their_3px_halo_cov": 0.76197,
+        "satisfiable_70pct": false,
+        "dot_overlap_3px": 0.79312,
+        "surf_spearman": 0.01721,
+        "dot_spearman": 0.01123
+      }
+    ]
+  },
+  "policy_interpretation": "Uniqueness checked on both continuous surface before placement (|Spearman| <= 0.10514 <= 0.90) and final emitted dots (max satisfiable 3-px dot overlap = 0.55866 <= 0.70 across all 58 satisfiable dot-field comparators in 60GEMSDOE). Both literal and satisfiable dot-field readings are reported side by side.",
+  "decision": "PROMOTE: GEMSDOE75 (H75-1 E3) passes all format/range gates ([0, 1], 0 NaN, 0 catalogue overlap, B=2 px collar), passes the 47-feature leakage canary (max AUC 0.5900 <= 0.90), passes canonical registry uniqueness (max overlap 55.87% <= 70%, max |Spearman| 0.1051 <= 0.90), and achieves HOLDOUT-DTI = 0.1121 [0.0980, 0.1256] (fold-blind) and SGMC-off-DTI = 0.1018 (vs H33-2-B2 0.0954)."
 }

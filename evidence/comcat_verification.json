@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "verified_utc": "2026-10-21T04:24:08Z",
+  "evidence_class": "EXTERNAL-SOURCE-VERIFICATION",
+  "irregularity_id": "IR-75-BAND10-DEQ-SIGN",
+  "source_url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
+  "bounding_box": {
+    "minlatitude": 37.3,
+    "maxlatitude": 40.8,
+    "minlongitude": -120.0,
+    "maxlongitude": -116.1,
+    "starttime": "1980-01-01"
+  },
+  "live_counts_by_magnitude": {
+    "M_ge_1.5": 95541,
+    "M_ge_2.0": 36770,
+    "M_ge_2.5": 14615,
+    "M_ge_3.0": 5611,
+    "M_ge_4.2_total_api": 317,
+    "M_ge_4.2_fetched_rows": 142,
+    "M_ge_4.2_inside_valid_footprint": 60
+  },
+  "spearman_d_comcat_vs_band10_deq": -0.83271,
+  "spearman_band10_deq_vs_band16_ieq": 0.84048,
+  "spearman_neg_d_comcat_vs_band16_ieq": 0.71428,
+  "band10_median_on_fault": 776.8,
+  "band10_median_off_fault": 621.4,
+  "band10_max_value": 4962515.0,
+  "correlation_with_official_seismic_bands": {
+    "spearman_d_comcat_m42_vs_band10_deq_n100a15": -0.83271,
+    "spearman_neg_d_comcat_m42_vs_band16_ieq_n100a15": 0.71428,
+    "spearman_band10_deq_vs_band16_ieq": 0.84048
+  },
+  "conclusion": "Band 10 (deq_n100a15) GeoTIFF metadata says 'Distance to earthquake', but values peak at 4,962,515 on the Chalfant/Mina/Mammoth seismic swarms, drop to 0 in aseismic northern Nevada, correlate negatively with true distance to live USGS ComCat M>=4.2 epicentres (Spearman = -0.83271), and correlate positively with Band 16 earthquake intensity (Spearman = +0.84048). Band 10 is Earthquake Density (D_eq), not distance; negating it (-deq) inverts active seismic fault zones.",
+  "note": "Confirms USGS ANSS ComCat FDSN API is reachable and spatially concordant with Official Bands 10 (deq_n100a15) and 16 (ieq_n100a15)."
+}
