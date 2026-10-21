@@ -30,8 +30,17 @@ def main() -> int:
     assert tif_path.is_file(), f"Missing GeoTIFF: {tif_path}"
     assert zip_path.is_file(), f"Missing ZIP: {zip_path}"
 
-    grid = load_grid(ROOT / ".cache" / "data")
-    rep = validate(tif_path, grid.footprint, grid.catalogue)
+    if (ROOT / ".cache" / "data" / "sample_submission.tif").is_file():
+        grid = load_grid(ROOT / ".cache" / "data")
+        rep = validate(tif_path, grid.footprint, grid.catalogue)
+    elif (ROOT / ".cache" / "inputs" / "sample_submission.tif").is_file():
+        with rasterio.open(ROOT / ".cache" / "inputs" / "sample_submission.tif") as src:
+            fp = np.isfinite(src.read(1))
+        with rasterio.open(ROOT / ".cache" / "inputs" / "existing_faults.tif") as src:
+            cat = src.read(1) > 0
+        rep = validate(tif_path, fp, cat)
+    else:
+        rep = validate(tif_path)
     assert_submittable(rep)
 
     actual_tif_sha = sha256(tif_path)

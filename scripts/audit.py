@@ -75,7 +75,10 @@ def run() -> None:
     cand_dist = edt_m[cand > 0]
 
     rho_h33 = uniqueness.surface_rho(cand, h33, footprint)
-    rho_h33 = {k: None if isinstance(v, float) and not np.isfinite(v) else v for k, v in rho_h33.items()}
+    rho_h33 = {
+        k: (None if not np.isfinite(v) else round(float(v), 10)) if isinstance(v, float) else v
+        for k, v in rho_h33.items()
+    }
     ov_fwd_h33 = uniqueness.dot_overlap(np.where(footprint, cand, 0), np.where(footprint, h33, 0))
     ov_rev_h33 = uniqueness.dot_overlap(np.where(footprint, h33, 0), np.where(footprint, cand, 0))
 

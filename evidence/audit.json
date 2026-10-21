@@ -73,10 +73,10 @@
     "median_catalogue_distance_m": 1421.27,
     "fraction_within_300m": 0.012147,
     "vs_h33_spearman": {
-      "spearman_on_dot_union": -0.9532802957946926,
+      "spearman_on_dot_union": -0.9532802958,
       "n_dot_union": 72715,
-      "jaccard_dot_sets": 0.02391528570446263,
-      "spearman_full_footprint": 0.03979943804654292
+      "jaccard_dot_sets": 0.0239152857,
+      "spearman_full_footprint": 0.039799438
     },
     "vs_h33_forward_overlap_3px": 0.456114,
     "vs_h33_reverse_overlap_3px": 0.472911,
