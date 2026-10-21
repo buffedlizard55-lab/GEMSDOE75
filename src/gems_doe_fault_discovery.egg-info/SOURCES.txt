@@ -1,8 +1,16 @@
 README.md
 pyproject.toml
+src/gems75/__init__.py
+src/gems75/constants.py
+src/gems75/decoder.py
+src/gems75/models.py
+src/gems75/network.py
+src/gems75/physics.py
+src/gems75/protocol.py
 src/gems_doe/__init__.py
 src/gems_doe/dti_alloc.py
 src/gems_doe/features_h75.py
+src/gems_doe/h75_lane.py
 src/gems_doe/holdout.py
 src/gems_doe/metric.py
 src/gems_doe/submission_io.py
@@ -11,6 +19,7 @@ src/gems_doe_fault_discovery.egg-info/SOURCES.txt
 src/gems_doe_fault_discovery.egg-info/dependency_links.txt
 src/gems_doe_fault_discovery.egg-info/requires.txt
 src/gems_doe_fault_discovery.egg-info/top_level.txt
+tests/test_gems75_suite.py
 tests/test_h75_pipeline.py
 tests/test_holdout.py
 tests/test_metric.py

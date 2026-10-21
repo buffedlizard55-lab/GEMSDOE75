@@ -14,6 +14,7 @@
     "named_non_fault_mimic": "Intracaldera volcanic ring fractures, Cenozoic dike swarms, and range-front erosional cliff aprons (explicitly controlled via `h_vent_control = min(d_vent, 10 km)` from 467 GDR Cenozoic vents \u2014 ranked #1 out-of-fold feature gain \u2014 plus 1D Steger ridge skeletonization suppressing 2D cliff blobs)."
   },
   "holdout_dti": {
+    "label": "HOLDOUT-DTI",
     "evidence_class": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
     "suite_N_whole_component_primary": {

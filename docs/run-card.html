@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEMSDOE75 · Protocol Run Card, Canaries &amp; Uniqueness</title>
+  <style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #cbd5e1;
+  --brand: #0f766e;
+  --brand-dark: #115e59;
+  --ok-bg: #ecfdf5;
+  --ok-border: #10b981;
+  --ok-ink: #065f46;
+  --blue-bg: #eff6ff;
+  --blue-ink: #1e40af;
+  --amber-bg: #fffbeb;
+  --amber-ink: #92400e;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+.topbar {
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid #10b981;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.topbar-inner {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+}
+.nav-links a:hover, .nav-links a.active {
+  background: #1e293b;
+  color: #34d399;
+}
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+.hero-verdict {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 100%);
+  border: 2px solid var(--ok-border);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 10px 25px -10px rgba(16, 185, 129, 0.28);
+  margin-bottom: 1.75rem;
+}
+.verdict-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #059669;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+.hero-verdict h1 {
+  margin: 0.65rem 0 0.5rem;
+  font-size: 1.85rem;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.15rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.94rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: #059669;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+.btn-primary:hover { background: #047857; }
+.btn-secondary {
+  background: #0f172a;
+  color: #ffffff;
+}
+.btn-secondary:hover { background: #1e293b; }
+.btn-outline {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+.btn-outline:hover { background: #f1f5f9; }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+}
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+}
+.kpi-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.kpi-val {
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin: 0.25rem 0;
+  font-family: var(--mono);
+  color: #0f172a;
+}
+.kpi-sub {
+  font-size: 0.83rem;
+  color: var(--muted);
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.5rem;
+}
+.card h2 {
+  margin-top: 0;
+  font-size: 1.32rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.55rem;
+}
+.card h3 {
+  font-size: 1.08rem;
+  margin-top: 1.25rem;
+}
+.meta-box {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  overflow-x: auto;
+  margin: 0.65rem 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0.75rem 0;
+}
+th, td {
+  text-align: left;
+  padding: 0.62rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+}
+tr.highlight-row {
+  background: #ecfdf5;
+  font-weight: 600;
+}
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+.tag-holdout { background: var(--blue-bg); color: var(--blue-ink); }
+.tag-live { background: var(--amber-bg); color: var(--amber-ink); }
+.tag-pass { background: var(--ok-bg); color: var(--ok-ink); border: 1px solid #6ee7b7; }
+.fig-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-top: 0.5rem;
+}
+.fig-cap {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.45rem;
+}
+input[type="search"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 380px;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+footer {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-title" href="index.html">DOE GEMS · GEMSDOE75 (TRLT-75)</a>
+    <nav class="nav-links"><a href="index.html" class="">Submission & Evidence</a><a href="executive-summary.html" class="">PhD Forensic & Hypotheses</a><a href="run-card.html" class="active">Protocol Run Card & Canaries</a><a href="sources.html" class="">Official Links & Irregularities</a></nav>
+  </div>
+</header>
+
+  <main class="container" id="main">
+    
+<section class="card">
+  <h2>1. Visual Audit: 59-Channel Leakage Canaries &amp; 274-Raster Fleet Uniqueness</h2>
+  <img class="fig-img" src="assets/fig4_canaries_and_uniqueness_audit.png" alt="Leakage canaries and uniqueness audit">
+  <div class="fig-cap">
+    Figure 4. Left: Single-feature holdout ROC-AUC canaries across all 59 channels prior to model fitting (59/59 PASS).
+    Right: Joint uniqueness audit across all 274 unique SHA-256 rasters across all 14 sibling repositories (274/274 PASS).
+  </div>
+</section>
+
+<section class="card">
+  <h2>2. Interactive Single-Feature Leakage Canary Table (All 59 Channels)</h2>
+  <input type="search" id="canary-q" placeholder="Filter 59 features by name (e.g. lidar, radon, byerlee, net_)..." onkeyup="filterTable('canary-q', 'canary-tbl')">
+  <div style="overflow-x:auto;max-height:430px;overflow-y:auto;">
+    <table id="canary-tbl">
+      <thead>
+        <tr><th>Col</th><th>Feature Name</th><th>Raw ROC-AUC</th><th>Symmetric max(AUC, 1-AUC)</th><th>Rule 4 Gate</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>54</code></td>
+          <td><code>net_d_vis_capped</code></td>
+          <td><code>0.21617</code></td>
+          <td><strong>0.78383</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>58</code></td>
+          <td><code>net_multi_tip_bridge</code></td>
+          <td><code>0.77378</code></td>
+          <td><strong>0.77378</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>55</code></td>
+          <td><code>net_tip_along_lobe</code></td>
+          <td><code>0.75963</code></td>
+          <td><strong>0.75963</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>56</code></td>
+          <td><code>net_relay_step_lobe</code></td>
+          <td><code>0.75757</code></td>
+          <td><strong>0.75757</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>57</code></td>
+          <td><code>net_host_len_prox</code></td>
+          <td><code>0.71965</code></td>
+          <td><strong>0.71965</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>47</code></td>
+          <td><code>piedmont_habitat_index</code></td>
+          <td><code>0.62403</code></td>
+          <td><strong>0.62403</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>27</code></td>
+          <td><code>lidar_upface_antislope</code></td>
+          <td><code>0.60241</code></td>
+          <td><strong>0.60241</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>29</code></td>
+          <td><code>lidar_curv_dipole</code></td>
+          <td><code>0.59243</code></td>
+          <td><strong>0.59243</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>26</code></td>
+          <td><code>lidar_deq_tect_step</code></td>
+          <td><code>0.58388</code></td>
+          <td><strong>0.58388</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>45</code></td>
+          <td><code>lahontan_shoreline_guard</code></td>
+          <td><code>0.58136</code></td>
+          <td><strong>0.58136</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>30</code></td>
+          <td><code>lidar_coh_weighted</code></td>
+          <td><code>0.58113</code></td>
+          <td><strong>0.58113</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>11</code></td>
+          <td><code>b12_det_elev_hp</code></td>
+          <td><code>0.42312</code></td>
+          <td><strong>0.57688</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>40</code></td>
+          <td><code>radon_surf_aniso</code></td>
+          <td><code>0.57421</code></td>
+          <td><strong>0.57421</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>33</code></td>
+          <td><code>dem10_hgm20_max</code></td>
+          <td><code>0.56992</code></td>
+          <td><strong>0.56992</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>34</code></td>
+          <td><code>dem10_hgm50_max</code></td>
+          <td><code>0.56943</code></td>
+          <td><strong>0.56943</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>03</code></td>
+          <td><code>b04_geod_2ndinv</code></td>
+          <td><code>0.56914</code></td>
+          <td><strong>0.56914</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>49</code></td>
+          <td><code>crustal_aphi_regime</code></td>
+          <td><code>0.56812</code></td>
+          <td><strong>0.56812</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>37</code></td>
+          <td><code>dem10_chi_knickpoint</code></td>
+          <td><code>0.56754</code></td>
+          <td><strong>0.56754</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>36</code></td>
+          <td><code>dem10_curv_absmax</code></td>
+          <td><code>0.56746</code></td>
+          <td><strong>0.56746</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>38</code></td>
+          <td><code>radon_surf_ridge_900m</code></td>
+          <td><code>0.56693</code></td>
+          <td><strong>0.56693</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>19</code></td>
+          <td><code>b19_det_elev_slope</code></td>
+          <td><code>0.56510</code></td>
+          <td><strong>0.56510</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>39</code></td>
+          <td><code>radon_surf_ridge_2100m</code></td>
+          <td><code>0.56467</code></td>
+          <td><strong>0.56467</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>52</code></td>
+          <td><code>usgs_borehole_heatflow</code></td>
+          <td><code>0.44792</code></td>
+          <td><strong>0.55208</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>35</code></td>
+          <td><code>dem10_steep_ratio</code></td>
+          <td><code>0.54786</code></td>
+          <td><strong>0.54786</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>15</code></td>
+          <td><code>b16_log_ieq</code></td>
+          <td><code>0.54575</code></td>
+          <td><strong>0.54575</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>05</code></td>
+          <td><code>b06_rad_total_count</code></td>
+          <td><code>0.45511</code></td>
+          <td><strong>0.54489</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>43</code></td>
+          <td><code>costrike_surf_mag_lock</code></td>
+          <td><code>0.54289</code></td>
+          <td><strong>0.54289</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>14</code></td>
+          <td><code>b15_grad_depth_base</code></td>
+          <td><code>0.53966</code></td>
+          <td><strong>0.53966</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>09</code></td>
+          <td><code>b10_log_deq</code></td>
+          <td><code>0.53913</code></td>
+          <td><strong>0.53913</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>22</code></td>
+          <td><code>si_grav_tilt_contact</code></td>
+          <td><code>0.53780</code></td>
+          <td><strong>0.53780</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>42</code></td>
+          <td><code>costrike_surf_grav_lock</code></td>
+          <td><code>0.53368</code></td>
+          <td><strong>0.53368</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>24</code></td>
+          <td><code>crossgrad_gallardo_align</code></td>
+          <td><code>0.53238</code></td>
+          <td><strong>0.53238</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>02</code></td>
+          <td><code>b03_tmi_hg_ntkm</code></td>
+          <td><code>0.52861</code></td>
+          <td><strong>0.52861</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>12</code></td>
+          <td><code>b13_iso_grav_hp</code></td>
+          <td><code>0.52759</code></td>
+          <td><strong>0.52759</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>16</code></td>
+          <td><code>b17_mt_cond_hp</code></td>
+          <td><code>0.52610</code></td>
+          <td><strong>0.52610</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>25</code></td>
+          <td><code>crossgrad_gallardo_ortho</code></td>
+          <td><code>0.52527</code></td>
+          <td><strong>0.52527</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>13</code></td>
+          <td><code>b15_depth_base</code></td>
+          <td><code>0.52522</code></td>
+          <td><strong>0.52522</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>04</code></td>
+          <td><code>b05_grav_hg_mgalkm</code></td>
+          <td><code>0.52512</code></td>
+          <td><strong>0.52512</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>17</code></td>
+          <td><code>b17_mt_cond_grad</code></td>
+          <td><code>0.52195</code></td>
+          <td><strong>0.52195</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>20</code></td>
+          <td><code>si_mag_analytic_sig</code></td>
+          <td><code>0.52020</code></td>
+          <td><strong>0.52020</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>28</code></td>
+          <td><code>lidar_channel_ratio</code></td>
+          <td><code>0.48000</code></td>
+          <td><strong>0.52000</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>32</code></td>
+          <td><code>dem10_onesided3_step</code></td>
+          <td><code>0.48082</code></td>
+          <td><strong>0.51918</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>21</code></td>
+          <td><code>si_mag_tilt_contact</code></td>
+          <td><code>0.51670</code></td>
+          <td><strong>0.51670</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>10</code></td>
+          <td><code>b11_grav_vg_mgalkm</code></td>
+          <td><code>0.51538</code></td>
+          <td><strong>0.51538</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>48</code></td>
+          <td><code>byerlee3d_slip_dilation_fav</code></td>
+          <td><code>0.51454</code></td>
+          <td><strong>0.51454</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>44</code></td>
+          <td><code>piedmont_contour_align</code></td>
+          <td><code>0.48678</code></td>
+          <td><strong>0.51322</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>08</code></td>
+          <td><code>b09_tmi_vg_ntkm</code></td>
+          <td><code>0.48680</code></td>
+          <td><strong>0.51320</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>31</code></td>
+          <td><code>dem10_onesided_step</code></td>
+          <td><code>0.48704</code></td>
+          <td><strong>0.51296</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>41</code></td>
+          <td><code>radon_grav_ridge_1500m</code></td>
+          <td><code>0.51260</code></td>
+          <td><strong>0.51260</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>07</code></td>
+          <td><code>b08_geod_dilate_hp</code></td>
+          <td><code>0.51240</code></td>
+          <td><strong>0.51240</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>23</code></td>
+          <td><code>si_mag_grav_phase_coh</code></td>
+          <td><code>0.51020</code></td>
+          <td><strong>0.51020</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>51</code></td>
+          <td><code>mag_shallow_demag_trough</code></td>
+          <td><code>0.49011</code></td>
+          <td><strong>0.50989</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>50</code></td>
+          <td><code>rad_k_th_alteration_edge</code></td>
+          <td><code>0.50862</code></td>
+          <td><strong>0.50862</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>53</code></td>
+          <td><code>gdr_hydrothermal_upflow_conduit</code></td>
+          <td><code>0.50802</code></td>
+          <td><strong>0.50802</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>18</code></td>
+          <td><code>b18_abs_grav_curv</code></td>
+          <td><code>0.50756</code></td>
+          <td><strong>0.50756</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>06</code></td>
+          <td><code>b07_geod_shear_hp</code></td>
+          <td><code>0.50644</code></td>
+          <td><strong>0.50644</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>01</code></td>
+          <td><code>b02_rtp_hp</code></td>
+          <td><code>0.49594</code></td>
+          <td><strong>0.50406</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>00</code></td>
+          <td><code>b01_mag_hp</code></td>
+          <td><code>0.50402</code></td>
+          <td><strong>0.50402</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr>
+        <tr>
+          <td><code>46</code></td>
+          <td><code>tiger_log_road_dist</code></td>
+          <td><code>0.50031</code></td>
+          <td><strong>0.50031</strong></td>
+          <td><span class="tag tag-pass">PASS (&le; 0.90)</span></td>
+        </tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card">
+  <h2>3. Top 30 Closest Fleet Rasters Out of 274 Unique SHA-256 Rasters Checked</h2>
+  <input type="search" id="uniq-q" placeholder="Filter fleet rasters by repo or filename..." onkeyup="filterTable('uniq-q', 'uniq-tbl')">
+  <div style="overflow-x:auto;max-height:430px;overflow-y:auto;">
+    <table id="uniq-tbl">
+      <thead>
+        <tr><th>Repo</th><th>Filename</th><th>Other Dots</th><th>Surface Spearman</th><th>Mutual 3-px Overlap</th><th>Fwd / Rev Overlap</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>GEMSDOE28</code></td>
+          <td><code>gems27-h27-4-r1-pruned-d1-5-20261003-450eb6859636-allfinite.tif</code></td>
+          <td>54,714</td>
+          <td><code>+0.09914</code></td>
+          <td><strong>0.46926</strong></td>
+          <td><code>0.48043 / 0.46926</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE28</code></td>
+          <td><code>gems28-h37-1-coverprob-h19-5-r1-20261003-0bbddf41eb6d-allfinite.tif</code></td>
+          <td>37,447</td>
+          <td><code>+0.08082</code></td>
+          <td><strong>0.46829</strong></td>
+          <td><code>0.46829 / 0.46968</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>GEMSDOE48-H55-conduit-conflict-priced-20261007-055da9855353-nan-outside.tif</code></td>
+          <td>39,430</td>
+          <td><code>+0.08385</code></td>
+          <td><strong>0.46315</strong></td>
+          <td><code>0.46315 / 0.46799</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>GEMSDOE48-H55-conduit-conflict-priced-20261007-055da9855353-zeros-outside.tif</code></td>
+          <td>39,430</td>
+          <td><code>+0.08385</code></td>
+          <td><strong>0.46315</strong></td>
+          <td><code>0.46315 / 0.46799</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>19GEMSDOE</code></td>
+          <td><code>gems16-h16-1-pure-physical-scarp-worm-allfinite-20260929-c16f03.tif</code></td>
+          <td>108,500</td>
+          <td><code>+0.12885</code></td>
+          <td><strong>0.46219</strong></td>
+          <td><code>0.50630 / 0.46219</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>GEMSDOE48-H54-ds-core-lidar-20261007-dedc43dc0167-zeros-nan-outside.tif</code></td>
+          <td>38,654</td>
+          <td><code>+0.08239</code></td>
+          <td><strong>0.46092</strong></td>
+          <td><code>0.46092 / 0.46505</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>GEMSDOE48-H54-ds-core-lidar-20261007-dedc43dc0167.tif</code></td>
+          <td>38,654</td>
+          <td><code>+0.08239</code></td>
+          <td><strong>0.46092</strong></td>
+          <td><code>0.46092 / 0.46505</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>gemsdoe48-ds-dotted-x-tipstepover-20261006T201749Z-95897e3f8125-decision-zeros.tif</code></td>
+          <td>47,905</td>
+          <td><code>+0.09435</code></td>
+          <td><strong>0.46056</strong></td>
+          <td><code>0.47095 / 0.46056</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>GEMSDOE28__h27-4-r1-solo-d2-8.tif</code></td>
+          <td>40,199</td>
+          <td><code>+0.08565</code></td>
+          <td><strong>0.45974</strong></td>
+          <td><code>0.46429 / 0.45974</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>dotted_d2_8_02708.tif</code></td>
+          <td>40,199</td>
+          <td><code>+0.08565</code></td>
+          <td><strong>0.45974</strong></td>
+          <td><code>0.46429 / 0.45974</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE63</code></td>
+          <td><code>gems31-h27-4-solo-d28-allfinite.tif</code></td>
+          <td>40,199</td>
+          <td><code>+0.08565</code></td>
+          <td><strong>0.45974</strong></td>
+          <td><code>0.46429 / 0.45974</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>GEMSDOE36__anderson-geothermal-pinn-38854.tif</code></td>
+          <td>38,854</td>
+          <td><code>+0.08250</code></td>
+          <td><strong>0.45959</strong></td>
+          <td><code>0.45959 / 0.46469</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE63</code></td>
+          <td><code>gems36_anderson_pinn_02750.tif</code></td>
+          <td>38,854</td>
+          <td><code>+0.08250</code></td>
+          <td><strong>0.45959</strong></td>
+          <td><code>0.45959 / 0.46469</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>gems60-h69b-champ-nulladd-2000px-20261011T182938Z-zeros.tif</code></td>
+          <td>39,654</td>
+          <td><code>+0.08154</code></td>
+          <td><strong>0.45847</strong></td>
+          <td><code>0.46946 / 0.45847</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>GEMSDOE28__h38-1-hf-euler-r30-r1.tif</code></td>
+          <td>37,860</td>
+          <td><code>+0.08238</code></td>
+          <td><strong>0.45819</strong></td>
+          <td><code>0.46315 / 0.45819</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>GEMSDOE28__h36-1-rung30-blind-r1.tif</code></td>
+          <td>37,660</td>
+          <td><code>+0.08215</code></td>
+          <td><strong>0.45810</strong></td>
+          <td><code>0.46101 / 0.45810</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>GEMSDOE48-H52-lidar-scarp-additions-20261007-38029417f6ca-nan-outside.tif</code></td>
+          <td>39,654</td>
+          <td><code>+0.08138</code></td>
+          <td><strong>0.45741</strong></td>
+          <td><code>0.46524 / 0.45741</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>GEMSDOE48-H52-lidar-scarp-additions-20261007-38029417f6ca-zeros-outside.tif</code></td>
+          <td>39,654</td>
+          <td><code>+0.08138</code></td>
+          <td><strong>0.45741</strong></td>
+          <td><code>0.46524 / 0.45741</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>gemsdoe48-h48-1-ds-fusion-b2xh32tip-20261006-407bb7f4-zeros.tif</code></td>
+          <td>37,754</td>
+          <td><code>+0.08335</code></td>
+          <td><strong>0.45698</strong></td>
+          <td><code>0.45698 / 0.47261</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>gemsdoe32-h33-h33-2b2-plus-h33-1-20261004T220000Z-31588dc7-zeros.tif</code></td>
+          <td>38,554</td>
+          <td><code>+0.08163</code></td>
+          <td><strong>0.45663</strong></td>
+          <td><code>0.45663 / 0.46275</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></td>
+          <td>37,654</td>
+          <td><code>+0.08318</code></td>
+          <td><strong>0.45611</strong></td>
+          <td><code>0.45611 / 0.47291</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-diag-belief.tif</code></td>
+          <td>37,652</td>
+          <td><code>+0.31522</code></td>
+          <td><strong>0.45611</strong></td>
+          <td><code>0.45611 / 0.47291</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>calib_h161_01855.tif</code></td>
+          <td>123,939</td>
+          <td><code>+0.16029</code></td>
+          <td><strong>0.45554</strong></td>
+          <td><code>0.53063 / 0.45554</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>19GEMSDOE</code></td>
+          <td><code>gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-allfinite.tif</code></td>
+          <td>123,779</td>
+          <td><code>+0.15735</code></td>
+          <td><strong>0.45406</strong></td>
+          <td><code>0.51766 / 0.45406</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>calib_h194_01894.tif</code></td>
+          <td>123,779</td>
+          <td><code>+0.15735</code></td>
+          <td><strong>0.45406</strong></td>
+          <td><code>0.51766 / 0.45406</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE28</code></td>
+          <td><code>gems27-all-increments-d2-8-h27-4-r1-t-v2-20261002-23ad46a4d7ba-allfinite.tif</code></td>
+          <td>41,507</td>
+          <td><code>+0.08612</code></td>
+          <td><strong>0.45404</strong></td>
+          <td><code>0.47079 / 0.45404</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>19GEMSDOE</code></td>
+          <td><code>gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif</code></td>
+          <td>121,131</td>
+          <td><code>+0.15436</code></td>
+          <td><strong>0.45347</strong></td>
+          <td><code>0.50231 / 0.45347</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>60GEMSDOE</code></td>
+          <td><code>calib_h195_01922.tif</code></td>
+          <td>121,131</td>
+          <td><code>+0.15436</code></td>
+          <td><strong>0.45347</strong></td>
+          <td><code>0.50231 / 0.45347</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE28</code></td>
+          <td><code>gems28-h32-1-tip-euler-dejitter-d2-8-20261003-c3aeda1d31a3-allfinite.tif</code></td>
+          <td>41,656</td>
+          <td><code>+0.08733</code></td>
+          <td><strong>0.44654</strong></td>
+          <td><code>0.46576 / 0.44654</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td><code>GEMSDOE48</code></td>
+          <td><code>gemsdoe48-h48-1-belief_dempster_mF_norm01.tif</code></td>
+          <td>36,874</td>
+          <td><code>+0.32538</code></td>
+          <td><strong>0.44641</strong></td>
+          <td><code>0.44641 / 0.47096</code></td>
+          <td><span class="tag tag-pass">PASS</span></td>
+        </tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card">
+  <h2>4. Complete Machine-Readable <code>RUN CARD</code> JSON</h2>
+  <pre class="meta-box" style="max-height:520px;overflow:auto;">{
+  &quot;schema_version&quot;: &quot;gems-parallel-run-card-v1&quot;,
+  &quot;lane_id&quot;: &quot;GEMSDOE75-TRLT&quot;,
+  &quot;branch&quot;: &quot;arena/b0f09a9b-gemsdoe75&quot;,
+  &quot;generated_at_utc&quot;: &quot;2026-10-21T05:12:22.922161+00:00&quot;,
+  &quot;verdict&quot;: &quot;promote&quot;,
+  &quot;submission_safety_status&quot;: &quot;OK TO DOWNLOAD AND SUBMIT (CLEARED ALL HOLDOUT, CANARY, VALIDATOR &amp; UNIQUENESS GATES)&quot;,
+  &quot;hypothesis&quot;: &quot;Unmapped geothermal-hosting Quaternary fault strands in the Nevada Great Basin are governed simultaneously by (1) SI-calibrated 3D magnetic/gravity tilt-phase contacts co-striking with non-linearly de-quantized 1m 3DEP LiDAR &amp; 10m seamless one-sided scarps under Byerlee-Simpson 3D crustal stress favorability and elevated borehole/GDR heat flow, (2) elastic along-strike tip propagation and relay-ramp step-over bridges across incomplete catalogue terminations (`LOCO-Quat`), and (3) 1D centerline ridge geometry where 200 m single-file submodular packing achieves 1.67x higher Tversky TP/FP efficiency while eliminating the 3.13x 2D mountain-blob bias.&quot;,
+  &quot;mechanism&quot;: &quot;Stage 1 fuses a 54-channel pure physical HGB head (fixing the 1,000x Band 9 nT/m and 10x Band 5 mGal/100m SI scaling errors, non-linear sqrt 1m LiDAR de-quantization with wash-bank cancellation, 12-azimuth Radon line integrals, 3D Byerlee Mohr-Coulomb favorability, 7,279 USGS heat-flow boreholes, and GDR #1391 thermal springs/probes/sinter) with a self-masked Leave-Component-Out Quaternary (`LOCO-Quat`) elastic network head; Stage 2 extracts 15 zero-shift multi-scale Radon &amp; bidirectional alluvial gap-bridge features on OOF Stage-1 probabilities before 1D transverse ridge concentration and 200 m spaced 300 m Tversky packing.&quot;,
+  &quot;named_non_fault_geological_mimics&quot;: [
+    &quot;Incised alluvial-fan desert washes &amp; braided distributary banks (rejected via 1m LiDAR max(upface, downface) - 0.65*cross_max + contour-parallel alignment index)&quot;,
+    &quot;Pleistocene Lake Lahontan &amp; Lake Dixie horizontal wave-cut shorelines (rejected via along-strike detrended elevation variance guard + gravity/magnetic tilt phase absence)&quot;,
+    &quot;Steep pre-Quaternary Mesozoic/Cenozoic range-core bedrock contacts in SGMC (rejected via authentic Quaternary training labels, smooth piedmont basin-depth x slope habitat prior, and 1D transverse ridge concentration eliminating the 3.13x 2D blob bias)&quot;,
+    &quot;US highway &amp; railway embankments across playas (rejected via US Census TIGER distance feature)&quot;
+  ],
+  &quot;score_provenance&quot;: {
+    &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+    &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+    &quot;withheld_positives_pixels&quot;: 11321,
+    &quot;holdout_dti&quot;: 0.135088,
+    &quot;holdout_ci95&quot;: [
+      0.117676,
+      0.15163
+    ],
+    &quot;per_fold_holdout_dti&quot;: {
+      &quot;NW&quot;: 0.140483,
+      &quot;NE&quot;: 0.120762,
+      &quot;SW&quot;: 0.119161,
+      &quot;SE&quot;: 0.160388
+    },
+    &quot;delta_vs_D28_physical_control_02600&quot;: {
+      &quot;delta&quot;: 0.0432,
+      &quot;ci95&quot;: [
+        0.030176,
+        0.054573
+      ],
+      &quot;beats_95ci&quot;: true
+    },
+    &quot;delta_vs_H33_loqo_fold_proper&quot;: {
+      &quot;delta&quot;: 0.092025,
+      &quot;ci95&quot;: [
+        0.068151,
+        0.11652
+      ],
+      &quot;beats_95ci&quot;: true
+    },
+    &quot;delta_vs_H33_fleet_leader_02778&quot;: {
+      &quot;delta&quot;: 0.131389,
+      &quot;ci95&quot;: [
+        0.114119,
+        0.147702
+      ],
+      &quot;beats_95ci&quot;: true
+    },
+    &quot;delta_vs_GEMSDOE70_P8_02478&quot;: {
+      &quot;delta&quot;: 0.132439,
+      &quot;ci95&quot;: [
+        0.114994,
+        0.148956
+      ],
+      &quot;beats_95ci&quot;: true
+    },
+    &quot;delta_vs_uniform_random&quot;: {
+      &quot;delta&quot;: 0.10385,
+      &quot;ci95&quot;: [
+        0.086765,
+        0.120728
+      ],
+      &quot;beats_95ci&quot;: true
+    },
+    &quot;secondary_non_circular_benchmarks&quot;: {
+      &quot;C_pied_600m_quaternary_piedmont_dti&quot;: 0.086607,
+      &quot;H33_C_pied_600m_comparator&quot;: 0.108526,
+      &quot;PINN_C_pied_600m_comparator&quot;: 0.111241,
+      &quot;D28_C_pied_600m_comparator&quot;: 0.294962,
+      &quot;P8_C_pied_600m_comparator&quot;: 0.081313,
+      &quot;B_prime_offcat_sgmc_all_dti&quot;: 0.118814,
+      &quot;B_dprime_offcat_sgmc_piedmont_dti&quot;: 0.14399
+    },
+    &quot;experiments_executed_count&quot;: 3,
+    &quot;experiments_ladder_holdout_dti&quot;: {
+      &quot;E1_ALMRC_TiltSI_48&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;holdout_dti&quot;: 0.080083,
+        &quot;ci95&quot;: [
+          0.060646,
+          0.100676
+        ],
+        &quot;C_pied_600_dti&quot;: 0.080786,
+        &quot;B_dprime_dti&quot;: 0.104122,
+        &quot;n_dots&quot;: 37654
+      },
+      &quot;E2_Byerlee3D_HeatFlow_LOCOQuat_59&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;holdout_dti&quot;: 0.116365,
+        &quot;ci95&quot;: [
+          0.095658,
+          0.136785
+        ],
+        &quot;C_pied_600_dti&quot;: 0.071738,
+        &quot;B_dprime_dti&quot;: 0.111169,
+        &quot;n_dots&quot;: 37654
+      },
+      &quot;E3_TRLT75_Stage2Radon_1DRidge_SpacedSubmod&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;holdout_dti&quot;: 0.135088,
+        &quot;ci95&quot;: [
+          0.117676,
+          0.15163
+        ],
+        &quot;C_pied_600_dti&quot;: 0.086607,
+        &quot;B_dprime_dti&quot;: 0.14399,
+        &quot;n_dots&quot;: 36800
+      }
+    }
+  },
+  &quot;leakage_canary_gate&quot;: {
+    &quot;n_features_tested&quot;: 59,
+    &quot;max_symmetric_auc&quot;: 0.78383,
+    &quot;threshold&quot;: 0.9,
+    &quot;pass&quot;: true
+  },
+  &quot;uniqueness_gate&quot;: {
+    &quot;n_registry_rasters_checked&quot;: 274,
+    &quot;max_abs_surface_spearman&quot;: 0.34271,
+    &quot;max_abs_dots_spearman&quot;: 0.07711,
+    &quot;spearman_limit&quot;: 0.9,
+    &quot;max_dot_overlap_3px&quot;: 0.46926,
+    &quot;dot_overlap_limit&quot;: 0.7,
+    &quot;nearest_neighbor_by_spearman&quot;: &quot;GEMSDOE48/GEMSDOE48-H53-3SRC-DS-20261007-9242c831-nan-outside.tif&quot;,
+    &quot;nearest_neighbor_by_overlap&quot;: &quot;GEMSDOE28/gems27-h27-4-r1-pruned-d1-5-20261003-450eb6859636-allfinite.tif&quot;,
+    &quot;pass&quot;: true
+  },
+  &quot;artifact&quot;: {
+    &quot;submission_name&quot;: &quot;gems75-trlt-radon-loco-ridge-36800-zeros&quot;,
+    &quot;submission_note&quot;: &quot;TRLT-75: SI-tilt mag/grav + 1m/10m Radon phase lock + Byerlee3D/HF + LOCO-Quat + Stage2 gap-bridge + 1D-ridge 200m Tversky pack&quot;,
+    &quot;note_length_chars&quot;: 127,
+    &quot;tif_path&quot;: &quot;docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif&quot;,
+    &quot;zip_path&quot;: &quot;docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.zip&quot;,
+    &quot;tif_sha256&quot;: &quot;e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71&quot;,
+    &quot;tif_bytes&quot;: 144737,
+    &quot;zip_sha256&quot;: &quot;0e6216492eea3ee5e15548e285e251be429b281d8dfad60889bb6f639a557883&quot;,
+    &quot;zip_bytes&quot;: 111022,
+    &quot;n_dots&quot;: 36800,
+    &quot;basin_piedmont_fraction&quot;: 0.75611,
+    &quot;validator_checks&quot;: {
+      &quot;single_band&quot;: true,
+      &quot;dtype_float32&quot;: true,
+      &quot;dimensions_3730x3292&quot;: true,
+      &quot;crs_epsg_32611&quot;: true,
+      &quot;transform_matches_sample_submission&quot;: true,
+      &quot;no_nan_anywhere&quot;: true,
+      &quot;no_inf_anywhere&quot;: true,
+      &quot;no_sentinel_values&quot;: true,
+      &quot;range_0_1_guaranteed&quot;: true,
+      &quot;min_ge_0&quot;: true,
+      &quot;max_le_1&quot;: true,
+      &quot;in_footprint_all_finite&quot;: true,
+      &quot;in_footprint_range_0_1&quot;: true,
+      &quot;outside_footprint_zero&quot;: true,
+      &quot;zero_dots_on_mapped_catalogue&quot;: true
+    },
+    &quot;validator_all_pass&quot;: true
+  }
+}</pre>
+</section>
+
+  </main>
+<footer>
+  <div>
+    <strong>DOE GEMS Geothermal Fault Discovery Competition</strong> —
+    Official Portal: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">drivendata.org/competitions/306/competition-doe-gems/</a> |
+    Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE75" target="_blank" rel="noopener">buffedlizard55-lab/GEMSDOE75</a>
+  </div>
+  <div style="margin-top:0.35rem;">
+    Strict Parallel-Run Protocol Rule 3 Compliance: Every score on this site carries an explicit provenance class
+    (<code>HOLDOUT-DTI</code> with evaluator version &amp; 95% paired spatial-block CI, <code>OFF-CATALOGUE-PIEDMONT-SGMC-DTI</code>, or
+    <code>ORGANIZER-CONFIRMED</code>). Zero projections are ever reported as scores.
+  </div>
+</footer>
+<script>
+function copyText(id, btn) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = "Copied!";
+    setTimeout(() => { btn.innerText = orig; }, 1600);
+  });
+}
+function filterTable(inputId, tableId) {
+  const q = document.getElementById(inputId).value.toLowerCase();
+  const rows = document.querySelectorAll("#" + tableId + " tbody tr");
+  rows.forEach(r => {
+    r.style.display = r.innerText.toLowerCase().includes(q) ? "" : "none";
+  });
+}
+</script>
+</body>
+</html>

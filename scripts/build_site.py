@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from html import escape
 import json
+import shutil
 from pathlib import Path
 import markdown
 
@@ -25,7 +26,7 @@ document.addEventListener('click',function(e){
 </script>"""
 
 
-def page_shell(title: str, content: str, active: str = "", prefix: str = "") -> str:
+def page_shell(title: str, content: str, active: str = "") -> str:
     links = [
         ("index.html", "Overview & Download"),
         ("executive-summary.html", "Executive Summary & Submit Guide"),
@@ -39,7 +40,7 @@ def page_shell(title: str, content: str, active: str = "", prefix: str = "") -> 
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="GEMSDOE75: Cover-adaptive multi-physics, 2015-2026 3D ComCat subsurface rupture planes, and exact 6-shell submodular DTI fault prediction for DOE GEMS (DrivenData #306).">
-<title>{escape(title)} · GEMSDOE75</title><link rel="stylesheet" href="{prefix}assets/style.css"></head>
+<title>{escape(title)} · GEMSDOE75</title><link rel="stylesheet" href="assets/style.css"></head>
 <body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="index.html"><span class="mark">G/75</span> GEMSDOE<span class="muted">75</span></a><nav aria-label="Main navigation">{nav}</nav></header>
 <main id="main">{content}</main><footer><strong>Evidence before emission · Zero live slots consumed by automation.</strong><span>Audited 21 October 2026 · Evaluator: gems57-pooled-hide-v2</span><a href="https://github.com/buffedlizard55-lab/GEMSDOE75">GitHub Repository ↗</a></footer>{COPY_JS}</body></html>
 """
@@ -49,7 +50,7 @@ def download_banner(card: dict, prefix: str = "") -> str:
     sub = card["submission"]
     tif_url = sub["tif_path"] if prefix == "" else sub["tif_path"].removeprefix("docs/")
     zip_url = sub["zip_path"] if prefix == "" else sub["zip_path"].removeprefix("docs/")
-    rc_url = f"{prefix}evidence/run-card.json"
+    rc_url = "evidence/run-card.json"
     kb_tif = sub["tif_bytes"] / 1024.0
     kb_zip = sub["zip_bytes"] / 1024.0
     u_geo = card["registry_uniqueness"]["final_emitted_geotiff"]
@@ -75,22 +76,43 @@ def download_banner(card: dict, prefix: str = "") -> str:
   <div class="meta-card" aria-label="Copyable submission metadata">
     <div class="meta-row"><div><strong>Submission Name</strong><br><code>{escape(sub['submission_name'])}</code></div><button class="copy-btn" type="button" data-copy="{escape(sub['submission_name'])}">Copy</button></div>
     <div class="meta-row"><div><strong>Portal Note ({sub['submission_note_chars']}/140 chars)</strong><br><code>{escape(sub['submission_note'])}</code></div><button class="copy-btn" type="button" data-copy="{escape(sub['submission_note'])}">Copy</button></div>
-    <div class="meta-row"><div><strong>GeoTIFF SHA-256 ({sub['emitted_positive_pixels']:,} dots)</strong><br><code>{sub['tif_sha256'][:28]}…{sub['tif_sha256'][-12:]}</code></div><button class="copy-btn" type="button" data-copy="{sub['tif_sha256']}">Copy Hash</button></div>
+    <div class="meta-row"><div><strong>GeoTIFF SHA-256 ({sub['emitted_positive_pixels']:,} dots)</strong><br><code>{sub['tif_sha256']}</code></div><button class="copy-btn" type="button" data-copy="{sub['tif_sha256']}">Copy Hash</button></div>
   </div>
 </div>
 </section>"""
 
 
 def build_for_prefix(prefix: str, out_dir: Path, card: dict, audit: dict, exp: dict, canary: dict, irregs: list[dict], inv: dict) -> None:
-    doc_asset = "docs/assets/" if prefix == "" else "assets/"
+    doc_asset = "docs/assets/" if out_dir == ROOT else "assets/"
     sn = card["holdout_dti"]["suite_N_whole_component_primary"]
     sq = card["holdout_dti"]["suite_Q_blind_quadrants_8km"]
     sd = card["holdout_dti"]["suite_D_detached_splays_gt400m"]
     sub = card["submission"]
     banner = download_banner(card, prefix=prefix)
 
+    # Optional sibling parallel lane summary (`evidence/run_card.json`) for multi-lane selector comparison
+    sibling_block = ""
+    sib_path = ROOT / "evidence/run_card.json"
+    if sib_path.exists():
+        sib = json.loads(sib_path.read_text())
+        s_art = sib["artifact"]
+        s_tif = f"docs/{s_art['tif_path'].removeprefix('docs/')}" if prefix == "" else s_art["tif_path"].removeprefix("docs/")
+        primary_tif = sub["tif_path"] if prefix == "" else sub["tif_path"].removeprefix("docs/")
+        sibling_block = f"""
+<section class="panel" aria-labelledby="multi-lane-heading" style="margin-bottom:28px">
+  <p class="eyebrow">PARALLEL MULTI-LANE HUMAN SELECTOR BOARD (MUTUALLY ORTHOGONAL: 3-PX OVERLAP 0.4651 &le; 0.70)</p>
+  <h3 id="multi-lane-heading">Active Promoted Parallel Candidates Ready for Weekly Slot Selection (Max 3/Week)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Lane</th><th>GeoTIFF Download</th><th>Dots</th><th>Holdout DTI</th><th>Cross-Lane 3px Overlap</th><th>Full SHA-256 Receipt</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lane H75-1 (Primary)</strong><br>Multi-Physics + 2015–26 ComCat 3D + Submodular</td><td><a href="{escape(primary_tif)}" download><code>{escape(Path(sub['tif_path']).name)}</code></a></td><td>29,953</td><td>Suite N: <strong>{sn['candidate_dti']:.5f}</strong><br>Suite Q: <strong>{sq['candidate_dti']:.5f}</strong><br>Suite D: <strong>{sd['candidate_dti']:.5f}</strong></td><td>Reference primary</td><td><code>{sub['tif_sha256']}</code></td></tr>
+      <tr><td><strong>Sibling Lane TRLT-75</strong><br>SI-Calibrated Radon Ridge + Byerlee LOCO</td><td><a href="{escape(s_tif)}" download><code>{escape(Path(s_art['tif_path']).name)}</code></a></td><td>{s_art['n_dots']:,}</td><td>LOCO Holdout: <strong>{sib['score_provenance']['holdout_dti']:.5f}</strong></td><td><strong>0.4651</strong> (&le; 0.70 PASS)</td><td><code>{s_art['tif_sha256']}</code></td></tr>
+    </tbody>
+  </table></div>
+</section>"""
+
     # 1. OVERVIEW (`index.html`)
-    home = f"""{banner}
+    home = f"""{banner}{sibling_block}
 <section class="hero"><p class="eyebrow">DOE GEMS PRIZE CHALLENGE (DRIVENDATA #306) · LANE H75-1</p>
 <h1>Seeing buried geothermal faults beneath flat Basin-and-Range playas.</h1>
 <p class="lede">Prior GEMSDOE submissions weighted surface DEM scarps at 90% and plateaued at <code>0.2778</code> (owner-reported H33) versus <code>0.4413</code> on the live leaderboard (<code>ORGANIZER-CONFIRMED</code>, 21 Oct 2026). <strong>GEMSDOE75</strong> fuses true upward-continued RTP magnetic &amp; Bouguer gravity tilt worms, USGS 3D MT clay-cap edges, official 2015–2026 USGS ANSS ComCat 3D hypocentral rupture planes, and fold-visible fault relay kinematics under an exact 6-shell Bernoulli tail submodular DTI allocator.</p></section>
@@ -140,7 +162,7 @@ def build_for_prefix(prefix: str, out_dir: Path, card: dict, audit: dict, exp: d
   <div><h2>Ready to review or upload via Human Selector?</h2><p>Exact 6-step portal submission checklist, SHA-256 verification commands, and fix for the <code>Predicted values must be in range [0, 1]</code> error.</p></div>
   <a class="button secondary" href="executive-summary.html">Open Executive Summary &amp; Submit Guide →</a>
 </section>"""
-    (out_dir / "index.html").write_text(page_shell("Overview & Download", home, "index.html", prefix=prefix))
+    (out_dir / "index.html").write_text(page_shell("Overview & Download", home, "index.html"))
 
     # 2. EXECUTIVE SUMMARY & STEP-BY-STEP SUBMIT GUIDE (`executive-summary.html`)
     exec_html = f"""{banner}
@@ -186,7 +208,7 @@ def build_for_prefix(prefix: str, out_dir: Path, card: dict, audit: dict, exp: d
   </table></div>
 </section>"""
     (out_dir / "executive-summary.html").write_text(
-        page_shell("Executive Summary & Submit Guide", exec_html, "executive-summary.html", prefix=prefix)
+        page_shell("Executive Summary & Submit Guide", exec_html, "executive-summary.html")
     )
 
     # 3. RESEARCH REVIEW (`research.html`)
@@ -198,7 +220,7 @@ def build_for_prefix(prefix: str, out_dir: Path, card: dict, audit: dict, exp: d
 <p class="eyebrow">PEER-REVIEWED SCIENTIFIC REPORT · ZERO SCORE PROJECTIONS</p>
 <article class="prose">{md_html}</article>"""
     (out_dir / "research.html").write_text(
-        page_shell("Scientific Review & Hypotheses", res_html, "research.html", prefix=prefix)
+        page_shell("Scientific Review & Hypotheses", res_html, "research.html")
     )
 
     # 4. EVIDENCE, CANARIES, IRREGULARITIES & SOURCES (`evidence.html`)
@@ -225,9 +247,9 @@ def build_for_prefix(prefix: str, out_dir: Path, card: dict, audit: dict, exp: d
 <h1>Auditable receipts, 46 leakage canaries, and official source verification.</h1>
 
 <div class="cards">
-  <article><span class="number">RECEIPT 01</span><h3>Official Parallel-Run Card</h3><p>Complete schema receipt with hypothesis, mimic, 3-suite <code>HOLDOUT-DTI</code> CIs, registry uniqueness, and SHA-256 hashes.</p><a href="{prefix}evidence/run-card.json" download>Download run-card.json →</a></article>
-  <article><span class="number">RECEIPT 02</span><h3>Byte-Level Candidate Audit</h3><p>23 pinned <code>gems57</code> tools, 15 on-disk GeoTIFF/ZIP checks, and witness halo saturation certificate.</p><a href="{prefix}evidence/audit.json" download>Download audit.json →</a></article>
-  <article><span class="number">RECEIPT 03</span><h3>Experiments &amp; 46 Canaries</h3><p>Full bootstrap CI matrices across 10 arms plus single-feature ROC-AUC leakage scan (0/46 alarms).</p><a href="{prefix}evidence/experiments-h75.json" download>experiments-h75.json →</a><br><a href="{prefix}evidence/leakage-canaries.json" download>leakage-canaries.json →</a></article>
+  <article><span class="number">RECEIPT 01</span><h3>Official Parallel-Run Card</h3><p>Complete schema receipt with hypothesis, mimic, 3-suite <code>HOLDOUT-DTI</code> CIs, registry uniqueness, and SHA-256 hashes.</p><a href="evidence/run-card.json" download>Download run-card.json →</a></article>
+  <article><span class="number">RECEIPT 02</span><h3>Byte-Level Candidate Audit</h3><p>23 pinned <code>gems57</code> tools, 15 on-disk GeoTIFF/ZIP checks, and witness halo saturation certificate.</p><a href="evidence/audit.json" download>Download audit.json →</a></article>
+  <article><span class="number">RECEIPT 03</span><h3>Experiments &amp; 46 Canaries</h3><p>Full bootstrap CI matrices across 10 arms plus single-feature ROC-AUC leakage scan (0/46 alarms).</p><a href="evidence/experiments-h75.json" download>experiments-h75.json →</a><br><a href="evidence/leakage-canaries.json" download>leakage-canaries.json →</a></article>
 </div>
 
 <section class="prose">
@@ -266,7 +288,7 @@ def build_for_prefix(prefix: str, out_dir: Path, card: dict, audit: dict, exp: d
   </table></div></details>
 </section>"""
     (out_dir / "evidence.html").write_text(
-        page_shell("Evidence, Canaries & Sources", evid_html, "evidence.html", prefix=prefix)
+        page_shell("Evidence, Canaries & Sources", evid_html, "evidence.html")
     )
 
 
@@ -281,8 +303,22 @@ def main() -> None:
     if card["verdict"]["decision"] != "promote" or not card["verdict"]["format_and_range_valid"]:
         raise ValueError("Refusing to publish download banner for an invalid or unpromoted candidate")
 
+    # Sync stylesheet & JSON receipts into `docs/` so BOTH `/` and `/docs/` are 100% self-contained
+    (ROOT / "docs/assets").mkdir(parents=True, exist_ok=True)
+    (ROOT / "docs/evidence").mkdir(parents=True, exist_ok=True)
+    (ROOT / "docs/assets/style.css").write_bytes((ROOT / "assets/style.css").read_bytes())
+    for jf in (
+        "run-card.json",
+        "audit.json",
+        "experiments-h75.json",
+        "leakage-canaries.json",
+        "audit-irregularities.json",
+        "baseline-holdout-table.json",
+    ):
+        (ROOT / "docs/evidence" / jf).write_bytes((ROOT / "evidence" / jf).read_bytes())
+
     build_for_prefix("", ROOT, card, audit, exp, canary, irregs, inv)
-    build_for_prefix("../", ROOT / "docs", card, audit, exp, canary, irregs, inv)
+    build_for_prefix("docs/", ROOT / "docs", card, audit, exp, canary, irregs, inv)
 
 
 if __name__ == "__main__":

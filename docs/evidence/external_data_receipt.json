@@ -1,0 +1,193 @@
+{
+  "evidence_class": "DATA-MEASUREMENT",
+  "n_external_files": 31,
+  "upstream_fix_applied": "IR-75-FETCH-SHA: full 64-hex digest on external/lidar_scarp_features.json",
+  "files": {
+    "external/lidar_scarp_features_u8.tif": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 36943606,
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568"
+    },
+    "external/lidar_scarp_features.json": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 3531,
+      "sha256": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41"
+    },
+    "external/geodawn_rad_u8.tif": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 26612970,
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+    },
+    "external/geodawn_extensions_u8.tif": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 27132925,
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b"
+    },
+    "external/gdr_wellspring_in_footprint.csv": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 2146771,
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea"
+    },
+    "external/gdr_volcanic_vents_in_footprint.csv": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 672,
+      "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf"
+    },
+    "external/derived_gdr_2m_probes_100m_u8.tif": {
+      "repo": "GEMSDOE30",
+      "ref": "HEAD",
+      "bytes": 78021,
+      "sha256": "7ac3cfdf2412f7f8a8b82d928115888c510f106f0254fb0b3988448db2f3b6ec"
+    },
+    "external/derived_gdr_paleo_100m_u8.tif": {
+      "repo": "GEMSDOE30",
+      "ref": "HEAD",
+      "bytes": 70221,
+      "sha256": "d6a3609bd7943fa5f1126a3cc688441aeceee261a76cd6a90a206830400066a4"
+    },
+    "external/2m_temperature_probe_INGENIOUS_regional_data.zip": {
+      "repo": "60GEMSDOE",
+      "ref": "main",
+      "bytes": 1080530,
+      "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3"
+    },
+    "external/paleo_geothermal_regional.zip": {
+      "repo": "60GEMSDOE",
+      "ref": "main",
+      "bytes": 84008,
+      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca"
+    },
+    "external/topo_10m_derived_100m_u8.tif": {
+      "repo": "60GEMSDOE",
+      "ref": "main",
+      "bytes": 32523329,
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4"
+    },
+    "external/dem10_chi_100m_i16.tif": {
+      "repo": "60GEMSDOE",
+      "ref": "main",
+      "bytes": 12777098,
+      "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5"
+    },
+    "external/dem10_chi_100m_sig_i32.tif": {
+      "repo": "60GEMSDOE",
+      "ref": "main",
+      "bytes": 2804587,
+      "sha256": "0ba7816bc082b8a71ebcb26596b5e330abb63231be94abad4e447eb316ffb95c"
+    },
+    "external/sb_heat_flow_in_footprint.csv": {
+      "repo": "GEMSDOE28",
+      "ref": "main",
+      "bytes": 909294,
+      "sha256": "9845263e658aeb66a4aeca6e64d995e74f0eb14b89768219ea9d223006dc8baf"
+    },
+    "external/sb_slip_tendency_in_footprint.csv": {
+      "repo": "GEMSDOE28",
+      "ref": "main",
+      "bytes": 25609539,
+      "sha256": "b40bc2c6b3194d250f2d536a55810bbe454567890e0d5f528782f014a6f8872b"
+    },
+    "external/tiger_road_distance_m.tif": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 10492276,
+      "sha256": "e5350423508968fa2d32b0a6ae0d3fb4ae3ea645e3b8736f0c8e7ad9ff2f2988"
+    },
+    "external/dem1m_high_prior_openness_lrm.npz": {
+      "repo": "19GEMSDOE",
+      "ref": "HEAD",
+      "bytes": 610575,
+      "sha256": "62f27929747ad3c35be4dd3e0257b0bde7d7bea8566474956e1711269ad451fe"
+    },
+    "external/derived_sgmc_faults_100m_u8.tif": {
+      "repo": "GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 198602,
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0"
+    },
+    "dem10/dem10_slope_max.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "fd46738e9a58a6f40c130c3c70f645525dbfc12d27b6ed149e596e6a379cbfaa"
+    },
+    "dem10/dem10_slope_mean.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "338b443c441db61120faf36437ec61dfcccaa569c41aa3099ed3accef5a35f95"
+    },
+    "dem10/dem10_slope_std.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "9c15e0e760d8255eb0473821a07cc09e4fe4b40746e6e37278e691f615c0f642"
+    },
+    "dem10/dem10_hgm20_max.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "f58df86b0be3b3dc54affc60dc7d77a95db3dafb9c1267eac4912c5d8e57526b"
+    },
+    "dem10/dem10_hgm50_max.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "1cca42538ec0c91951b578136893eb5d90cd1414c45257d2a72ebe80b29f0f40"
+    },
+    "dem10/dem10_hgm200_mean.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "9328f889f4d607f8530840da138741b7431da49d2432b0ab2da110a82984102b"
+    },
+    "dem10/dem10_steep_ratio_max.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "eaf3d5e24c6769ffb98665e75c9665dbaa16bdb79708900217dca955031e6828"
+    },
+    "dem10/dem10_resid_std.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "50db8caa815cb09cc695ec230f15f41e8e04cd9bef5fc09b07b06aeadd44a86e"
+    },
+    "dem10/dem10_resid_range.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "bbcf8a462ace31a80964ba8a7ab76fcbcb347deb4f4d2919166b3eda5c721b0c"
+    },
+    "dem10/dem10_curv_absmax.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "58e82f1301032b46b10344b9299b83e6ce5bed1ca83e320f078fa57321bff632"
+    },
+    "dem10/dem10_onesided.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "02d1d241de9534d307f314d0b2f8a857ceb1ce0d099fd7dee8872a83bd0271f8"
+    },
+    "dem10/dem10_onesided3.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "bca9faf8e0c572ecb1e77b6c94b0cb96c41e824873cb7747e0ece28b531598d2"
+    },
+    "dem10/dem10_valid_frac.f32.npy": {
+      "repo": "GEMSDOE10",
+      "ref": "ext/dem10-36343078537",
+      "bytes": 20669620,
+      "sha256": "35d7ef0719bfed93f9aed927afd8c51882283fc7316cab0f8c219c9302b92122"
+    }
+  }
+}

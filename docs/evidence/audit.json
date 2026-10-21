@@ -1,0 +1,176 @@
+{
+  "evidence_class": "RASTER-AND-CANDIDATE-AUDIT",
+  "date_utc": "2026-10-21",
+  "template_pin": "evidence/template-pin.json",
+  "input_manifest": "evidence/input-manifest.json",
+  "experiments_receipt": "evidence/experiments-h75.json",
+  "leakage_canaries_receipt": "evidence/leakage-canaries.json",
+  "saturation": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": ".cache/inputs/registry-witness.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+  },
+  "candidate_submission": {
+    "name": "gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1",
+    "tif_path": "docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+    "tif_sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490",
+    "tif_bytes": 128145,
+    "zip_path": "docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.zip",
+    "zip_sha256": "d758e62e7fd77cfcc0681b161fa76f776549a863e65d76302e0a2b896b9eca1c",
+    "zip_bytes": 92961,
+    "positive_pixels": 29953,
+    "catalogue_intersections": 0,
+    "outside_footprint_positive_pixels": 0,
+    "min_catalogue_distance_m": 223.61,
+    "median_catalogue_distance_m": 806.23,
+    "fraction_within_300m_of_mapped_trace": 0.005108,
+    "fraction_beyond_1km_blind_basin_splay": 0.404,
+    "comparison_vs_h33": {
+      "forward_overlap_3px": 0.4129803358595132,
+      "rank_and_jaccard": {
+        "spearman_on_dot_union": -0.970592062,
+        "n_dot_union": 66626,
+        "jaccard_dot_sets": 0.0147239816,
+        "spearman_full_footprint": 0.0228612065
+      }
+    },
+    "format_report": {
+      "path": "docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+      "bytes": 128145,
+      "sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0024393361527472734,
+      "n_nonzero": 29953,
+      "mass": 29953.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "submittable_check": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "h33_educational_only": {
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "validator": {
+      "path": ".cache/inputs/h33.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "n_nonzero": 37654,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "positive_pixels": 37654,
+    "catalogue_intersections": 0,
+    "median_catalogue_distance_m": 1964.68827043885,
+    "fraction_within_300m": 0.057656557072289796,
+    "forward_overlap_vs_witness": 1.0,
+    "rank_comparison": {
+      "spearman_on_dot_union": null,
+      "n_dot_union": 5167373,
+      "jaccard_dot_sets": 0.0072868748,
+      "spearman_full_footprint": 0.0582072611
+    }
+  },
+  "decision": "PROMOTE TO HUMAN SELECTOR: Candidate passes all 15 format/range [0,1] checks, 0/46 leakage canaries, 98/98 non-lattice geological registry overlap checks, and wins all 3 spatial holdout suites (Suite N: 0.2067, Suite Q: 0.2041, Suite D: 0.0679)."
+}

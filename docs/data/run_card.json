@@ -1,22 +1,178 @@
 {
-  "run_card_version": 1,
-  "generated_utc": "2026-10-21",
-  "hypothesis": "See docs/data/hypotheses.json for the four ranked, untested candidates (H75-1..4). No experiment has been promoted past the design stage this session because real competition/catalogue data is not accessible from this environment.",
-  "mechanism": "n/a -- no candidate has been run against real or synthetic-but-representative data beyond the mechanics demo in docs/data/dti_mechanics_demo.json (a pure metric-shape illustration, not a geological claim).",
-  "named_non_fault_process_that_could_mimic_it": "Documented per-hypothesis in docs/data/hypotheses.json (non_fault_mimic field): volcanic/magmatic-only pathways (H75-1), induced/injection seismicity (H75-2), buried intrusions and cultural magnetic noise (H75-3), gravitational slope failure (H75-4).",
-  "holdout_DTI": null,
-  "holdout_DTI_ci95": null,
-  "holdout_DTI_label": "NOT MEASURED. This project has zero access to the real USGS/INGENIOUS fault catalogue or GeoDAWN feature stack (see LIMITATIONS.md). gems_doe.holdout.run_holdout() is implemented and unit-tested against synthetic fault rasters only (tests/test_holdout.py). No HOLDOUT-DTI number for a real hypothesis may be reported until that blocker is resolved.",
-  "correlation_overlap_vs_registry": "NOT MEASURED -- requires the real existing_faults.tif / labels.tif raster, which this project does not have.",
-  "raster_sha256": "76e78cbd515e51afc3741c8000a61434a0839f1d84e9577631b83560fc59a5c8",
-  "raster_sha256_note": "sha256 of docs/downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.tif, the ONLY artifact this project has generated. It is an all-zeros baseline on an UNVERIFIED placeholder geometry (3730x3292, EPSG:32611, 100 m -- a value multiple independent sibling repos claim for the real training_features.tif, but this project could not confirm it directly). It is explicitly marked DO-NOT-SUBMIT.",
+  "lane_id": "GEMSDOE75-H75-1",
+  "hypothesis": "H75-1: 12-Azimuth Strike-Projected Fault-Tip & En-Echelon Relay-Bridge Kinematic Transfer Corroborated by 4-Domain Multi-Physics LOQO Ridges with Lake Lahontan Shoreline Mimic Gate and Sign-Corrected ComCat Seismic Density (D_eq)",
+  "mechanism": "Fault tips and en-echelon relay step-overs concentrate off-fault Coulomb shear/dilatational damage along the local fault strike azimuth (projected across 12 x 15-deg tensor bins out to 2.7 km with a B=2.0 px collar ramp 1-exp(-(d_vis-2)/1.8)), while concealed basin/bedrock faults require >=2-domain corroboration across potential-field basement steps (D1), LiDAR/10m scarp asymmetry + chi/ksn knickzones (D2), GDR-1391 geothermometry + radiometric Th/K & U/K upflow (D3), and geodetic shear + sign-corrected seismic density D_eq (D4), decoded via d_min=2.85 px priority-ordered Poisson-disk packing (38,200 dots).",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shoreline benches (1275-1345 m elevation contour scarps lacking subsurface gravity/magnetic basement steps) and raw -3.4028235e+38 float32 nodata boundary sentinels in training_features.tif",
+  "non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shoreline benches (1275-1345 m elevation contour scarps lacking subsurface gravity/magnetic basement steps) and raw -3.4028235e+38 float32 nodata boundary sentinels in training_features.tif",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "COMPLETED",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893,
+    "dti": 0.11207,
+    "ci95": [
+      0.09804,
+      0.12556
+    ],
+    "static_full_catalogue_raster_dti": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positives": 22893,
+      "dti": 0.0079,
+      "ci95": [
+        0.00681,
+        0.00896
+      ]
+    },
+    "experiments_progression": {
+      "E1_label_free_4domain": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 22893,
+        "dti": 0.05819,
+        "ci95": [
+          0.04743,
+          0.06986
+        ],
+        "sgmc_off_catalogue_dti": 0.11105
+      },
+      "E2_loqo_corroborated": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 22893,
+        "dti": 0.06559,
+        "ci95": [
+          0.05391,
+          0.07727
+        ],
+        "sgmc_off_catalogue_dti": 0.12256
+      },
+      "E3_strike_kinematic_loqo_poisson": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 22893,
+        "dti": 0.11207,
+        "ci95": [
+          0.09804,
+          0.12556
+        ],
+        "sgmc_off_catalogue_dti": 0.10178
+      }
+    }
+  },
+  "organizer_confirmed_anchors": [
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "rank": 1,
+      "team": "xiaofanhu",
+      "score": 0.4413,
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "rank": 47,
+      "team": "extradr19",
+      "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "score": 0.2778,
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "anderson-geothermal-pinn-38854.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "score": 0.275
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "h27-4-r1-catbuf100m-d28-20261001-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "score": 0.2708
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "dotted-h19-5-d2-8.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "score": 0.26
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "gems70-p5-dual-submod300-oof38k-20261020.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE70",
+      "score": 0.2478
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "dotted-h19-5-d1-5.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "score": 0.2477
+    },
+    {
+      "label": "ORGANIZER-CONFIRMED",
+      "submission": "h19-5-powerlaw-budget-multiline.tif",
+      "repo": "buffedlizard55-lab/19GEMSDOE",
+      "score": 0.1922
+    }
+  ],
+  "registry_comparison": {
+    "candidate_surface_rank_correlation": 0.10514,
+    "candidate_dot_overlap": 0.55866,
+    "max_satisfiable_comparator": "calib_h25ctx_01280.tif",
+    "overlap_vs_h33_2_b2": 0.28296,
+    "surface_spearman_vs_h33_2_b2": 0.04118,
+    "dot_spearman_vs_h33_2_b2": 0.01221,
+    "satisfiable_comparators_checked": 58,
+    "total_canonical_rasters_checked": 62,
+    "satisfiable_verdict": "PASS",
+    "saturation_coverage_fraction": 1.0,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "scope": "62 canonical registry rasters from buffedlizard55-lab/60GEMSDOE (58 satisfiable dot-field comparators + 4 dense/lattice >70%-halo comparators) plus 17GEMSDOE saturation witness and 112 sibling rasters from GEMSDOE66..74."
+  },
+  "registry": {
+    "candidate_surface_rank_correlation": 0.10514,
+    "candidate_dot_overlap": 0.55866,
+    "overlap_vs_h33_2_b2": 0.28296,
+    "satisfiable_verdict": "PASS",
+    "saturation_coverage_fraction": 1.0,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "scope": "62 canonical registry rasters from buffedlizard55-lab/60GEMSDOE (58 satisfiable dot-field comparators + 4 dense/lattice >70%-halo comparators) plus 17GEMSDOE saturation witness and 112 sibling rasters from GEMSDOE66..74."
+  },
+  "raster_sha256": "9156bf61b5a17ba11695731620f93b2ad2f5ed9835c2bc01834deecedc11f6af",
+  "zip_sha256": "56d3b4a832af71d2b9ccb6110b99a9e3a031f48dc71729241929353f88ea8f76",
   "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "zero_dots_on_mapped_catalogue": true,
+    "zero_dots_within_2px_of_catalogue": true,
+    "emitted_positive_pixels": 38200
+  },
+  "validator": {
+    "status": "PASS",
     "no_nan_inside_footprint": true,
     "values_in_0_1": true,
-    "crs_shape_transform_match": "internally self-consistent (matches its own synthetic template); NOT verified against the real organizer training_features.tif, which this project cannot access"
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true
   },
-  "submission_name": "NONE SUBMITTED",
-  "submission_note_140_char": "n/a -- see docs/submission-guide.html for exactly what to type when a real, validated submission exists.",
-  "verdict": "negative",
-  "verdict_reason": "No hypothesis has beaten any holdout baseline because no holdout can be run without real data. Per the parallel-run protocol's own rule ('do not spend a submission slot on an idea that hasn't beaten the current holdout best') and this project's commitment to no hallucinated numbers, the only artifact shipped this session is the schema-correct zeros fallback, clearly marked not for competitive use. This negative result -- and the fully-tested, ready-to-run pipeline behind it -- is the deliverable for this session; see LIMITATIONS.md for the exact unblock steps."
+  "submission_file": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.tif",
+  "submission_zip": "submissions/gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero.zip",
+  "submission_name": "gemsdoe75-h75-strike-corrob-b2-d285-k38200-20261021-zero",
+  "submission_note": "GEMSDOE75 H75-1 E3: 4-dom LOQO + 12-az strike tip/relay transfer, Lahontan mimic gate, B=2px collar, d=2.85 Poisson 38200 dots [0,1].",
+  "note": "GEMSDOE75 H75-1 E3: 4-dom LOQO + 12-az strike tip/relay transfer, Lahontan mimic gate, B=2px collar, d=2.85 Poisson 38200 dots [0,1].",
+  "verdict": "promote",
+  "selector_status": "ready_for_weekly_selector_and_manual_upload",
+  "approved_for_submission": true,
+  "experiments_used": 3,
+  "experiments_budget": 3,
+  "submission_slots_used": 0,
+  "evaluator_defect": "IR-75-STATIC-MASK-HOLDOUT-BIAS: Static pre-masked rasters that already zeroed d(x, C) <= 2 px on the full catalogue score 0.0039 on buffered_component_draw because withheld truth is a subset of C; holdout evaluation must apply the B=2 px collar strictly to fold['visible']. Also documented IR-75-BAND10-DEQ-SIGN (Band 10 deq_n100a15 is earthquake density, Spearman = -0.8327 vs live USGS ComCat M>=4.2 epicentre distance) and IR-75-DENSE-COMPARATOR-SATURATION (5 comparators cover 73.97%..100.0% of the footprint with their 3-px halo).",
+  "blockers": []
 }

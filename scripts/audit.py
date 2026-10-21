@@ -23,6 +23,7 @@ from scipy.ndimage import distance_transform_edt
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "vendor"))
 sys.path.insert(0, str(ROOT))
+
 from gems57 import gates, uniqueness
 from gems57.validate import assert_submittable, validate
 from scripts.fetch_inputs import sha256
@@ -94,13 +95,13 @@ def run() -> None:
     cand_distances = edt_cat[cand_arr > 0] * 100.0
 
     rho_h33 = {
-        k: None if isinstance(v, float) and not np.isfinite(v) else v
+        k: None if isinstance(v, float) and not np.isfinite(v) else (round(float(v), 10) if isinstance(v, float) else v)
         for k, v in uniqueness.surface_rho(
             np.where(np.isfinite(h33), h33, 0.0), witness, footprint
         ).items()
     }
     rho_cand_vs_h33 = {
-        k: None if isinstance(v, float) and not np.isfinite(v) else v
+        k: None if isinstance(v, float) and not np.isfinite(v) else (round(float(v), 10) if isinstance(v, float) else v)
         for k, v in uniqueness.surface_rho(
             cand_arr, np.where(np.isfinite(h33), h33, 0.0), footprint
         ).items()

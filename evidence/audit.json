@@ -36,10 +36,10 @@
     "comparison_vs_h33": {
       "forward_overlap_3px": 0.4129803358595132,
       "rank_and_jaccard": {
-        "spearman_on_dot_union": -0.9705920620017159,
+        "spearman_on_dot_union": -0.970592062,
         "n_dot_union": 66626,
-        "jaccard_dot_sets": 0.014723981628793565,
-        "spearman_full_footprint": 0.022861206513022113
+        "jaccard_dot_sets": 0.0147239816,
+        "spearman_full_footprint": 0.0228612065
       }
     },
     "format_report": {
@@ -168,8 +168,8 @@
     "rank_comparison": {
       "spearman_on_dot_union": null,
       "n_dot_union": 5167373,
-      "jaccard_dot_sets": 0.007286874781441169,
-      "spearman_full_footprint": 0.05820726105200384
+      "jaccard_dot_sets": 0.0072868748,
+      "spearman_full_footprint": 0.0582072611
     }
   },
   "decision": "PROMOTE TO HUMAN SELECTOR: Candidate passes all 15 format/range [0,1] checks, 0/46 leakage canaries, 98/98 non-lattice geological registry overlap checks, and wins all 3 spatial holdout suites (Suite N: 0.2067, Suite Q: 0.2041, Suite D: 0.0679)."

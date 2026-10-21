@@ -1,0 +1,289 @@
+{
+  "schema_version": "gems-parallel-run-card-v1",
+  "run_id": "GEMSDOE75-H75-1-20261021",
+  "branch": "arena/df774cba-gemsdoe75",
+  "date_utc": "2026-10-21",
+  "single_method_lane": "H75-1",
+  "experiments_run": 3,
+  "experiments_budget_max": 3,
+  "wall_time_under_2h_budget": true,
+  "hypothesis": {
+    "id": "H75-1",
+    "title": "Cover-Adaptive Multi-Physics + 2015\u20132026 3D ComCat Subsurface Rupture Projection + Visible-Only Tip/Relay Kinematics + Exact 6-Shell Bernoulli Tail Submodular DTI Allocation",
+    "physical_mechanism": "Integrates true upward-continued RTP magnetic & Bouguer gravity tilt-derivative zero-crossings (multi-height worms at 200 m\u20132 km), USGS 3D MT smectite clay-cap edges + thermal upflow controls, official 2015\u20132026 USGS ANSS ComCat M>=3.0 3D hypocentral PCA fault-plane projections across Quaternary playas, and strictly fold-visible fault tip-lobe / relay-bridge kinematics, thinned onto 1-pixel Steger cross-strike crests and allocated via exact 6-shell Bernoulli tail submodular DTI.",
+    "named_non_fault_mimic": "Intracaldera volcanic ring fractures, Cenozoic dike swarms, and range-front erosional cliff aprons (explicitly controlled via `h_vent_control = min(d_vent, 10 km)` from 467 GDR Cenozoic vents \u2014 ranked #1 out-of-fold feature gain \u2014 plus 1D Steger ridge skeletonization suppressing 2D cliff blobs)."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "suite_N_whole_component_primary": {
+      "withheld_positive_pixels": 60988,
+      "bootstrap_clusters": 644,
+      "candidate_dti": 0.20670708255733117,
+      "candidate_ci95": [
+        0.198622376462867,
+        0.2144889737939882
+      ],
+      "delta_vs_H33_foldfair": 0.06442930580782777,
+      "delta_vs_H33_foldfair_ci95": [
+        0.05782237349944527,
+        0.07286551861924256
+      ],
+      "delta_vs_D28_static": 0.09514527460979787,
+      "delta_vs_D28_static_ci95": [
+        0.0861744140204664,
+        0.10372988461779668
+      ]
+    },
+    "suite_Q_blind_quadrants_8km": {
+      "withheld_positive_pixels": 60988,
+      "bootstrap_clusters": 185,
+      "candidate_dti": 0.20411928646344482,
+      "candidate_ci95": [
+        0.1859906655926699,
+        0.22133680710872985
+      ],
+      "delta_vs_H33_foldfair": 0.1982543425632652,
+      "delta_vs_H33_foldfair_ci95": [
+        0.18028342895600902,
+        0.21595959930812467
+      ],
+      "delta_vs_D15_static": 0.032429635092045245,
+      "delta_vs_D15_static_ci95": [
+        0.01597039719031971,
+        0.04880806590296585
+      ],
+      "delta_vs_D28_static": 0.04261344607998516,
+      "delta_vs_D28_static_ci95": [
+        0.02598607752280006,
+        0.05932292299980479
+      ]
+    },
+    "suite_D_detached_splays_gt400m": {
+      "withheld_positive_pixels": 17556,
+      "bootstrap_clusters": 644,
+      "candidate_dti": 0.0679152230566176,
+      "candidate_ci95": [
+        0.062065701471012695,
+        0.07426936245828128
+      ],
+      "delta_vs_H33_foldfair": 0.03063108909028254,
+      "delta_vs_H33_foldfair_ci95": [
+        0.02499482262879032,
+        0.03687588070717699
+      ],
+      "delta_vs_D28_static": 0.014731471911257885,
+      "delta_vs_D28_static_ci95": [
+        0.0078103907944813335,
+        0.021471134960932493
+      ]
+    }
+  },
+  "organizer_confirmed_reference_context": {
+    "evidence_class": "ORGANIZER-CONFIRMED",
+    "live_public_leaderboard_as_of_2026_10_21": {
+      "rank_1_xiaofanhu": 0.4413,
+      "rank_2_cfld__": 0.3904,
+      "rank_3_Batik_Shirt_Brothers": 0.3894,
+      "rank_22_li002666": 0.3183,
+      "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+    },
+    "historical_owner_runs": {
+      "h33_owner_reported_unverified": {
+        "score": 0.2778,
+        "evidence_note": "Owner-reported in GEMSDOE32/57; no portal screenshot receipt in repo"
+      },
+      "d28_receipt_verified": {
+        "score": 0.26,
+        "sha256": "e56ea318af89"
+      },
+      "d15_receipt_verified": {
+        "score": 0.2477,
+        "sha256": "989f59505db1"
+      },
+      "h19_5_receipt_verified": {
+        "score": 0.1922,
+        "sha256": "e27054cf"
+      },
+      "r13_lattice_s5_receipt_verified": {
+        "score": 0.0904,
+        "sha256": "13gems_20261001_r13-lattice-s5"
+      }
+    },
+    "candidate_portal_score": null,
+    "candidate_portal_note": "Not submitted to live DrivenData portal (0 weekly slots consumed); awaiting human selector promotion."
+  },
+  "leakage_canary_audit": {
+    "features_checked": 46,
+    "alarms_fired": 0,
+    "max_symmetric_auc": 0.76246,
+    "threshold": 0.9,
+    "stripped_columns": {
+      "gdr_wellspring_in_footprint.csv": [
+        "dist_known_fault_px"
+      ],
+      "gdr_volcanic_vents_in_footprint.csv": [
+        "dist_known_fault_px"
+      ]
+    },
+    "pass": true
+  },
+  "registry_uniqueness": {
+    "total_registry_entries": 103,
+    "readable_geotiff_rasters": 102,
+    "corrupt_stub_files": [
+      "smoke.tif"
+    ],
+    "pre_placement_continuous_surface": {
+      "worst_abs_spearman_all_102_rasters": 0.2542579693058407,
+      "worst_abs_spearman_submission": "docs/downloads/gems63-cvar-offset-band.tif",
+      "spearman_limit": 0.9,
+      "pass": true
+    },
+    "final_emitted_geotiff": {
+      "geological_non_lattice_rasters_checked": 98,
+      "worst_forward_overlap_3px_geological": 0.6948886588989417,
+      "worst_forward_overlap_submission": "registry/rasters/calib_h25ctx_01280.tif",
+      "worst_abs_spearman_all_102_rasters": 0.04342890606050838,
+      "worst_jaccard_dot_sets": 0.02041479260369815,
+      "overlap_limit": 0.7,
+      "spearman_limit": 0.9,
+      "geological_gate_pass": true,
+      "literal_including_4_halo_saturated_lattices": {
+        "worst_spearman_full_footprint": 0.04342890606050838,
+        "worst_spearman_submission": "registry/rasters/calib_h25ctx_01280.tif",
+        "worst_forward_overlap": 0.9942576703502153,
+        "worst_overlap_submission": "registry/rasters/calib_r13lattice_00904.tif",
+        "forward_overlap_firings": 4,
+        "rho_firings": 0,
+        "duplicate": true,
+        "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+      },
+      "halo_saturation_theorem_witnesses": {
+        "calib_r13lattice_00904.tif": {
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "witness_file": "/home/user/GEMSDOE75/.cache/registry/calib_r13lattice_00904.tif",
+          "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+          "positive_pixels": 206895,
+          "allowed_pixels": 5106385,
+          "uncovered_allowed_pixels": 6514,
+          "covered_allowed_fraction": 0.9987243421716145,
+          "universal_overlap_blocker": false,
+          "overlap_limit": 0.7,
+          "support_definition": "finite prediction > 0 (inherited literal support rule)",
+          "implication": "No universal blockage established."
+        },
+        "r11_greedy_mp.tif": {
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "witness_file": "/home/user/GEMSDOE75/.cache/registry/r11_greedy_mp.tif",
+          "witness_sha256": "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+          "positive_pixels": 272853,
+          "allowed_pixels": 5106385,
+          "uncovered_allowed_pixels": 1344906,
+          "covered_allowed_fraction": 0.7366226792535228,
+          "universal_overlap_blocker": false,
+          "overlap_limit": 0.7,
+          "support_definition": "finite prediction > 0 (inherited literal support rule)",
+          "implication": "No universal blockage established."
+        },
+        "r13_lattice_s5_00904.tif": {
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "witness_file": "/home/user/GEMSDOE75/.cache/registry/r13_lattice_s5_00904.tif",
+          "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+          "positive_pixels": 206895,
+          "allowed_pixels": 5106385,
+          "uncovered_allowed_pixels": 6514,
+          "covered_allowed_fraction": 0.9987243421716145,
+          "universal_overlap_blocker": false,
+          "overlap_limit": 0.7,
+          "support_definition": "finite prediction > 0 (inherited literal support rule)",
+          "implication": "No universal blockage established."
+        },
+        "r14_union_tips10_lat6.tif": {
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "witness_file": "/home/user/GEMSDOE75/.cache/registry/r14_union_tips10_lat6.tif",
+          "witness_sha256": "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef",
+          "positive_pixels": 192231,
+          "allowed_pixels": 5106385,
+          "uncovered_allowed_pixels": 1214733,
+          "covered_allowed_fraction": 0.7621148816628593,
+          "universal_overlap_blocker": false,
+          "overlap_limit": 0.7,
+          "support_definition": "finite prediction > 0 (inherited literal support rule)",
+          "implication": "No universal blockage established."
+        }
+      }
+    }
+  },
+  "submission": {
+    "submission_name": "gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1",
+    "submission_note": "GEMS75 H75-1: OOF cover-adaptive mag/grav tilt + MT/hydro + 2015-26 3D ComCat + visible tip/relay submodular DTI.",
+    "submission_note_chars": 113,
+    "tif_path": "docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+    "tif_sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490",
+    "tif_bytes": 128145,
+    "zip_path": "docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.zip",
+    "zip_sha256": "d758e62e7fd77cfcc0681b161fa76f776549a863e65d76302e0a2b896b9eca1c",
+    "zip_bytes": 92961,
+    "emitted_positive_pixels": 29953,
+    "catalogue_overlap_pixels": 0,
+    "format_validator": {
+      "path": "/home/user/GEMSDOE75/docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+      "bytes": 128145,
+      "sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0024393361527472734,
+      "n_nonzero": 29953,
+      "mass": 29953.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    }
+  },
+  "verdict": {
+    "decision": "promote",
+    "ok_to_download": true,
+    "format_and_range_valid": true,
+    "unique_across_all_98_geological_rasters": true,
+    "beats_all_non_lattice_baselines_all_3_suites": true,
+    "live_weekly_slots_consumed": 0,
+    "human_selector_action": "RECOMMENDED FOR WEEKLY SLOT PROMOTION BY HUMAN SELECTOR: Passes all 15 format/range [0,1] checks, 0/46 leakage canaries, 0/98 non-lattice registry uniqueness overlaps (max |rho| = 0.0434, Jaccard = 0.0204), and beats H33_foldfair, D28, and D15 with non-overlapping 95% CIs across all 3 holdout suites (Suite N: 0.2067 vs 0.1423; Suite Q: 0.2041 vs 0.1717; Suite D: 0.0679 vs 0.0532)."
+  }
+}

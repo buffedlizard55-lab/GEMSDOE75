@@ -48,7 +48,7 @@ Every evaluation number below is computed strictly via unmodified `vendor/gems57
 ## Architecture & Reproduce Commands
 
 ```sh
-python -m venv .venv
+python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/pip install -e .
 
