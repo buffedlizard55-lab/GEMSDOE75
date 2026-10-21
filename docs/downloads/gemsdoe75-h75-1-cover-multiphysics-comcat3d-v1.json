@@ -1,0 +1,120 @@
+{
+  "file": "gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+  "sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490",
+  "bytes": 128145,
+  "submission_name": "gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1",
+  "note": "GEMS75 H75-1: OOF cover-adaptive mag/grav tilt + MT/hydro + 2015-26 3D ComCat + visible tip/relay submodular DTI.",
+  "note_chars": 113,
+  "validator": {
+    "file": "/home/user/GEMSDOE75/docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+    "bytes": 128145,
+    "sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0024393361527472734,
+    "emitted_positive_pixels": 29953,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 29953,
+    "footprint_fraction": 0.005796562392534853
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE75/docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+    "bytes": 128145,
+    "sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0024393361527472734,
+    "n_nonzero": 29953,
+    "mass": 29953.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.zip",
+  "zip_sha256": "d758e62e7fd77cfcc0681b161fa76f776549a863e65d76302e0a2b896b9eca1c",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {}
+}

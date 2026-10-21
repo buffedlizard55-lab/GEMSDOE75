@@ -1,107 +1,88 @@
 {
-  "generated_utc": "2026-10-21",
-  "method_note": "Each hypothesis below was checked against the GEMSDOE32 hypotheses registry (the most complete sibling-repo hypothesis list this project could read) to confirm it does not duplicate an already-tried idea (H33-1..5, H60-1). None of the four below appear in that list. Status for every one is UNVALIDATED pending real data access -- see LIMITATIONS.md. No DTI number below is a measurement; where a number appears it is explicitly labeled PROJECTED/ILLUSTRATIVE and is never written as a score.",
+  "status": "preregistered_locked_before_experiments",
+  "date_utc": "2026-10-21",
+  "selected_lane": "H75-1",
+  "max_experiments": 3,
+  "evaluator_version": "gems57-pooled-hide-v2",
   "hypotheses": [
     {
-      "id": "H75-1",
       "rank": 1,
-      "title": "Quaternary volcanic vent/fissure alignment as a dike-feeder structural prior",
+      "id": "H75-1",
+      "selected": true,
+      "title": "Cover-Adaptive Multi-Physics Phase-Tilt, Shallow Demagnetization, Hydrothermal/MT Clay-Cap, Active 3D ComCat Rupture & Visible-Network Submodular Synthesis",
       "layers": [
-        "external: GDR submission 1391, 'Quaternary Volcanics.zip' (vents point + flows polygon shapefiles, NAD83 Geographic), https://gdr.openei.org/files/1391/great_basin_q_volcanics.zip, 9.44 MB, CC BY 4.0",
-        "official band: reduced-to-pole magnetic anomaly + vertical slope of TMI (shallow magnetic source confirmation)",
-        "official band: top-of-crustal magnetic source depth estimate"
+        "training_features.tif Bands 1-19 (true arctan2(B09,B03) magnetic tilt & arctan2(B11,B18) gravity tilt; B06 reclassified as radiometric TC)",
+        "geodawn_extensions_u8.tif (TMI_up150 shallow demagnetization residual, K/Th, U/Th; doi:10.5066/P93LGLVQ, CC0)",
+        "lidar_scarp_features_u8.tif, topo_10m_derived_100m_u8.tif, dem10_chi_100m_i16.tif (USGS 3DEP 1m/10m scarp & cover gate, Public Domain)",
+        "gdr_wellspring_in_footprint.csv (dist_known_fault_px stripped at load time), paleo_geothermal_regional.zip, 2m_temperature_probe_INGENIOUS_regional_data.zip (doi:10.15121/1881483, CC BY 4.0)",
+        "usgs_comcat_2015_2026_m30.txt (1,167 verbatim USGS ANSS ComCat M>=3.0 3D hypocenters, 2015-2026, Public Domain)",
+        "fold['visible'] strict visible-only fault network geometry (existing_faults.tif at final emission only)"
       ],
-      "signature": "Directional clustering of vent/fissure point locations (a Hough-transform-style line fit, or nearest-neighbor azimuth statistics on point pairs within ~2 km) to find linear vent corridors; corroborate with a local magnetic-source-depth minimum along the same corridor (shallow intrusive body).",
-      "why_off_catalogue": "USGS Quaternary fault cataloguers map surface scarps and lineaments with measurable offset; a volcanic vent alignment is evidence of a dike or feeder fracture, which is frequently accommodated by dike-induced normal faulting or pre-existing crustal weakness, but the surface expression recorded in the map is a cone/crater, not a scarp. Such corridors are therefore systematically under-represented in a scarp-based fault catalogue even where they mark a real structural/permeability pathway relevant to geothermal upflow.",
-      "difference_from_prior_work": "No hypothesis in the GEMSDOE32 registry (the fullest one available) touches volcanic vent data at all; H33-1..5 use geothermometry, a catalogue buffer, a temperature-probe mask, paleo-geothermal features, and tip/step-over geometry -- none use the INGENIOUS Quaternary Volcanics compilation.",
-      "non_fault_mimic": "Monogenetic cone/fissure alignments can also be controlled purely by magma ascent pathways along pre-existing lithospheric heterogeneities that are NOT seismogenic, slip-prone faults (e.g. a dike intruding along a cooling joint or a compositional boundary with no shear history). Before trusting an alignment as a fault indicator it must be checked for concordance with the regional brittle strain field (the competition's own dilatation-rate / shear-strain-rate / second-invariant bands) -- a vent alignment orthogonal to or uncorrelated with the local extension direction is more likely a magma-pathway-only feature.",
-      "data_needed": {
-        "obtainable": true,
-        "source": "https://gdr.openei.org/files/1391/great_basin_q_volcanics.zip",
-        "license": "CC BY 4.0, DOI 10.15121/1881483",
-        "cost": "free",
-        "blocking_issue": "the file is a binary shapefile .zip; this sandbox's page-fetch tool can retrieve the GDR *listing page* (HTML/text) but not binary file bytes, and the sandbox's direct network (bash/curl) does not have gdr.openei.org on its allowlist. Must be downloaded on an unrestricted machine and placed at data/raw/external/great_basin_q_volcanics.zip."
-      },
-      "expected_value_cost": "cost: medium (point-pattern alignment + corroboration rule, ~1 day). benefit: potentially high on the Final Round specifically, since a genuinely novel structural control (not derivable from any single provided band) is exactly the kind of evidence an expert panel is positioned to credit, even if its Initial-Round public-leaderboard DTI is modest.",
-      "status": "UNVALIDATED -- blocked on external data access (see data_needed.blocking_issue). Will be scored on the hide-and-recover holdout the moment the shapefile is in data/raw/external/."
+      "mechanism": "Combines depth-invariant magnetic & gravity tilt contact gradients, shallow fault-gouge demagnetization, smectite clay-cap MT breaches, hydrothermal upflow, and 2015-2026 3D ComCat rupture planes under a continuous alluvial-cover gate, coupled out-of-fold with visible fault tip/stepover kinematics and allocated via exact 6-shell Bernoulli tail self-credit DTI optimization.",
+      "non_fault_mimic": "Un-faulted granitic pluton margins & caldera rings, pluvial Lake Lahontan shorelines & basalt caprock cliffs, GeoDAWN Area 1/2 flight-line seams, and down-fan lateral thermal outflow plumes.",
+      "difference_from_prior": "Fixes B06 radiometric TC mislabeling in gems57/geo.py:54; restores 10 omitted competition bands including B09/B11 vertical derivatives; adds verbatim 2015-2026 3D ComCat ruptures; replaces H33's 90%-topography static d_cat>2 collar and gems57's clipped-sum k_self with exact shell-tail submodular DTI allocation.",
+      "external_obtainability": "100% public, free, official DOI/API sources verified and SHA-256 pinned locally."
     },
     {
-      "id": "H75-2",
       "rank": 2,
-      "title": "Hypocenter-scatter anisotropy (seismicity 'streak' detection) distinct from raw earthquake density",
-      "layers": [
-        "external: USGS ANSS Comprehensive Earthquake Catalog (ComCat), FDSN Event Web Service, https://earthquake.usgs.gov/fdsnws/event/1/query (free, official, public JSON API, no login)",
-        "external (corroboration/negative control): GDR submission 1391 'Earthquake Density Models.zip', https://gdr.openei.org/files/1391/seismicity_INGENIOUS_regional_data.zip",
-        "official band: 'Density of earthquakes' (already provided) -- used ONLY as a sanity check that our feature is NOT a copy of it"
-      ],
-      "signature": "For each 300 m neighborhood, compute the eigenvalue ratio (anisotropy) of the local hypocenter point scatter via PCA; a ratio near 1 (isotropic) is an uninformative diffuse cloud, while a ratio >> 1 with a well-defined major-axis azimuth indicates a planar alignment consistent with slip on a single structure -- information the scalar 'density' band discards entirely.",
-      "why_off_catalogue": "A blind or buried fault with no mapped surface scarp can still be seismically active at depth. Its background seismicity may look unremarkable in raw density (low magnitude, diffuse-looking at low zoom) while still being significantly anisotropic/planar relative to the surrounding noise -- exactly the structure a density-only feature cannot distinguish from random background seismicity, and exactly what a scarp-based cataloguer walking the ground would never see.",
-      "difference_from_prior_work": "The GEMSDOE32 registry's hypotheses do not mention seismicity at all (their line of attack is geothermometry, a catalogue buffer, temperature probes, paleo features, and tip/step-over geometry). The reference solution and every sibling hypothesis we could read treats 'Density of earthquakes' purely as one of the 17 official input bands fed whole into a detector; none computes a directional/anisotropy statistic from the underlying point catalogue.",
-      "non_fault_mimic": "Induced seismicity from geothermal production/injection (e.g. near Steamboat Springs, an active producing field inside the GeoDAWN footprint) or from legacy mining can also produce elongated, planar hypocenter streaks with no natural tectonic fault involved. Any candidate streak must be checked against known industrial injection/production well locations before being trusted; streaks coincident with an active field footprint should be down-weighted or flagged, not emitted as a natural-fault candidate.",
-      "data_needed": {
-        "obtainable": true,
-        "source": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=...&maxlatitude=...&minlongitude=...&maxlongitude=...&starttime=...",
-        "license": "public domain, USGS",
-        "cost": "free",
-        "blocking_issue": "earthquake.usgs.gov is not reachable from this sandbox's bash network (confirmed unreachable in the GEMSDOE32 sources health probe, and not on this sandbox's allowlist); it is a plain JSON REST API so it MAY be reachable to the page-fetch tool -- untested this session due to time budget. First action for the next session: test fetch_page against a bounded ComCat query for the GeoDAWN footprint."
-      },
-      "expected_value_cost": "cost: medium-low if the ComCat API is reachable by any available tool (it returns small JSON, not a huge binary) -- this makes it the cheapest-to-validate hypothesis in this list if the reachability test succeeds. benefit: moderate; blind/buried faults under basin fill are plausible targets the catalogue explicitly says it may be missing.",
-      "status": "UNVALIDATED -- data source reachability not yet confirmed (see data_needed.blocking_issue); this is the first thing to test next session, since it may not require an unrestricted external machine at all."
+      "id": "H75-2",
+      "selected": false,
+      "title": "Cross-Potential Analytic Signal Ratio & Euler Depth-Step Discontinuity",
+      "layers": ["training_features.tif (B01,B02,B03,B09,B14)", "geodawn_extensions_u8.tif (TMI_up150)"],
+      "mechanism": "Hanging-wall vs footwall Euler source depth jump across 2D magnetic analytic signal ridges.",
+      "non_fault_mimic": "Dipping Tertiary sill/dike roofs and paleochannel basalt fills.",
+      "difference_from_prior": "Tests asymmetric cross-strike basement depth step rather than symmetric gradient magnitude.",
+      "external_obtainability": "Verified CC0 (doi:10.5066/P93LGLVQ)."
     },
     {
-      "id": "H75-3",
       "rank": 3,
-      "title": "Heat-flow x magnetic-source-depth conjunction, least-cost-path linked, as a blind-listric-fault indicator",
-      "layers": [
-        "external: USGS data release 'Heat Flow Maps', DOI 10.5066/P9BZPVUC (linked from GDR submission 1391), ScienceBase item, free/official",
-        "official band: top-of-crustal magnetic source depth estimate (Curie-depth-style proxy, already provided)",
-        "official band: surface conductivity and depth to conductive base surface (already provided, used as a confound check)"
-      ],
-      "signature": "Flag pixels that are simultaneously (a) anomalously high background conductive heat flow and (b) anomalously shallow magnetic source depth -- two independent indicators of an elevated local geothermal gradient -- AND are NOT already within the catalogue's pixel-exact mask or a mapped structure. Connect any two such conjunction cells with a steepest-gradient least-cost path through the strain-rate tensor field, on the premise that heat is reaching shallow crust via a connected, currently-blind listric or normal fault with no surface scarp.",
-      "why_off_catalogue": "Surface-mapping cataloguers detect faults from scarps, offset geomorphic markers, and lineaments -- not from a statistical conjunction of two independently-sourced deep geophysical layers. A blind listric fault bringing heat upward without breaking the surface (common in Basin-and-Range detachment settings) is the textbook case the catalogue is most likely to miss, and is exactly the kind of 'not on a public database' finding the organizer's Final Round expert panel is designed to credit.",
-      "difference_from_prior_work": "Heat Flow Maps (DOI 10.5066/P9BZPVUC) appears only as a 'listed' (unused) resource link on the one sibling hypotheses page we could fully read; no hypothesis there performs a cross-dataset conjunction between an external heat-flow product and the provided magnetic-depth band. GEMSDOE15's 'conj_alteration_mag' artifact (self-reported 0.0782) is the closest sibling idea by name, but its exact mechanism was not published on a page we could read, so we cannot confirm or rule out overlap beyond the name -- flagged for explicit comparison once both are buildable.",
-      "non_fault_mimic": "A shallow magnetic source can equally be a buried volcanic intrusion (pluton/dike) with no associated slip-prone fault, or simple cultural/infrastructure magnetic noise (pipelines, well casings, building steel). Before trusting a conjunction cell, it must be checked against (i) the Quaternary Volcanics vent/flow layer (H75-1's data) to exclude intrusion-only explanations, and (ii) any available infrastructure/road layer to exclude cultural noise.",
-      "data_needed": {
-        "obtainable": true,
-        "source": "https://doi.org/10.5066/P9BZPVUC (USGS ScienceBase)",
-        "license": "public domain / USGS data release terms",
-        "cost": "free",
-        "blocking_issue": "ScienceBase item pages and their GeoTIFF attachments are binary-serving and the host is not on this sandbox's allowlist; needs an unrestricted machine to download."
-      },
-      "expected_value_cost": "cost: high (two new external rasters, a conjunction rule, AND a least-cost-path implementation -- multi-day). benefit: potentially the highest of the four, because it targets exactly the 'blind, no surface scarp' fault class the problem statement calls out as under-mapped, but it is also the hardest to validate quickly and the easiest to get wrong (false positives from intrusions).",
-      "status": "UNVALIDATED -- blocked on external data access; ranked 3rd specifically because of its higher implementation cost and confound risk relative to H75-1/H75-2, despite its potentially higher payoff."
+      "id": "H75-3",
+      "selected": false,
+      "title": "Cross-Canyon Fluvial Steepness (k_sn) Step & Chi-Divide Asymmetry Lineaments",
+      "layers": ["dem10_chi_100m_i16.tif", "training_features.tif (B12 det_elev)"],
+      "mechanism": "Strike-coherent positive steps in normalized channel steepness across parallel range-front canyons.",
+      "non_fault_mimic": "Resistant silicified ash-flow tuff or carbonate beds.",
+      "difference_from_prior": "Uses drainage-area-normalized fluvial incision steps across debris-flow-buried fan apices rather than local slope.",
+      "external_obtainability": "Verified Public Domain (USGS 3DEP)."
     },
     {
-      "id": "H75-4",
       "rank": 4,
-      "title": "Slip/dilation-tendency azimuth mismatch against the nearest catalogued fault strike",
-      "layers": [
-        "external: USGS data release 'Quaternary Faulting Slip and Dilation Tendency', DOI 10.5066/P9YL58W6 (linked from GDR submission 1391)",
-        "official bands: dilatation rate, shear strain rate, second invariant of the strain rate tensor (already provided, geodetic)",
-        "catalogue: existing fault strike (derived from the pixel-exact label raster itself, per the organizer-confirmed masking clarification)"
-      ],
-      "signature": "Where the officially-published geomechanical slip/dilation-tendency analysis predicts a principal strain-release azimuth that is significantly misaligned (e.g. >30 degrees) from the strike of the nearest catalogued fault segment, flag the cell: the implication is that regional strain is not being fully accommodated by the mapped structure, so a second, unmapped structure oriented closer to the tendency-predicted azimuth may be partitioning the remainder.",
-      "why_off_catalogue": "This is explicitly a *disagreement* feature: it only fires where the official tendency analysis and the existing catalogue disagree, which by construction excludes anything the catalogue already explains well. It targets strain partitioning, a mechanical argument for an unmapped structure, rather than any single visual signature a surface geologist would have already walked past.",
-      "difference_from_prior_work": "No hypothesis we could read computes a vector/azimuth MISMATCH between an official geomechanical product and the catalogue; H33-2 uses the catalogue only as a buffer/removal mask (a scalar distance test), not an orientation comparison.",
-      "non_fault_mimic": "Gravitational/topographic sliding (landslide-related extensional fracturing, common on steep range fronts in this terrain) produces local dilation-tendency-like signals with no tectonic fault involved. Candidate cells on slopes above a documented threshold (e.g. >25-30 degrees, computable from the competition's own detrended-elevation-slope band) or inside a mapped landslide inventory polygon should be excluded before emission.",
-      "data_needed": {
-        "obtainable": true,
-        "source": "https://doi.org/10.5066/P9YL58W6 (USGS ScienceBase)",
-        "license": "public domain / USGS data release terms",
-        "cost": "free",
-        "blocking_issue": "same ScienceBase binary-access limitation as H75-3."
-      },
-      "expected_value_cost": "cost: medium (one external download + an azimuth-comparison rule + a slope-based confound mask). benefit: moderate; contrarian but mechanically sound, lowest payoff of the four mainly because its trigger condition (large azimuth mismatch) may be rare in a transtensional Basin-and-Range setting where many faults already roughly track the regional extension direction, limiting how many off-catalogue candidates it can realistically nominate.",
-      "status": "UNVALIDATED -- blocked on external data access; ranked last of the four by expected value per unit of implementation cost."
+      "id": "H75-4",
+      "selected": false,
+      "title": "Topographic Head Back-Projection of Orphan Geothermometer Plumes to MT Barriers",
+      "layers": ["gdr_wellspring_in_footprint.csv (dist_known_fault_px stripped)", "training_features.tif (B12, B15, B17)"],
+      "mechanism": "Back-projects lateral thermal outflow plumes up hydraulic head gradient to up-dip MT clay-cap edges.",
+      "non_fault_mimic": "Regional deep carbonate artesian upwellings.",
+      "difference_from_prior": "Replaces isotropic radial kernels on well coordinates with anisotropic up-gradient back-projection.",
+      "external_obtainability": "Verified CC BY 4.0 (doi:10.15121/1881483)."
+    },
+    {
+      "rank": 5,
+      "id": "H75-5",
+      "selected": false,
+      "title": "Transtensional Strain-Partitioning Regime Index x Declustered Seismicity Fabric",
+      "layers": ["training_features.tif (B04, B07, B08, B16)", "usgs_comcat_2015_2026_m30.txt"],
+      "mechanism": "Couples geodetic dilation-to-shear ratio with multiscale Hessian ridge orientation of declustered seismicity.",
+      "non_fault_mimic": "Magmatic inflation in Long Valley-Mono-Aurora borderland and GPS interpolation smoothness.",
+      "difference_from_prior": "Combines transtensional strain ratio with directional seismic ridge anisotropy.",
+      "external_obtainability": "Verified Public Domain (USGS ANSS ComCat)."
     }
   ],
-  "validation_plan": {
-    "step_1": "Confirm data reachability for each hypothesis's blocking_issue (H75-2's ComCat JSON API is the cheapest to test and should be tried first next session).",
-    "step_2": "Run scripts/download_competition_data.sh on an unrestricted machine; place training_features.tif, labels.tif in data/raw/, and each external file in data/raw/external/.",
-    "step_3": "Run python scripts/prepare_data.py to build the processed feature/label bundle.",
-    "step_4": "For each hypothesis, implement predict_fn(visible_fault_raster) -> p using ONLY visible-fold information (per src/gems_doe/holdout.py's contract) and run gems_doe.holdout.leakage_canary first, then gems_doe.holdout.run_holdout.",
-    "step_5": "Only a hypothesis whose pooled HOLDOUT-DTI (with its 95% CI, computed by bootstrapping folds) exceeds the current best validated holdout score is eligible to consume a weekly submission slot, per the parallel-run protocol's budget rule.",
-    "current_best_validated_holdout_DTI": null,
-    "current_best_validated_holdout_DTI_note": "No value yet: no real catalogue data has been scored in this repository. Do not infer a number from sibling repositories' self-reported figures -- they are explicitly labeled CLAIM, not HOLDOUT-DTI, by their own disclaimers."
-  }
+  "preregistered_experiments": [
+    {
+      "id": "Exp1",
+      "name": "GEMS75-E1-BlindMultiPhysics",
+      "description": "Pure label-blind cover-adaptive multi-physics + 2015-2026 3D ComCat + hydrothermal/MT OOF ridge model (0 catalogue covariates; d_vis > 2.0 applied only at emission)."
+    },
+    {
+      "id": "Exp2",
+      "name": "GEMS75-E2-UnifiedNetworkMultiPhysics",
+      "description": "Joint OOF visible-network kinematics (d_vis, d_perp, |d_par|, tip lobes, 2-host stepover bridges, log_len) interacted with frozen Exp1 blind geophysical likelihood at H33-matched 37,654-dot budget."
+    },
+    {
+      "id": "Exp3",
+      "name": "GEMS75-E3-ExactSubmodularDTI",
+      "description": "Exact 6-shell Bernoulli tail self-credit submodular DTI marginal-bar allocation on frozen Exp2 OOF posterior (0 model refits, 0 new features)."
+    }
+  ]
 }

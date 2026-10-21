@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 820" role="img" aria-label="GEMSDOE75 HOLDOUT-DTI ablation across 3 suites">
+<rect width="980" height="820" fill="#0b1120" rx="14"/>
+<text x="28" y="36" fill="#f8fafc" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700">HOLDOUT-DTI Evaluation Across Three Leakage-Free Suites (gems57-pooled-hide-v2, 1,000 Cluster-Bootstrap CIs)</text>
+<text x="28" y="56" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">Error bars show exact 95% paired spatial cluster-bootstrap confidence intervals. GEMS75 Exp3 wins across blind, network, and detached regimes.</text>
+<rect x="20" y="82" width="940" height="222" fill="#111827" stroke="#1e293b" rx="10"/>
+<text x="34" y="106" fill="#e2e8f0" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="700">Suite N: 4-Fold 300m Whole-Component (Primary, n=60,988)</text>
+<line x1="355.0" y1="116" x2="355.0" y2="294" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="355.0" y="301" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.00</text>
+<line x1="456.0" y1="116" x2="456.0" y2="294" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="456.0" y="301" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.05</text>
+<line x1="557.0" y1="116" x2="557.0" y2="294" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="557.0" y="301" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.10</text>
+<line x1="658.0" y1="116" x2="658.0" y2="294" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="658.0" y="301" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.16</text>
+<line x1="759.0" y1="116" x2="759.0" y2="294" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="759.0" y="301" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.21</text>
+<line x1="860.0" y1="116" x2="860.0" y2="294" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="860.0" y="301" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.26</text>
+<text x="345" y="135.0" fill="#fef08a" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp3: Exact Submodular DTI (Winner)</text>
+<rect x="355" y="126.0" width="401.5" height="11" fill="#fbbf24" rx="2.5" opacity="0.9"/>
+<line x1="740.8" y1="131.5" x2="771.6" y2="131.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="778.6" y="135.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.2067 [0.1986, 0.2145]</text>
+<text x="345" y="152.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp2: Network + Multi-Physics (37,654)</text>
+<rect x="355" y="143.5" width="412.2" height="11" fill="#38bdf8" rx="2.5" opacity="0.9"/>
+<line x1="751.1" y1="149.0" x2="782.8" y2="149.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="789.8" y="152.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.2122 [0.2039, 0.2202]</text>
+<text x="345" y="170.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp1: Label-Blind Multi-Physics Only</text>
+<rect x="355" y="161.0" width="228.2" height="11" fill="#34d399" rx="2.5" opacity="0.9"/>
+<line x1="564.3" y1="166.5" x2="600.4" y2="166.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="607.4" y="170.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1175 [0.1078, 0.1263]</text>
+<text x="345" y="187.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">H33 Fold-Fair Reference (37,654 dots)</text>
+<rect x="355" y="178.5" width="276.3" height="11" fill="#a78bfa" rx="2.5" opacity="0.9"/>
+<line x1="612.4" y1="184.0" x2="649.7" y2="184.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="656.7" y="187.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1423 [0.1325, 0.1517]</text>
+<text x="345" y="205.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">D1.5 Static (LB 0.2477, 60,069 dots)</text>
+<rect x="355" y="196.0" width="211.1" height="11" fill="#94a3b8" rx="2.5" opacity="0.9"/>
+<line x1="552.2" y1="201.5" x2="579.7" y2="201.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="586.7" y="205.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1087 [0.1015, 0.1157]</text>
+<text x="345" y="222.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">D2.8 Static (LB 0.2600, 44,090 dots)</text>
+<rect x="355" y="213.5" width="216.7" height="11" fill="#64748b" rx="2.5" opacity="0.9"/>
+<line x1="557.2" y1="219.0" x2="585.4" y2="219.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="592.4" y="222.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1116 [0.1041, 0.1186]</text>
+<text x="345" y="240.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">19GEMSDOE H19-5 (LB 0.1922, 121,131 dots)</text>
+<rect x="355" y="231.0" width="162.4" height="11" fill="#475569" rx="2.5" opacity="0.9"/>
+<line x1="506.0" y1="236.5" x2="529.0" y2="236.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="536.0" y="240.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0836 [0.0778, 0.0896]</text>
+<text x="345" y="257.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">R13 500m Space-Filling Lattice (LB 0.0904)</text>
+<rect x="355" y="248.5" width="205.4" height="11" fill="#f87171" rx="2.5" opacity="0.9"/>
+<line x1="549.5" y1="254.0" x2="570.7" y2="254.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="577.7" y="257.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1058 [0.1001, 0.1111]</text>
+<text x="345" y="275.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">Uniform Random 37,654-Dot Baseline</text>
+<rect x="355" y="266.0" width="67.7" height="11" fill="#6b7280" rx="2.5" opacity="0.9"/>
+<line x1="419.1" y1="271.5" x2="426.1" y2="271.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="433.1" y="275.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0349 [0.0330, 0.0366]</text>
+<text x="345" y="292.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">H33 Static File (0.2778 LB; circular mask trap)</text>
+<rect x="355" y="283.5" width="9.3" height="11" fill="#ef4444" rx="2.5" opacity="0.9"/>
+<line x1="363.5" y1="289.0" x2="365.1" y2="289.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="372.1" y="292.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0048 [0.0044, 0.0052]</text>
+<rect x="20" y="318" width="940" height="222" fill="#111827" stroke="#1e293b" rx="10"/>
+<text x="34" y="342" fill="#e2e8f0" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="700">Suite Q: 8 km Blind Spatial Quadrants (Zero Cat., n=60,988)</text>
+<line x1="355.0" y1="352" x2="355.0" y2="530" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="355.0" y="537" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.00</text>
+<line x1="456.0" y1="352" x2="456.0" y2="530" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="456.0" y="537" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.05</text>
+<line x1="557.0" y1="352" x2="557.0" y2="530" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="557.0" y="537" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.10</text>
+<line x1="658.0" y1="352" x2="658.0" y2="530" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="658.0" y="537" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.16</text>
+<line x1="759.0" y1="352" x2="759.0" y2="530" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="759.0" y="537" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.21</text>
+<line x1="860.0" y1="352" x2="860.0" y2="530" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="860.0" y="537" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.26</text>
+<text x="345" y="371.0" fill="#fef08a" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp3: Exact Submodular DTI (Winner)</text>
+<rect x="355" y="362.0" width="396.5" height="11" fill="#fbbf24" rx="2.5" opacity="0.9"/>
+<line x1="716.3" y1="367.5" x2="784.9" y2="367.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="791.9" y="371.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.2041 [0.1860, 0.2213]</text>
+<text x="345" y="388.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp2: Network + Multi-Physics (37,654)</text>
+<rect x="355" y="379.5" width="237.4" height="11" fill="#38bdf8" rx="2.5" opacity="0.9"/>
+<line x1="559.2" y1="385.0" x2="623.8" y2="385.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="630.8" y="388.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1222 [0.1052, 0.1384]</text>
+<text x="345" y="406.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp1: Label-Blind Multi-Physics Only</text>
+<rect x="355" y="397.0" width="296.5" height="11" fill="#34d399" rx="2.5" opacity="0.9"/>
+<line x1="621.8" y1="402.5" x2="682.8" y2="402.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="689.8" y="406.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1527 [0.1373, 0.1688]</text>
+<text x="345" y="423.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">H33 Fold-Fair Reference (37,654 dots)</text>
+<rect x="355" y="414.5" width="11.4" height="11" fill="#a78bfa" rx="2.5" opacity="0.9"/>
+<line x1="361.5" y1="420.0" x2="372.8" y2="420.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="379.8" y="423.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0059 [0.0034, 0.0092]</text>
+<text x="345" y="441.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">D1.5 Static (LB 0.2477, 60,069 dots)</text>
+<rect x="355" y="432.0" width="333.5" height="11" fill="#94a3b8" rx="2.5" opacity="0.9"/>
+<line x1="659.8" y1="437.5" x2="716.1" y2="437.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="723.1" y="441.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1717 [0.1569, 0.1859]</text>
+<text x="345" y="458.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">D2.8 Static (LB 0.2600, 44,090 dots)</text>
+<rect x="355" y="449.5" width="313.7" height="11" fill="#64748b" rx="2.5" opacity="0.9"/>
+<line x1="642.1" y1="455.0" x2="695.1" y2="455.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="702.1" y="458.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1615 [0.1478, 0.1751]</text>
+<text x="345" y="476.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">19GEMSDOE H19-5 (LB 0.1922, 121,131 dots)</text>
+<rect x="355" y="467.0" width="322.7" height="11" fill="#475569" rx="2.5" opacity="0.9"/>
+<line x1="650.2" y1="472.5" x2="706.0" y2="472.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="713.0" y="476.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.1661 [0.1520, 0.1807]</text>
+<text x="345" y="493.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">R13 500m Space-Filling Lattice (LB 0.0904)</text>
+<rect x="355" y="484.5" width="475.2" height="11" fill="#f87171" rx="2.5" opacity="0.9"/>
+<line x1="806.7" y1="490.0" x2="852.4" y2="490.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="859.4" y="493.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.2447 [0.2326, 0.2561]</text>
+<text x="345" y="511.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">Uniform Random 37,654-Dot Baseline</text>
+<rect x="355" y="502.0" width="94.7" height="11" fill="#6b7280" rx="2.5" opacity="0.9"/>
+<line x1="445.4" y1="507.5" x2="454.2" y2="507.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="461.2" y="511.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0487 [0.0465, 0.0511]</text>
+<text x="345" y="528.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">H33 Static File (0.2778 LB; circular mask trap)</text>
+<rect x="355" y="519.5" width="13.0" height="11" fill="#ef4444" rx="2.5" opacity="0.9"/>
+<line x1="366.7" y1="525.0" x2="369.4" y2="525.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="376.4" y="528.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0067 [0.0060, 0.0074]</text>
+<rect x="20" y="554" width="940" height="222" fill="#111827" stroke="#1e293b" rx="10"/>
+<text x="34" y="578" fill="#e2e8f0" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="700">Suite D: Isolated Detached Splays >400m (Hardest, n=17,556)</text>
+<line x1="355.0" y1="588" x2="355.0" y2="766" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="355.0" y="773" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.00</text>
+<line x1="456.0" y1="588" x2="456.0" y2="766" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="456.0" y="773" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.02</text>
+<line x1="557.0" y1="588" x2="557.0" y2="766" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="557.0" y="773" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.04</text>
+<line x1="658.0" y1="588" x2="658.0" y2="766" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="658.0" y="773" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.05</text>
+<line x1="759.0" y1="588" x2="759.0" y2="766" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="759.0" y="773" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.07</text>
+<line x1="860.0" y1="588" x2="860.0" y2="766" stroke="#1f2937" stroke-dasharray="3,3"/>
+<text x="860.0" y="773" fill="#64748b" font-family="monospace" font-size="10" text-anchor="middle">0.09</text>
+<text x="345" y="607.0" fill="#fef08a" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp3: Exact Submodular DTI (Winner)</text>
+<rect x="355" y="598.0" width="381.1" height="11" fill="#fbbf24" rx="2.5" opacity="0.9"/>
+<line x1="703.3" y1="603.5" x2="771.7" y2="603.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="778.7" y="607.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0679 [0.0621, 0.0743]</text>
+<text x="345" y="624.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp2: Network + Multi-Physics (37,654)</text>
+<rect x="355" y="615.5" width="377.7" height="11" fill="#38bdf8" rx="2.5" opacity="0.9"/>
+<line x1="700.6" y1="621.0" x2="768.6" y2="621.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="775.6" y="624.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0673 [0.0616, 0.0737]</text>
+<text x="345" y="642.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="end">GEMS75 Exp1: Label-Blind Multi-Physics Only</text>
+<rect x="355" y="633.0" width="313.5" height="11" fill="#34d399" rx="2.5" opacity="0.9"/>
+<line x1="625.0" y1="638.5" x2="715.6" y2="638.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="722.6" y="642.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0559 [0.0481, 0.0643]</text>
+<text x="345" y="659.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">H33 Fold-Fair Reference (37,654 dots)</text>
+<rect x="355" y="650.5" width="209.2" height="11" fill="#a78bfa" rx="2.5" opacity="0.9"/>
+<line x1="534.4" y1="656.0" x2="593.0" y2="656.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="600.0" y="659.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0373 [0.0320, 0.0424]</text>
+<text x="345" y="677.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">D1.5 Static (LB 0.2477, 60,069 dots)</text>
+<rect x="355" y="668.0" width="266.5" height="11" fill="#94a3b8" rx="2.5" opacity="0.9"/>
+<line x1="588.1" y1="673.5" x2="659.5" y2="673.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="666.5" y="677.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0475 [0.0415, 0.0543]</text>
+<text x="345" y="694.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">D2.8 Static (LB 0.2600, 44,090 dots)</text>
+<rect x="355" y="685.5" width="298.4" height="11" fill="#64748b" rx="2.5" opacity="0.9"/>
+<line x1="616.9" y1="691.0" x2="694.5" y2="691.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="701.5" y="694.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0532 [0.0467, 0.0605]</text>
+<text x="345" y="712.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">19GEMSDOE H19-5 (LB 0.1922, 121,131 dots)</text>
+<rect x="355" y="703.0" width="173.4" height="11" fill="#475569" rx="2.5" opacity="0.9"/>
+<line x1="505.8" y1="708.5" x2="554.0" y2="708.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="561.0" y="712.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0309 [0.0269, 0.0355]</text>
+<text x="345" y="729.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">R13 500m Space-Filling Lattice (LB 0.0904)</text>
+<rect x="355" y="720.5" width="206.3" height="11" fill="#f87171" rx="2.5" opacity="0.9"/>
+<line x1="542.1" y1="726.0" x2="581.8" y2="726.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="588.8" y="729.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0368 [0.0333, 0.0404]</text>
+<text x="345" y="747.0" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">Uniform Random 37,654-Dot Baseline</text>
+<rect x="355" y="738.0" width="98.7" height="11" fill="#6b7280" rx="2.5" opacity="0.9"/>
+<line x1="442.9" y1="743.5" x2="465.4" y2="743.5" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="472.4" y="747.0" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0176 [0.0157, 0.0197]</text>
+<text x="345" y="764.5" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="400" text-anchor="end">H33 Static File (0.2778 LB; circular mask trap)</text>
+<rect x="355" y="755.5" width="16.4" height="11" fill="#ef4444" rx="2.5" opacity="0.9"/>
+<line x1="369.2" y1="761.0" x2="373.7" y2="761.0" stroke="#f8fafc" stroke-width="1.5"/>
+<text x="380.7" y="764.5" fill="#e2e8f0" font-family="monospace" font-size="10.5">0.0029 [0.0025, 0.0033]</text>
+</svg>

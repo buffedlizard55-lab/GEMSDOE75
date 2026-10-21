@@ -106,10 +106,20 @@ def test_bad_download_does_not_replace_verified_path(tmp_path,monkeypatch):
     assert list(tmp_path.iterdir())==[dest]
 
 
-def test_negative_card_does_not_invent_artifact():
+def test_promoted_card_matches_verified_artifact():
     card=json.loads((ROOT/'evidence/run-card.json').read_text())
-    assert card['verdict']=='negative' and not card['approved_for_submission']
-    assert card['raster_sha256'] is None and card['submission_name'] is None
-    assert card['holdout_dti']['dti'] is None
-    assert card['submission_slots_used']==0
-    assert len(card['note'])<=140
+    assert card['verdict']['decision']=='promote'
+    assert card['verdict']['ok_to_download'] is True
+    assert card['verdict']['format_and_range_valid'] is True
+    assert card['verdict']['live_weekly_slots_consumed']==0
+    sub=card['submission']
+    assert 1<=sub['submission_note_chars']<=140
+    assert len(sub['submission_note'])<=140
+    tif_path=ROOT/sub['tif_path']
+    zip_path=ROOT/sub['zip_path']
+    assert tif_path.exists() and zip_path.exists()
+    assert hashlib.sha256(tif_path.read_bytes()).hexdigest()==sub['tif_sha256']
+    assert hashlib.sha256(zip_path.read_bytes()).hexdigest()==sub['zip_sha256']
+    assert sub['catalogue_overlap_pixels']==0
+    assert card['leakage_canary_audit']['alarms_fired']==0
+    assert card['leakage_canary_audit']['max_symmetric_auc']<=0.90
